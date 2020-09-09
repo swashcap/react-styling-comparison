@@ -1,0 +1,13 @@
+{
+  "author": "Cory Reed",
+  "dependencies": {},
+  "description": "An experiment testing React + Tachyons impact on bundle size.",
+  "devDependencies": {},
+  "keywords": ["tachyons"],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "wackyons",
+  "private": true,
+  "scripts": {},
+  "version": "0.0.1"
+}
