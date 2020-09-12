@@ -32,7 +32,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 >
                   <i
                     aria-hidden
-                    className={`far fa-${icon} fa-1x ${style.navListIcon}`}
+                    className={classNames(
+                      `far fa-${icon} fa-1x`,
+                      style.navListIcon
+                    )}
                   />
                   {name}
                 </a>
