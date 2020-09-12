@@ -16,7 +16,7 @@ const makeConfig = (input) => {
   const { name } = path.parse(input);
 
   const config = {
-    external: ["react", "classNames", /@babel\/runtime.*/],
+    external: ["react", "classnames", /@babel\/runtime.*/],
     input,
     output: {
       file: path.join("dist", `${name}.js`),
