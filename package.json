@@ -50,7 +50,7 @@
   ],
   "license": "MIT",
   "main": "index.js",
-  "name": "wackyons",
+  "name": "tachyons-vs-css-modules",
   "private": true,
   "scripts": {
     "build": "run-p build:*",
