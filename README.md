@@ -45,7 +45,7 @@ A simple button with a few properties.
 
 A more complicacted navigation component with some state.
 
-<img alt="Screenshot of sidebar" height="820" src="./img/sidebar.jpg" width=315" />
+<img alt="Screenshot of sidebar" height="820" src="./img/sidebar.jpg" width="315" />
 
 ### Setup
 
