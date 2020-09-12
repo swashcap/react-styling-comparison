@@ -5,6 +5,7 @@ import incstr from "incstr";
 import path from "path";
 import postcss from "rollup-plugin-postcss";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
+import { terser } from "rollup-plugin-terser";
 
 const nextId = incstr.idGenerator({
   prefix: "a_",
@@ -30,6 +31,7 @@ const makeConfig = (input) => {
       nodeResolve({
         extensions: [".js", ".ts", ".tsx"],
       }),
+      terser(),
     ],
   };
 
