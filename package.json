@@ -44,7 +44,7 @@
     "rollup-plugin-terser": "^7.0.2",
     "sass": "^1.26.11",
     "sass-loader": "^10.0.2",
-    "typescript": "^4.0.2"
+    "typescript": "^4.0.3"
   },
   "keywords": [
     "tachyons"
