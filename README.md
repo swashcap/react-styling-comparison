@@ -29,6 +29,23 @@ demonstrates the idea:
 
 ![Screenshot of minified Tachyons components](./img/minified-tachyons.jpg)
 
+### Server-side rendering
+
+Comparing CSS Modules to Tachyons using [React's server-side
+rendering](https://reactjs.org/docs/react-dom-server.html) reveals the
+differences aren't limited to client-side assets:
+
+```shell
+$ node scripts/ssr-tachyons.js 2> /dev/null
+[tachyons] renderToString, loop x10000: 3786.175344001502 ms
+[tachyons] renderToNodeStream, 10 parallel x1000: 3666.955406997353 ms
+$ node scripts/ssr-cssmodules.js 2> /dev/null
+[cssmodules] renderToString, loop x10000: 3410.5281179994345 ms
+[cssmodules] renderToNodeStream, 10 parallel x1000: 3361.1502400003374 ms
+```
+
+Less `className` strings result in slightly faster render times.
+
 ### Example components
 
 This test uses two components for testing. Both components are coded separately

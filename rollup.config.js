@@ -10,15 +10,12 @@ import { terser } from "rollup-plugin-terser";
 const nextId = incstr.idGenerator({ lastId: "9" });
 const idCache = {};
 
-const makeConfig = (input) => {
+const makeConfig = (input, isCJS) => {
   const { name } = path.parse(input);
 
   const config = {
     external: ["react", "classnames", /@babel\/runtime.*/],
     input,
-    output: {
-      file: path.join("dist", `${name}.js`),
-    },
     plugins: [
       babel({
         babelHelpers: "runtime",
@@ -32,6 +29,17 @@ const makeConfig = (input) => {
       terser(),
     ],
   };
+
+  if (isCJS) {
+    config.output = {
+      file: path.join("dist", `${name}.cjs.js`),
+      format: "cjs",
+    };
+  } else {
+    config.output = {
+      file: path.join("dist", `${name}.js`),
+    };
+  }
 
   if (name.includes("cssmodules")) {
     config.plugins.push(
@@ -55,10 +63,12 @@ const makeConfig = (input) => {
 };
 
 export default [
-  makeConfig("./src/index.cssmodules.ts"),
-  makeConfig("./src/index.tachyons.ts"),
   makeConfig("./src/Button/Button.cssmodules.tsx"),
   makeConfig("./src/Button/Button.tachyons.tsx"),
   makeConfig("./src/Sidebar/Sidebar.cssmodules.tsx"),
   makeConfig("./src/Sidebar/Sidebar.tachyons.tsx"),
+  makeConfig("./src/index.cssmodules.ts"),
+  makeConfig("./src/index.cssmodules.ts", "cjs"),
+  makeConfig("./src/index.tachyons.ts"),
+  makeConfig("./src/index.tachyons.ts", "cjs"),
 ];

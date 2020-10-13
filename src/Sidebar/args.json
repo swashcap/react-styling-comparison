@@ -1,0 +1,78 @@
+{
+  "account": {
+    "name": "Pat Garcia",
+    "profileURL": "/profiles/pat-garcia"
+  },
+  "className": "min-vh-100 mw5",
+  "navItems": [
+    {
+      "icon": "address-book",
+      "name": "Addresses",
+      "url": "#addresses"
+    },
+    {
+      "icon": "bell",
+      "name": "Notifications",
+      "url": "#notifications"
+    },
+    {
+      "icon": "sticky-note",
+      "name": "Reminders",
+      "url": "#reminders"
+    },
+    {
+      "icon": "heart",
+      "name": "Saved items",
+      "url": "#saved"
+    },
+    {
+      "icon": "comments",
+      "name": "Messages",
+      "url": "#messages"
+    }
+  ],
+  "subNavMenu": {
+    "In Progress": [
+      {
+        "name": "Pop Up",
+        "url": "/projects/pop-up"
+      },
+      {
+        "name": "Artwork",
+        "url": "/projects/artwork"
+      },
+      {
+        "name": "Crafts",
+        "url": "/projects/crafts"
+      }
+    ],
+    "Backburner": [
+      {
+        "name": "Cubism",
+        "url": "/projects/cubism"
+      },
+      {
+        "name": "Crayon Fire",
+        "url": "/projects/crayon-fire"
+      },
+      {
+        "name": "Decorative Paper Strips",
+        "url": "/projects/decorative-paper-strips"
+      },
+      {
+        "name": "Impressionist Painting as Paper Craft",
+        "url": "/projects/impressionist-painting-as-paper-craft"
+      }
+    ],
+    "Completed": [
+      {
+        "name": "The Moon",
+        "url": "/projects/the-moon"
+      },
+      {
+        "name": "matisseFishes",
+        "url": "/projects/matisse-fishes"
+      }
+    ]
+  }
+}
