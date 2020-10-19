@@ -4,7 +4,7 @@
   "description": "An experiment testing React + Tachyons impact on bundle size.",
   "devDependencies": {
     "@babel/core": "^7.12.3",
-    "@babel/plugin-transform-runtime": "^7.11.5",
+    "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/preset-react": "^7.10.4",
     "@babel/preset-typescript": "^7.10.4",
     "@babel/runtime": "^7.11.2",
