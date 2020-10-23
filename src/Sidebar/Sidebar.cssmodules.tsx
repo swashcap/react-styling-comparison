@@ -24,7 +24,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
             return (
               <li key={url}>
                 <a
-                  className={classNames(active && style.navListActive)}
+                  className={classNames(
+                    style.navListLink,
+                    active && style.navListActive
+                  )}
                   href={url}
                   onClick={(event) => {
                     onNavItemClick(event, item);

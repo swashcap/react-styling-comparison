@@ -16,23 +16,22 @@
   list-style: none;
   margin: 0;
   padding: $spacing-small;
+}
+.navListLink {
+  color: $dark-gray;
+  display: block;
+  border-radius: $border-radius-1;
+  text-decoration: none;
+  padding: $spacing-small;
 
-  a {
-    color: $dark-gray;
-    display: block;
-    border-radius: $border-radius-1;
-    text-decoration: none;
-    padding: $spacing-small;
+  &.navListActive {
+    background: $light-gray;
+    color: $dark-blue;
+  }
 
-    &.navListActive {
-      background: $light-gray;
-      color: $dark-blue;
-    }
-
-    &:focus,
-    &:hover {
-      color: $blue;
-    }
+  &:focus,
+  &:hover {
+    color: $blue;
   }
 }
 .navListIcon {
@@ -86,18 +85,17 @@
   list-style: none;
   margin: 0;
   padding: 0;
+}
+.projectsGroupLink {
+  border-radius: $border-radius-1;
+  display: block;
+  color: $dark-gray;
+  text-decoration: none;
+  padding: $spacing-extra-small $spacing-small $spacing-extra-small $spacing-medium;
 
-  a {
-    border-radius: $border-radius-1;
-    display: block;
-    color: $dark-gray;
-    text-decoration: none;
-    padding: $spacing-extra-small $spacing-small $spacing-extra-small $spacing-medium;
-
-    &:focus,
-    &:hover {
-      color: $blue;
-    }
+  &:focus,
+  &:hover {
+    color: $blue;
   }
 }
 
