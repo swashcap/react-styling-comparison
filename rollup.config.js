@@ -7,7 +7,7 @@ import postcss from "rollup-plugin-postcss";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import { terser } from "rollup-plugin-terser";
 
-const nextId = incstr.idGenerator({ lastId: "9" });
+const nextId = incstr.idGenerator();
 const idCache = {};
 
 const makeConfig = (input, isCJS) => {
