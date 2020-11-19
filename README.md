@@ -12,13 +12,13 @@ The [comparison script](./scripts/compare.js) demonstrates:
 * Components built with CSS Modules are lighter invidually and combined
 
 ```
-┌─────────┬────────────────────────┬──────────────────────────┐
-│ (index) │      CSS Modules       │         Tachyons         │
-├─────────┼────────────────────────┼──────────────────────────┤
-│ Button  │ { JS: 318, CSS: 450 }  │ { JS: 449, CSS: 15055 }  │
-│ Sidebar │ { JS: 810, CSS: 703 }  │ { JS: 1057, CSS: 15055 } │
-│  Both   │ { JS: 1001, CSS: 888 } │ { JS: 1333, CSS: 15055 } │
-└─────────┴────────────────────────┴──────────────────────────┘
+┌─────────┬────────────────────────┬──────────────────────┬──────────────────────────┐
+│ (index) │      CSS Modules       │    Inline Styles     │         Tachyons         │
+├─────────┼────────────────────────┼──────────────────────┼──────────────────────────┤
+│ Button  │ { JS: 318, CSS: 450 }  │ { JS: 613, CSS: 0 }  │ { JS: 449, CSS: 15055 }  │
+│ Sidebar │ { JS: 900, CSS: 708 }  │ { JS: 1380, CSS: 0 } │ { JS: 1057, CSS: 15055 } │
+│  Both   │ { JS: 1089, CSS: 900 } │ { JS: 1694, CSS: 0 } │ { JS: 1333, CSS: 15055 } │
+└─────────┴────────────────────────┴──────────────────────┴──────────────────────────┘
 ```
 
 (All sizes gzipped.)
@@ -42,6 +42,9 @@ $ node scripts/ssr-tachyons.js 2> /dev/null
 $ node scripts/ssr-cssmodules.js 2> /dev/null
 [cssmodules] renderToString, loop x10000: 3410.5281179994345 ms
 [cssmodules] renderToNodeStream, 10 parallel x1000: 3361.1502400003374 ms
+$ node scripts/ssr-inline.js 2> /dev/null
+[inline] renderToString, loop x10000: 4490.870884999633 ms
+[inline] renderToNodeStream, 10 parallel x1000: 4439.125102005899 ms
 ```
 
 Less `className` strings result in slightly faster render times.

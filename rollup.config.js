@@ -64,11 +64,15 @@ const makeConfig = (input, isCJS) => {
 
 export default [
   makeConfig("./src/Button/Button.cssmodules.tsx"),
+  makeConfig("./src/Button/Button.inline.tsx"),
   makeConfig("./src/Button/Button.tachyons.tsx"),
+  makeConfig("./src/Sidebar/Sidebar.inline.tsx"),
   makeConfig("./src/Sidebar/Sidebar.cssmodules.tsx"),
   makeConfig("./src/Sidebar/Sidebar.tachyons.tsx"),
   makeConfig("./src/index.cssmodules.ts"),
   makeConfig("./src/index.cssmodules.ts", "cjs"),
+  makeConfig("./src/index.inline.ts"),
+  makeConfig("./src/index.inline.ts", "cjs"),
   makeConfig("./src/index.tachyons.ts"),
   makeConfig("./src/index.tachyons.ts", "cjs"),
 ];

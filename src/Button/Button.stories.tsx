@@ -3,6 +3,7 @@ import { Story } from "@storybook/react";
 
 import { Button as ButtonTachyons } from "./Button.tachyons";
 import { Button as ButtonCSSModules } from "./Button.cssmodules";
+import { Button as ButtonInline } from "./Button.inline";
 import { ButtonProps } from "./ButtonTypes";
 
 export default {
@@ -41,6 +42,10 @@ export const CSSModules: Story<ButtonProps> = (props) => (
 );
 
 CSSModules.storyName = "CSS Modules";
+
+export const InlineStyles: Story<ButtonProps> = (props) => (
+  <ButtonInline {...props} />
+);
 
 export const Tachyons: Story<ButtonProps> = (props) => (
   <ButtonTachyons {...props} />
