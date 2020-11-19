@@ -22,7 +22,7 @@
     "@types/react-dom": "^16.9.8",
     "@typescript-eslint/eslint-plugin": "^4.8.1",
     "@typescript-eslint/parser": "^4.8.1",
-    "babel-loader": "^8.1.0",
+    "babel-loader": "^8.2.1",
     "classnames": "^2.2.6",
     "csso-cli": "^3.0.0",
     "eslint": "^7.12.0",
