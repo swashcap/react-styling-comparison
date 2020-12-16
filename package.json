@@ -45,7 +45,7 @@
     "sass": "^1.30.0",
     "sass-loader": "^10.1.0",
     "stream-to-promise": "^3.0.0",
-    "typescript": "^4.0.5"
+    "typescript": "^4.1.3"
   },
   "keywords": [
     "tachyons"
