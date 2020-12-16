@@ -26,7 +26,7 @@
     "classnames": "^2.2.6",
     "csso-cli": "^3.0.0",
     "eslint": "^7.15.0",
-    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-prettier": "^3.3.0",
     "eslint-plugin-react": "^7.21.5",
     "husky": "^4.3.0",
     "incstr": "^1.2.3",
