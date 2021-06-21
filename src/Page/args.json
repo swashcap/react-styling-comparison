@@ -1,0 +1,497 @@
+{
+  "advertisement": {
+    "actionText": "Nulla pariatur",
+    "description": "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.",
+    "imageAlt": "A placeholder kitten",
+    "imageSrc": "//placekitten.com/800/350?image=1",
+    "title": "Ut enim ad minim veniam"
+  },
+  "footer": {
+    "actionText": "Excepteur sint",
+    "finePrint1": "Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    "finePrint2": "Occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "menus": [{
+      "title": "Lorem ipsum",
+      "links": [{
+        "name": "Dolor sit amet",
+        "url": "#"
+      }, {
+        "name": "Consectetur adipiscing elit",
+        "url": "#"
+      }, {
+        "name": "Sed do euismod",
+        "url": "#"
+      }]
+    }, {
+      "title": "Tempor",
+      "links": [{
+        "name": "Incididunt ut labore",
+        "url": "#"
+      }, {
+        "name": "Et dolre",
+        "url": "#"
+      }, {
+        "name": "Magna aliqua",
+        "url": "#"
+      }]
+    }, {
+      "title": "Ut enim ad",
+      "links": [{
+        "name": "Minim veniam",
+        "url": "#"
+      }, {
+        "name": "Quis nostrud",
+        "url": "#"
+      }, {
+        "name": "Exercitation",
+        "url": "#"
+      }]
+    }]
+  },
+  "lead": {
+    "actionText": "Magna aliqua",
+    "description": "Sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+    "title": "Lorem ipsum dolor"
+  },
+  "items": [
+    {
+      "description": "The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=1",
+      "price": "992.00",
+      "title": "Cheese",
+      "fulfillment": "2 days"
+    },
+    {
+      "description": "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=2",
+      "price": "475.00",
+      "title": "Pants"
+    },
+    {
+      "description": "The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=3",
+      "price": "855.00",
+      "title": "Computer"
+    },
+    {
+      "description": "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=4",
+      "price": "163.00",
+      "title": "Ball"
+    },
+    {
+      "description": "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=5",
+      "price": "502.00",
+      "title": "Computer",
+      "fulfillment": "4 days"
+    },
+    {
+      "description": "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=6",
+      "price": "128.00",
+      "title": "Hat"
+    },
+    {
+      "description": "The Football Is Good For Training And Recreational Purposes",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=7",
+      "price": "274.00",
+      "title": "Keyboard"
+    },
+    {
+      "description": "The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=8",
+      "price": "412.00",
+      "title": "Keyboard"
+    },
+    {
+      "description": "Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=9",
+      "price": "414.00",
+      "title": "Chair",
+      "fulfillment": "2 days"
+    },
+    {
+      "description": "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=10",
+      "price": "855.00",
+      "title": "Shirt",
+      "fulfillment": "2 days"
+    },
+    {
+      "description": "The Football Is Good For Training And Recreational Purposes",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=11",
+      "price": "632.00",
+      "title": "Gloves",
+      "fulfillment": "3 days"
+    },
+    {
+      "description": "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=12",
+      "price": "485.00",
+      "title": "Chips",
+      "fulfillment": "4 days"
+    },
+    {
+      "description": "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=13",
+      "price": "146.00",
+      "title": "Gloves"
+    },
+    {
+      "description": "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=14",
+      "price": "776.00",
+      "title": "Soap",
+      "fulfillment": "6 days"
+    },
+    {
+      "description": "The Football Is Good For Training And Recreational Purposes",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=15",
+      "price": "397.00",
+      "title": "Pizza",
+      "fulfillment": "3 days"
+    },
+    {
+      "description": "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=16",
+      "price": "441.00",
+      "title": "Pants",
+      "fulfillment": "4 days"
+    },
+    {
+      "description": "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=17",
+      "price": "724.00",
+      "title": "Shoes",
+      "fulfillment": "5 days"
+    },
+    {
+      "description": "Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=18",
+      "price": "543.00",
+      "title": "Towels"
+    },
+    {
+      "description": "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=19",
+      "price": "762.00",
+      "title": "Sausages"
+    },
+    {
+      "description": "The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=20",
+      "price": "66.00",
+      "title": "Cheese",
+      "fulfillment": "6 days"
+    },
+    {
+      "description": "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=21",
+      "price": "141.00",
+      "title": "Computer"
+    },
+    {
+      "description": "The Football Is Good For Training And Recreational Purposes",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=22",
+      "price": "566.00",
+      "title": "Chicken",
+      "fulfillment": "2 days"
+    },
+    {
+      "description": "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=23",
+      "price": "875.00",
+      "title": "Cheese",
+      "fulfillment": "2 days"
+    },
+    {
+      "description": "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=24",
+      "price": "210.00",
+      "title": "Bacon",
+      "fulfillment": "6 days"
+    },
+    {
+      "description": "The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=25",
+      "price": "928.00",
+      "title": "Bike",
+      "fulfillment": "4 days"
+    },
+    {
+      "description": "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=26",
+      "price": "674.00",
+      "title": "Pants",
+      "fulfillment": "5 days"
+    },
+    {
+      "description": "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=27",
+      "price": "324.00",
+      "title": "Computer",
+      "fulfillment": "3 days"
+    },
+    {
+      "description": "Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=28",
+      "price": "40.00",
+      "title": "Car",
+      "fulfillment": "6 days"
+    },
+    {
+      "description": "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=29",
+      "price": "510.00",
+      "title": "Chair"
+    },
+    {
+      "description": "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=30",
+      "price": "209.00",
+      "title": "Sausages"
+    },
+    {
+      "description": "Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=31",
+      "price": "234.00",
+      "title": "Computer",
+      "fulfillment": "5 days"
+    },
+    {
+      "description": "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=32",
+      "price": "995.00",
+      "title": "Mouse"
+    },
+    {
+      "description": "The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=33",
+      "price": "310.00",
+      "title": "Shoes",
+      "fulfillment": "5 days"
+    },
+    {
+      "description": "The Football Is Good For Training And Recreational Purposes",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=34",
+      "price": "10.00",
+      "title": "Chips"
+    },
+    {
+      "description": "Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=35",
+      "price": "703.00",
+      "title": "Shoes"
+    },
+    {
+      "description": "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=36",
+      "price": "325.00",
+      "title": "Chicken",
+      "fulfillment": "5 days"
+    },
+    {
+      "description": "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=37",
+      "price": "229.00",
+      "title": "Keyboard"
+    },
+    {
+      "description": "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=38",
+      "price": "139.00",
+      "title": "Fish"
+    },
+    {
+      "description": "The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=39",
+      "price": "973.00",
+      "title": "Computer",
+      "fulfillment": "4 days"
+    },
+    {
+      "description": "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=40",
+      "price": "344.00",
+      "title": "Keyboard",
+      "fulfillment": "5 days"
+    },
+    {
+      "description": "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=41",
+      "price": "998.00",
+      "title": "Pants"
+    },
+    {
+      "description": "The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=42",
+      "price": "67.00",
+      "title": "Mouse",
+      "fulfillment": "5 days"
+    },
+    {
+      "description": "The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=43",
+      "price": "701.00",
+      "title": "Computer",
+      "fulfillment": "6 days"
+    },
+    {
+      "description": "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=44",
+      "price": "651.00",
+      "title": "Salad"
+    },
+    {
+      "description": "The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=45",
+      "price": "906.00",
+      "title": "Shoes"
+    },
+    {
+      "description": "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=46",
+      "price": "192.00",
+      "title": "Table"
+    },
+    {
+      "description": "The Football Is Good For Training And Recreational Purposes",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=47",
+      "price": "899.00",
+      "title": "Tuna"
+    },
+    {
+      "description": "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients",
+      "imageAlt": "A placeholder kitten",
+      "imageSrc": "//placekitten.com/200/200?image=48",
+      "price": "237.00",
+      "title": "Car",
+      "fulfillment": "4 days"
+    }
+  ],
+  "sidebarProps": {
+    "account": {
+      "name": "Pat Garcia",
+      "profileURL": "/profiles/pat-garcia"
+    },
+    "navItems": [
+      {
+        "icon": "address-book",
+        "name": "Addresses",
+        "url": "#addresses"
+      },
+      {
+        "icon": "bell",
+        "name": "Notifications",
+        "url": "#notifications"
+      },
+      {
+        "icon": "sticky-note",
+        "name": "Reminders",
+        "url": "#reminders"
+      },
+      {
+        "icon": "heart",
+        "name": "Saved items",
+        "url": "#saved"
+      },
+      {
+        "icon": "comments",
+        "name": "Messages",
+        "url": "#messages"
+      }
+    ],
+    "subNavMenu": {
+      "In Progress": [
+        {
+          "name": "Pop Up",
+          "url": "/projects/pop-up"
+        },
+        {
+          "name": "Artwork",
+          "url": "/projects/artwork"
+        },
+        {
+          "name": "Crafts",
+          "url": "/projects/crafts"
+        }
+      ],
+      "Backburner": [
+        {
+          "name": "Cubism",
+          "url": "/projects/cubism"
+        },
+        {
+          "name": "Crayon Fire",
+          "url": "/projects/crayon-fire"
+        },
+        {
+          "name": "Decorative Paper Strips",
+          "url": "/projects/decorative-paper-strips"
+        },
+        {
+          "name": "Impressionist Painting as Paper Craft",
+          "url": "/projects/impressionist-painting-as-paper-craft"
+        }
+      ],
+      "Completed": [
+        {
+          "name": "The Moon",
+          "url": "/projects/the-moon"
+        },
+        {
+          "name": "matisseFishes",
+          "url": "/projects/matisse-fishes"
+        }
+      ]
+    }
+  }
+}

@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface SidebarNavItem {
   active?: boolean;
   icon: string;
@@ -24,5 +26,6 @@ export interface SidebarProps {
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
     navItem: SidebarNavItem
   ) => void;
+  style?: React.CSSProperties;
   subNavMenu: Record<string, SidebarSubNavItem[]>;
 }

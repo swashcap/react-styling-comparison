@@ -12,13 +12,14 @@ The [comparison script](./scripts/compare.js) demonstrates:
 * Components built with CSS Modules are lighter invidually and combined
 
 ```
-┌─────────┬────────────────────────┬──────────────────────┬──────────────────────────┐
-│ (index) │      CSS Modules       │    Inline Styles     │         Tachyons         │
-├─────────┼────────────────────────┼──────────────────────┼──────────────────────────┤
-│ Button  │ { JS: 318, CSS: 450 }  │ { JS: 613, CSS: 0 }  │ { JS: 449, CSS: 15055 }  │
-│ Sidebar │ { JS: 900, CSS: 708 }  │ { JS: 1380, CSS: 0 } │ { JS: 1057, CSS: 15055 } │
-│  Both   │ { JS: 1089, CSS: 900 } │ { JS: 1694, CSS: 0 } │ { JS: 1333, CSS: 15055 } │
-└─────────┴────────────────────────┴──────────────────────┴──────────────────────────┘
+┌─────────┬─────────────────────────┬──────────────────────┬──────────────────────────┐
+│ (index) │       CSS Modules       │    Inline Styles     │         Tachyons         │
+├─────────┼─────────────────────────┼──────────────────────┼──────────────────────────┤
+│ Button  │  { JS: 297, CSS: 424 }  │ { JS: 596, CSS: 0 }  │ { JS: 430, CSS: 15558 }  │
+│  Page   │ { JS: 1755, CSS: 1445 } │ { JS: 2481, CSS: 0 } │ { JS: 2078, CSS: 15558 } │
+│ Sidebar │  { JS: 918, CSS: 678 }  │ { JS: 1316, CSS: 0 } │ { JS: 1075, CSS: 15558 } │
+│   All   │ { JS: 1765, CSS: 1445 } │ { JS: 2494, CSS: 0 } │ { JS: 2090, CSS: 15558 } │
+└─────────┴─────────────────────────┴──────────────────────┴──────────────────────────┘
 ```
 
 (All sizes gzipped.)
@@ -37,14 +38,14 @@ differences aren't limited to client-side assets:
 
 ```shell
 $ node scripts/ssr-tachyons.js 2> /dev/null
-[tachyons] renderToString, loop x10000: 3786.175344001502 ms
-[tachyons] renderToNodeStream, 10 parallel x1000: 3666.955406997353 ms
+[tachyons] renderToString, loop x10000: 33139.913702994585 ms
+[tachyons] renderToNodeStream, 10 parallel x1000: 35550.39947998524 ms
 $ node scripts/ssr-cssmodules.js 2> /dev/null
-[cssmodules] renderToString, loop x10000: 3410.5281179994345 ms
-[cssmodules] renderToNodeStream, 10 parallel x1000: 3361.1502400003374 ms
+[cssmodules] renderToString, loop x10000: 32164.504203021526 ms
+[cssmodules] renderToNodeStream, 10 parallel x1000: 34197.619803994894 ms
 $ node scripts/ssr-inline.js 2> /dev/null
-[inline] renderToString, loop x10000: 4490.870884999633 ms
-[inline] renderToNodeStream, 10 parallel x1000: 4439.125102005899 ms
+[inline] renderToString, loop x10000: 43030.30145201087 ms
+[inline] renderToNodeStream, 10 parallel x1000: 47460.29873299599 ms
 ```
 
 Less `className` strings result in slightly faster render times.
@@ -66,6 +67,13 @@ A simple button with a few properties.
 A more complicacted navigation component with some state.
 
 <img alt="Screenshot of sidebar" height="820" src="./img/sidebar.jpg" width="315" />
+
+#### [Page](./src/Page)
+
+A larger component that includes Button and Sidebar along with fake products and
+some additional content.
+
+<img alt="Screenshot of page" src="./img/page.jpg" />
 
 ### Setup
 

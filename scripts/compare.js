@@ -4,7 +4,7 @@ const util = require("util");
 
 const getFileSize = async (filename) => {
   const { stdout, stderr } = await util.promisify(cp.exec)(
-    `gzip -c9 ${path.resolve(filename)} | wc -c`
+    `gzip < ${path.resolve(filename)} | wc -c`
   );
 
   if (stderr) {
@@ -19,14 +19,18 @@ const files = new Map([
   ["button:css", "./dist/Button.cssmodules.min.css"],
   ["button:inline", "./dist/Button.inline.js"],
   ["button:tachyons", "./dist/Button.tachyons.js"],
+  ["page:js", "./dist/Page.cssmodules.js"],
+  ["page:css", "./dist/Page.cssmodules.min.css"],
+  ["page:inline", "./dist/Page.inline.js"],
+  ["page:tachyons", "./dist/Page.tachyons.js"],
   ["sidebar:js", "./dist/Sidebar.cssmodules.js"],
   ["sidebar:css", "./dist/Sidebar.cssmodules.min.css"],
   ["sidebar:inline", "./dist/Sidebar.inline.js"],
   ["sidebar:tachyons", "./dist/Sidebar.tachyons.js"],
-  ["both:js", "./dist/index.cssmodules.js"],
-  ["both:css", "./dist/index.cssmodules.min.css"],
-  ["both:inline", "./dist/index.inline.js"],
-  ["both:tachyons", "./dist/index.tachyons.js"],
+  ["all:js", "./dist/index.cssmodules.js"],
+  ["all:css", "./dist/index.cssmodules.min.css"],
+  ["all:inline", "./dist/index.inline.js"],
+  ["all:tachyons", "./dist/index.tachyons.js"],
   ["tachyons", "./dist/tachyons.min.css"],
 ]);
 
@@ -50,6 +54,20 @@ Promise.all(Array.from(files.values()).map(getFileSize))
           CSS: sizes.get("tachyons"),
         },
       },
+      Page: {
+        "CSS Modules": {
+          JS: sizes.get("page:js"),
+          CSS: sizes.get("page:css"),
+        },
+        "Inline Styles": {
+          JS: sizes.get("page:inline"),
+          CSS: 0,
+        },
+        Tachyons: {
+          JS: sizes.get("page:tachyons"),
+          CSS: sizes.get("tachyons"),
+        },
+      },
       Sidebar: {
         "CSS Modules": {
           JS: sizes.get("sidebar:js"),
@@ -64,17 +82,17 @@ Promise.all(Array.from(files.values()).map(getFileSize))
           CSS: sizes.get("tachyons"),
         },
       },
-      Both: {
+      All: {
         "CSS Modules": {
-          JS: sizes.get("both:js"),
-          CSS: sizes.get("both:css"),
+          JS: sizes.get("all:js"),
+          CSS: sizes.get("all:css"),
         },
         "Inline Styles": {
-          JS: sizes.get("both:inline"),
+          JS: sizes.get("all:inline"),
           CSS: 0,
         },
         Tachyons: {
-          JS: sizes.get("both:tachyons"),
+          JS: sizes.get("all:tachyons"),
           CSS: sizes.get("tachyons"),
         },
       },

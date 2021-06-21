@@ -1,7 +1,7 @@
 const { loop, stream } = require("./utils");
-const { Sidebar } = require("../dist/index.tachyons.cjs");
+const { Page } = require("../dist/index.tachyons.cjs");
 
 (async () => {
-  loop(Sidebar, "tachyons");
-  await stream(Sidebar, "tachyons");
+  loop(Page, "tachyons");
+  await stream(Page, "tachyons");
 })();

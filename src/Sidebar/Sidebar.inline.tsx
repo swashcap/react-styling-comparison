@@ -1,25 +1,21 @@
 import React from "react";
 
 import { SidebarProps } from "./SidebarTypes";
-
-const colors = {
-  darkBlue: "#00449e",
-  darkGray: "#333",
-  darkGreen: "#137752",
-  gray: "#777",
-  lightGray: "#eee",
-  midGray: "#555",
-  moonGray: "#ccc",
-  nearWhite: "#f4f4f4",
-  silver: "#999",
-  white: "#fff",
-} as const;
-
-const spacing = {
-  extraSmall: ".25rem",
-  small: ".5rem",
-  medium: "1rem",
-} as const;
+import {
+  colorDarkBlue,
+  colorDarkGray,
+  colorDarkGreen,
+  colorGray,
+  colorLightGray,
+  colorMidGray,
+  colorMoonGray,
+  colorNearWhite,
+  colorSilver,
+  colorWhite,
+  spaceExtraSmall,
+  spaceSmall,
+  spaceMedium,
+} from "../utilities/constants";
 
 export const Sidebar: React.FC<SidebarProps> = ({
   account,
@@ -27,6 +23,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onNavItemClick,
   navItems,
   subNavMenu,
+  style,
 }) => {
   const subNavMenuKeys = Object.keys(subNavMenu);
   const [activeSubNavIndex, setActiveSubNavIndex] = React.useState(0);
@@ -35,14 +32,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
     <div
       className={className}
       style={{
-        background: colors.nearWhite,
-        color: colors.darkGray,
+        background: colorNearWhite,
+        color: colorDarkGray,
         display: "flex",
         flexDirection: "column",
         fontFamily:
           "-apple-system, BlinkMacSystemFont, 'avenir next', avenir, helvetica, 'helvetica neue', ubuntu, roboto, noto, 'segoe ui', arial, sans-serif",
         justifyContent: "space-between",
         lineHeight: "1.5",
+        ...style,
       }}
     >
       <div>
@@ -51,7 +49,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             style={{
               listStyle: "none",
               margin: 0,
-              padding: spacing.small,
+              padding: spaceSmall,
             }}
           >
             {navItems.map((item) => {
@@ -65,11 +63,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
                       onNavItemClick(event, item);
                     }}
                     style={{
-                      background: active ? colors.lightGray : "transparent",
+                      background: active ? colorLightGray : "transparent",
                       borderRadius: ".125rem",
-                      color: active ? colors.darkBlue : colors.darkGray,
+                      color: active ? colorDarkBlue : colorDarkGray,
                       display: "block",
-                      padding: spacing.small,
+                      padding: spaceSmall,
                       textDecoration: "none",
                     }}
                   >
@@ -77,7 +75,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                       aria-hidden
                       className={`far fa-${icon} fa-1x`}
                       style={{
-                        marginRight: spacing.small,
+                        marginRight: spaceSmall,
                       }}
                     />
                     {name}
@@ -90,18 +88,18 @@ export const Sidebar: React.FC<SidebarProps> = ({
         {subNavMenuKeys.length > 0 && (
           <nav
             style={{
-              borderTopColor: colors.moonGray,
+              borderTopColor: colorMoonGray,
               borderTopStyle: "solid",
               borderTopWidth: "1px",
-              padding: `${spacing.medium} 0`,
+              padding: `${spaceMedium} 0`,
             }}
           >
             <h3
               style={{
-                color: colors.gray,
+                color: colorGray,
                 fontSize: ".75rem",
                 fontWeight: 500,
-                margin: `0 ${spacing.medium} ${spacing.extraSmall}`,
+                margin: `0 ${spaceMedium} ${spaceExtraSmall}`,
                 textTransform: "uppercase",
               }}
             >
@@ -120,7 +118,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 <div
                   key={key}
                   style={{
-                    padding: `0 ${spacing.small}`,
+                    padding: `0 ${spaceSmall}`,
                   }}
                 >
                   <button
@@ -133,7 +131,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     style={{
                       background: "transparent",
                       border: 0,
-                      color: colors.darkGray,
+                      color: colorDarkGray,
                       cursor: "pointer",
                       display: "flex",
                       fontFamily: "inherit",
@@ -141,7 +139,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                       justifyContent: "space-between",
                       lineHeight: "1.5",
                       margin: 0,
-                      padding: spacing.small,
+                      padding: spaceSmall,
                       width: "100%",
                     }}
                     type="button"
@@ -153,9 +151,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
                         isExpanded ? "down" : "up"
                       }`}
                       style={{
-                        color: colors.silver,
-                        marginLeft: spacing.small,
-                        marginTop: spacing.extraSmall,
+                        color: colorSilver,
+                        marginLeft: spaceSmall,
+                        marginTop: spaceExtraSmall,
                         verticalAlign: "bottom",
                       }}
                     />
@@ -180,9 +178,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
                             href={url}
                             style={{
                               borderRadius: ".125rem",
-                              color: colors.darkGray,
+                              color: colorDarkGray,
                               display: "block",
-                              padding: `${spacing.extraSmall} ${spacing.small} ${spacing.extraSmall} ${spacing.medium}`,
+                              padding: `${spaceExtraSmall} ${spaceSmall} ${spaceExtraSmall} ${spaceMedium}`,
                               textDecoration: "none",
                             }}
                           >
@@ -201,12 +199,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
       <div
         style={{
           alignItems: "center",
-          borderTopColor: colors.moonGray,
+          borderTopColor: colorMoonGray,
           borderTopStyle: "solid",
           borderTopWidth: "1px",
           display: "flex",
           justifyContent: "space-between",
-          padding: spacing.medium,
+          padding: spaceMedium,
         }}
       >
         <div
@@ -218,16 +216,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <div
             aria-hidden
             style={{
-              background: colors.darkGreen,
+              background: colorDarkGreen,
               borderRadius: "100%",
-              color: colors.white,
+              color: colorWhite,
               flex: "none",
               fontSize: ".875rem",
               fontWeight: 600,
               height: "2rem",
               lineHeight: "2rem",
-              marginLeft: `calc(-1 * ${spacing.extraSmall})`,
-              marginRight: spacing.small,
+              marginLeft: `calc(-1 * ${spaceExtraSmall})`,
+              marginRight: spaceSmall,
               textAlign: "center",
               width: "2rem",
             }}
@@ -240,7 +238,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <div>
             <h3
               style={{
-                color: colors.darkGray,
+                color: colorDarkGray,
                 fontSize: "1rem",
                 fontWeight: 500,
                 lineHeight: "1",
@@ -252,7 +250,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <a
               href={account.profileURL}
               style={{
-                color: colors.midGray,
+                color: colorMidGray,
                 fontSize: ".875rem",
                 lineHeight: "1",
                 textDecoration: "underline",
@@ -271,8 +269,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
             color: "inherit",
             cursor: "pointer",
             fontFamily: "inherit",
-            margin: `0 calc(-1 * ${spacing.small}) 0 0`,
-            padding: `${spacing.small} ${spacing.medium}`,
+            margin: `0 calc(-1 * ${spaceSmall}) 0 0`,
+            padding: `${spaceSmall} ${spaceMedium}`,
           }}
           title="Settings"
           type="button"

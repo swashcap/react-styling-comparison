@@ -1,7 +1,7 @@
 const { loop, stream } = require("./utils");
-const { Sidebar } = require("../dist/index.inline.cjs");
+const { Page } = require("../dist/index.inline.cjs");
 
 (async () => {
-  loop(Sidebar, "inline");
-  await stream(Sidebar, "inline");
+  loop(Page, "inline");
+  await stream(Page, "inline");
 })();

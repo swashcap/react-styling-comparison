@@ -1,4 +1,4 @@
-@import '../tachyons/scss/variables';
+@import "../tachyons/scss/variables";
 
 .sidebar {
   background: $near-white;
@@ -92,7 +92,8 @@
     display: block;
     color: $dark-gray;
     text-decoration: none;
-    padding: $spacing-extra-small $spacing-small $spacing-extra-small $spacing-medium;
+    padding: $spacing-extra-small $spacing-small $spacing-extra-small
+      $spacing-medium;
 
     &:focus,
     &:hover {

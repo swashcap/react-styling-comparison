@@ -9,6 +9,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onNavItemClick,
   navItems,
   subNavMenu,
+  ...rest
 }) => {
   const subNavMenuKeys = Object.keys(subNavMenu);
   const [activeSubNavIndex, setActiveSubNavIndex] = React.useState(0);
@@ -19,6 +20,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         "bg-near-white dark-gray flex flex-column lh-copy justify-between sans-serif",
         className
       )}
+      {...rest}
     >
       <div>
         <nav>

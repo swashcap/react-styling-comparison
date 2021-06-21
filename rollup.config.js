@@ -7,7 +7,24 @@ import postcss from "rollup-plugin-postcss";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import { terser } from "rollup-plugin-terser";
 
-const nextId = incstr.idGenerator();
+const generateId = incstr.idGenerator({
+  alphabet: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_",
+});
+
+/**
+ * > they cannot start with a digit, two hyphens, or a hyphen followed by a digit
+ * @see {@link https://www.w3.org/TR/CSS21/syndata.html#characters}
+ */
+const nextId = () => {
+  let id;
+
+  do {
+    id = generateId();
+  } while (/^\d/.test(id) || /^-/.test(id) || /^-\d/.test(id));
+
+  return id;
+};
+
 const idCache = {};
 
 const makeConfig = (input, isCJS) => {
@@ -66,6 +83,9 @@ export default [
   makeConfig("./src/Button/Button.cssmodules.tsx"),
   makeConfig("./src/Button/Button.inline.tsx"),
   makeConfig("./src/Button/Button.tachyons.tsx"),
+  makeConfig("./src/Page/Page.cssmodules.tsx"),
+  makeConfig("./src/Page/Page.inline.tsx"),
+  makeConfig("./src/Page/Page.tachyons.tsx"),
   makeConfig("./src/Sidebar/Sidebar.inline.tsx"),
   makeConfig("./src/Sidebar/Sidebar.cssmodules.tsx"),
   makeConfig("./src/Sidebar/Sidebar.tachyons.tsx"),

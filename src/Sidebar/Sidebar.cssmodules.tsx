@@ -10,12 +10,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onNavItemClick,
   navItems,
   subNavMenu,
+  ...rest
 }) => {
   const subNavMenuKeys = Object.keys(subNavMenu);
   const [activeSubNavIndex, setActiveSubNavIndex] = React.useState(0);
 
   return (
-    <div className={classNames(style.sidebar, className)}>
+    <div className={classNames(style.sidebar, className)} {...rest}>
       <nav>
         <ul className={style.navList}>
           {navItems.map((item) => {

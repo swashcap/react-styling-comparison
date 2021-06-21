@@ -3,13 +3,13 @@ const streamToPromise = require("stream-to-promise");
 const { performance } = require("perf_hooks");
 const { renderToNodeStream, renderToString } = require("react-dom/server");
 
-const props = require("../src/Sidebar/args.json");
+const props = require("../src/Page/args.json");
 
-module.exports.loop = (Sidebar, prefix) => {
+module.exports.loop = (PageComponent, prefix) => {
   const start = performance.now();
 
   for (let i = 0; i < 10000; i += 1) {
-    console.error(renderToString(React.createElement(Sidebar, props)));
+    console.error(renderToString(React.createElement(PageComponent, props)));
   }
 
   console.log(
@@ -17,13 +17,15 @@ module.exports.loop = (Sidebar, prefix) => {
   );
 };
 
-module.exports.stream = async (Sidebar, prefix) => {
+module.exports.stream = async (PageComponent, prefix) => {
   const start = performance.now();
 
   for (let i = 0; i < 1000; i += 1) {
     const rendered = await Promise.all(
       Array.from(new Array(10)).map(() =>
-        streamToPromise(renderToNodeStream(React.createElement(Sidebar, props)))
+        streamToPromise(
+          renderToNodeStream(React.createElement(PageComponent, props))
+        )
       )
     );
 
