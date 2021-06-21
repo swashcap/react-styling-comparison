@@ -6,6 +6,25 @@ import { Button as ButtonCSSModules } from "./Button.cssmodules";
 import { Button as ButtonInline } from "./Button.inline";
 import { ButtonProps } from "./ButtonTypes";
 
+const Center: React.FC<React.HTMLAttributes<HTMLElement>> = ({
+  style,
+  ...rest
+}) => (
+  <div
+    style={{
+      alignItems: "center",
+      boxSizing: "border-box",
+      display: "flex",
+      justifyContent: "center",
+      minHeight: "100vh",
+      minWidth: "100vh",
+      padding: "1rem",
+      ...style,
+    }}
+    {...rest}
+  />
+);
+
 export default {
   argTypes: {
     children: {
@@ -38,15 +57,21 @@ export default {
 };
 
 export const CSSModules: Story<ButtonProps> = (props) => (
-  <ButtonCSSModules {...props} />
+  <Center>
+    <ButtonCSSModules {...props} />
+  </Center>
 );
 
 CSSModules.storyName = "CSS Modules";
 
 export const InlineStyles: Story<ButtonProps> = (props) => (
-  <ButtonInline {...props} />
+  <Center>
+    <ButtonInline {...props} />
+  </Center>
 );
 
 export const Tachyons: Story<ButtonProps> = (props) => (
-  <ButtonTachyons {...props} />
+  <Center>
+    <ButtonTachyons {...props} />
+  </Center>
 );
