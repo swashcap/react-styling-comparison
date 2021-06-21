@@ -15,10 +15,10 @@ The [comparison script](./scripts/compare.js) demonstrates:
 ┌─────────┬─────────────────────────┬──────────────────────┬──────────────────────────┐
 │ (index) │       CSS Modules       │    Inline Styles     │         Tachyons         │
 ├─────────┼─────────────────────────┼──────────────────────┼──────────────────────────┤
-│ Button  │  { JS: 297, CSS: 424 }  │ { JS: 596, CSS: 0 }  │ { JS: 430, CSS: 15558 }  │
-│  Page   │ { JS: 1755, CSS: 1445 } │ { JS: 2481, CSS: 0 } │ { JS: 2078, CSS: 15558 } │
-│ Sidebar │  { JS: 918, CSS: 678 }  │ { JS: 1316, CSS: 0 } │ { JS: 1075, CSS: 15558 } │
-│   All   │ { JS: 1765, CSS: 1445 } │ { JS: 2494, CSS: 0 } │ { JS: 2090, CSS: 15558 } │
+│ Button  │  { JS: 280, CSS: 424 }  │ { JS: 576, CSS: 0 }  │ { JS: 415, CSS: 15558 }  │
+│  Page   │ { JS: 1780, CSS: 1445 } │ { JS: 2491, CSS: 0 } │ { JS: 2093, CSS: 15558 } │
+│ Sidebar │  { JS: 919, CSS: 678 }  │ { JS: 1346, CSS: 0 } │ { JS: 1081, CSS: 15558 } │
+│   All   │ { JS: 1786, CSS: 1445 } │ { JS: 2505, CSS: 0 } │ { JS: 2103, CSS: 15558 } │
 └─────────┴─────────────────────────┴──────────────────────┴──────────────────────────┘
 ```
 
@@ -38,14 +38,14 @@ differences aren't limited to client-side assets:
 
 ```shell
 $ node scripts/ssr-tachyons.js 2> /dev/null
-[tachyons] renderToString, loop x10000: 33139.913702994585 ms
-[tachyons] renderToNodeStream, 10 parallel x1000: 35550.39947998524 ms
+[tachyons] renderToString, loop x10000: 33153.42862698436 ms
+[tachyons] renderToNodeStream, 10 parallel x1000: 35053.46060299873 ms
 $ node scripts/ssr-cssmodules.js 2> /dev/null
-[cssmodules] renderToString, loop x10000: 32164.504203021526 ms
-[cssmodules] renderToNodeStream, 10 parallel x1000: 34197.619803994894 ms
+[cssmodules] renderToString, loop x10000: 31617.192449986935 ms
+[cssmodules] renderToNodeStream, 10 parallel x1000: 33382.98804599047 ms
 $ node scripts/ssr-inline.js 2> /dev/null
-[inline] renderToString, loop x10000: 43030.30145201087 ms
-[inline] renderToNodeStream, 10 parallel x1000: 47460.29873299599 ms
+[inline] renderToString, loop x10000: 40916.44756999612 ms
+[inline] renderToNodeStream, 10 parallel x1000: 44937.595535993576 ms
 ```
 
 Less `className` strings result in slightly faster render times.

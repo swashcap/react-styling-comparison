@@ -1,4 +1,4 @@
-import React from "react";
+import type { CSSProperties, MouseEvent, MouseEventHandler } from "react";
 
 export interface SidebarNavItem {
   active?: boolean;
@@ -15,17 +15,15 @@ export interface SidebarSubNavItem {
 export interface SidebarProps {
   account: {
     name: string;
-    onSettingsClick?: (
-      event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-    ) => void;
+    onSettingsClick?: MouseEventHandler<HTMLButtonElement>;
     profileURL: string;
   };
   className?: string;
   navItems: SidebarNavItem[];
   onNavItemClick?: (
-    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    event: MouseEvent<HTMLAnchorElement>,
     navItem: SidebarNavItem
   ) => void;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   subNavMenu: Record<string, SidebarSubNavItem[]>;
 }

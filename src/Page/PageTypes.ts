@@ -1,7 +1,7 @@
-import React from "react";
+import type { HTMLAttributes, MouseEventHandler, ReactNode } from "react";
 import { SidebarProps } from "../Sidebar/SidebarTypes";
 
-export interface PageItemProps extends React.HTMLAttributes<HTMLElement> {
+export interface PageItemProps extends HTMLAttributes<HTMLElement> {
   description: string;
   fulfillment?: string;
   imageAlt: string;
@@ -10,22 +10,22 @@ export interface PageItemProps extends React.HTMLAttributes<HTMLElement> {
   title: string;
 }
 
-export interface PageProps extends React.HTMLAttributes<HTMLElement> {
+export interface PageProps extends HTMLAttributes<HTMLElement> {
   advertisement: {
-    actionOnClick?: React.MouseEventHandler<HTMLButtonElement>;
+    actionOnClick?: MouseEventHandler<HTMLButtonElement>;
     actionText: string;
-    description: React.ReactNode;
+    description: ReactNode;
     imageAlt: string;
     imageSrc: string;
-    title: React.ReactNode;
+    title: ReactNode;
   };
   footer: {
-    actionOnClick?: React.MouseEventHandler<HTMLButtonElement>;
+    actionOnClick?: MouseEventHandler<HTMLButtonElement>;
     actionText: string;
-    finePrint1: React.ReactNode;
-    finePrint2: React.ReactNode;
+    finePrint1: ReactNode;
+    finePrint2: ReactNode;
     menus: {
-      title: React.ReactNode;
+      title: ReactNode;
       links: {
         name: string;
         url: string;
@@ -33,10 +33,10 @@ export interface PageProps extends React.HTMLAttributes<HTMLElement> {
     }[];
   };
   lead: {
-    actionOnClick?: React.MouseEventHandler<HTMLButtonElement>;
+    actionOnClick?: MouseEventHandler<HTMLButtonElement>;
     actionText: string;
-    description: React.ReactNode;
-    title: React.ReactNode;
+    description: ReactNode;
+    title: ReactNode;
   };
   items: PageItemProps[];
   sidebarProps: SidebarProps;

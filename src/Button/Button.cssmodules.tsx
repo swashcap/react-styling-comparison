@@ -1,10 +1,10 @@
-import React from "react";
+import { forwardRef } from "react";
 import classNames from "classnames";
 
 import { ButtonProps } from "./ButtonTypes";
 import style from "./Button.module.scss";
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     { className, fluid, size = "small", variant = "secondary", ...rest },
     ref

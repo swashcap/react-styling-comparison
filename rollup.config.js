@@ -31,7 +31,7 @@ const makeConfig = (input, isCJS) => {
   const { name } = path.parse(input);
 
   const config = {
-    external: ["react", "classnames", /@babel\/runtime.*/],
+    external: ["react", /react\/jsx.*/, "classnames", /@babel\/runtime.*/],
     input,
     plugins: [
       babel({

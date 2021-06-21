@@ -1,4 +1,5 @@
-import React from "react";
+import type { FC } from "react";
+import { useState } from "react";
 
 import { SidebarProps } from "./SidebarTypes";
 import {
@@ -17,7 +18,7 @@ import {
   spaceMedium,
 } from "../utilities/constants";
 
-export const Sidebar: React.FC<SidebarProps> = ({
+export const Sidebar: FC<SidebarProps> = ({
   account,
   className,
   onNavItemClick,
@@ -26,7 +27,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   style,
 }) => {
   const subNavMenuKeys = Object.keys(subNavMenu);
-  const [activeSubNavIndex, setActiveSubNavIndex] = React.useState(0);
+  const [activeSubNavIndex, setActiveSubNavIndex] = useState(0);
 
   return (
     <div

@@ -1,4 +1,4 @@
-import React from "react";
+import type { HTMLAttributes, FC } from "react";
 import { Story } from "@storybook/react";
 
 import { Button as ButtonTachyons } from "./Button.tachyons";
@@ -6,10 +6,7 @@ import { Button as ButtonCSSModules } from "./Button.cssmodules";
 import { Button as ButtonInline } from "./Button.inline";
 import { ButtonProps } from "./ButtonTypes";
 
-const Center: React.FC<React.HTMLAttributes<HTMLElement>> = ({
-  style,
-  ...rest
-}) => (
+const Center: FC<HTMLAttributes<HTMLElement>> = ({ style, ...rest }) => (
   <div
     style={{
       alignItems: "center",

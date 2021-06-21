@@ -1,13 +1,14 @@
-import React from "react";
+import type { CSSProperties } from "react";
+import { forwardRef } from "react";
 
 import { ButtonProps } from "./ButtonTypes";
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     { fluid, disabled, size = "small", style, variant = "secondary", ...rest },
     ref
   ) => {
-    const buttonStyle: React.CSSProperties = {
+    const buttonStyle: CSSProperties = {
       borderRadius: ".125rem",
       borderStyle: "solid",
       borderWidth: "1px",

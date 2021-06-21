@@ -22,7 +22,9 @@ module.exports = {
   rules: {
     "prettier/prettier": "error",
     "react/display-name": 0,
+    "react/jsx-uses-react": "off",
     "react/prop-types": 0,
+    "react/react-in-jsx-scope": "off",
   },
   settings: {
     react: {

@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Button } from "../Button/Button.inline";
 import { PageProps, PageItemProps } from "./PageTypes";
 import { Sidebar } from "../Sidebar/Sidebar.inline";

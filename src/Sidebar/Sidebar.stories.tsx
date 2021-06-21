@@ -1,4 +1,5 @@
-import React from "react";
+import type { FC } from "react";
+import { useState } from "react";
 import { Story } from "@storybook/react";
 
 import { Sidebar as SidebarTachyons } from "./Sidebar.tachyons";
@@ -13,10 +14,12 @@ export default {
   title: "Sidebar",
 };
 
-const WithNavItems: React.FC<
-  SidebarProps & { children: React.FC<SidebarProps> }
-> = ({ children: Component, navItems, ...rest }) => {
-  const [activeIndex, setActiveIndex] = React.useState(0);
+const WithNavItems: FC<SidebarProps & { children: FC<SidebarProps> }> = ({
+  children: Component,
+  navItems,
+  ...rest
+}) => {
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <Component
