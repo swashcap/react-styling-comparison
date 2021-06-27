@@ -63,6 +63,7 @@ export const Page: React.FC<PageProps> = ({
   advertisements,
   className,
   footer,
+  header,
   items,
   lead,
   sidebarProps: { className: sidebarPropsClassName, ...sidebarProps },
@@ -96,6 +97,59 @@ export const Page: React.FC<PageProps> = ({
         className="overflow-y-scroll-l pa4 sans-serif vh-100-l w-100 w-75-l"
         id="main"
       >
+        {/* BEGIN Header */}
+
+        <div className="flex flex-wrap mb4 nl2 nr2">
+          <div className="mb3 mb0-m mb0-l ph2 w-100 w-two-thirds-m w-two-thirds-l">
+            <div className="b--silver bb flex pb1">
+              {header.map(({ count, label, status, value }, index) => (
+                <div
+                  className={classNames(index < header.length - 1 && "pr4")}
+                  key={index}
+                >
+                  <div className="dib relative">
+                    <span
+                      className={classNames(
+                        "b f5 lh-title",
+                        status === "success" && "green",
+                        status === "info" && "blue"
+                      )}
+                    >
+                      {value}
+                    </span>
+                    {typeof count !== "undefined" && (
+                      <span className="absolute bg-yellow br-pill dib f7 lh-solid right--1 pa1 top--1">
+                        {count}
+                      </span>
+                    )}
+                  </div>
+                  <span className="db gray f7 lh-solid">{label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <form
+            action="/search"
+            className="flex ph2 w-100 w-third-m w-third-l"
+            role="search"
+          >
+            <input
+              aria-label="Search"
+              className="b--silver ba bg-near-white black border-box br2 br--left f5 flex-auto input-reset lh-solid pa2 sans-serif"
+              name="q"
+              placeholder="Lorem ipsum…"
+            />
+            <button
+              className="b--transparent ba bg-gray br2 br--right f5 flex-none lh-solid pa2 pointer sans-serif white"
+              type="submit"
+            >
+              Search
+            </button>
+          </form>
+        </div>
+
+        {/* END Header */}
+
         {/* BEGIN Lead */}
 
         <div className="bg-lightest-blue br2 dark-gray mb4 pa4">

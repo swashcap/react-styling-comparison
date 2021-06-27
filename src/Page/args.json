@@ -54,6 +54,19 @@
       }]
     }]
   },
+  "header": [{
+    "label": "Quis nostrud",
+    "status": "info",
+    "value": "$102,165.00"
+  }, {
+    "label": "Exercitation ullamco",
+    "status": "success",
+    "value": "71,044"
+  }, {
+    "count": 10,
+    "label": "Ullamco laboris",
+    "value": "-8.015"
+  }],
   "lead": {
     "actionText": "Magna aliqua",
     "description": "Sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",

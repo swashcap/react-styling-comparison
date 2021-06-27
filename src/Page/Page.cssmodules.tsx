@@ -78,6 +78,7 @@ export const Page: React.FC<PageProps> = ({
   advertisements,
   className,
   footer,
+  header,
   items,
   lead,
   sidebarProps: { className: sidebarPropsClassName, ...sidebarProps },
@@ -99,6 +100,62 @@ export const Page: React.FC<PageProps> = ({
         />
       </header>
       <main className={style.main} id="main">
+        {/* BEGIN Header */}
+
+        <div className={classNames(style.pageRow, style.pageSection)}>
+          <div
+            className={classNames(style.pageRowItem, style.contentHeaderStats)}
+          >
+            <div className={style.contentHeaderStatsWrapper}>
+              {header.map(({ count, label, status, value }, index) => (
+                <div className={style.contentHeaderStatsItem} key={index}>
+                  <div className={style.contentHeaderStatsValueWrapper}>
+                    <span
+                      className={classNames(
+                        style.contentHeaderStatsValue,
+                        status === "success" &&
+                          style.contentHeaderStatsValueSuccess,
+                        status === "info" && style.contentHeaderStatsValueInfo
+                      )}
+                    >
+                      {value}
+                    </span>
+                    {typeof count !== "undefined" && (
+                      <span className={style.contentHeaderStatsBadge}>
+                        {count}
+                      </span>
+                    )}
+                  </div>
+                  <span className={style.contentHeaderStatsLabel}>{label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <form
+            action="/search"
+            className={classNames(
+              style.pageRowItem,
+              style.contentHeaderSearchForm
+            )}
+            role="search"
+          >
+            <input
+              aria-label="Search"
+              className={style.contentHeaderSearchFormInput}
+              name="q"
+              placeholder="Lorem ipsum…"
+            />
+            <button
+              className={style.contentHeaderSearchFormButton}
+              type="submit"
+            >
+              Search
+            </button>
+          </form>
+        </div>
+
+        {/* END Header */}
+
         {/* BEGIN Lead */}
 
         <div className={classNames(style.lead, style.pageSection)}>

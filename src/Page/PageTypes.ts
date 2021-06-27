@@ -35,6 +35,12 @@ export interface PageProps extends HTMLAttributes<HTMLElement> {
       }[];
     }[];
   };
+  header: {
+    count?: number;
+    label: string;
+    status: "info" | "success";
+    value: string;
+  }[];
   lead: {
     actionOnClick?: MouseEventHandler<HTMLButtonElement>;
     actionText: string;

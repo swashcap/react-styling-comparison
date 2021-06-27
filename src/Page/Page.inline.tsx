@@ -2,7 +2,10 @@ import { Button } from "../Button/Button.inline";
 import { PageAdvertisementProps, PageProps, PageItemProps } from "./PageTypes";
 import { Sidebar } from "../Sidebar/Sidebar.inline";
 import {
+  colorBlack,
+  colorBlue,
   colorDarkGray,
+  colorGray,
   colorGreen,
   colorLightestBlue,
   colorMidGray,
@@ -10,11 +13,12 @@ import {
   colorNearWhite,
   colorOrange,
   colorSilver,
+  colorWhite,
+  colorYellow,
   spaceExtraSmall,
-  spaceSmall,
-  spaceMedium,
   spaceLarge,
-  colorGray,
+  spaceMedium,
+  spaceSmall,
 } from "../utilities/constants";
 import React from "react";
 
@@ -154,6 +158,7 @@ const PageItem: React.FC<PageItemProps> = ({
 export const Page: React.FC<PageProps> = ({
   advertisements,
   footer,
+  header,
   items,
   lead,
   sidebarProps: { style: sidebarPropsStyle, ...sidebarProps },
@@ -208,6 +213,135 @@ export const Page: React.FC<PageProps> = ({
         }}
         id="main"
       >
+        {/* BEGIN Header */}
+
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            marginLeft: "-.5rem",
+            marginRight: "-.5rem",
+            marginBottom: spaceLarge,
+          }}
+        >
+          <div
+            style={{
+              paddingLeft: spaceSmall,
+              paddingRight: spaceSmall,
+              width: "66.66%",
+            }}
+          >
+            <div
+              style={{
+                borderBottom: `1px solid ${colorSilver}`,
+                display: "flex",
+                paddingBottom: spaceExtraSmall,
+              }}
+            >
+              {header.map(({ count, label, status, value }, index) => (
+                <div
+                  style={
+                    index < header.length - 1
+                      ? { paddingRight: spaceLarge }
+                      : undefined
+                  }
+                  key={index}
+                >
+                  <div
+                    style={{ display: "inline-block", position: "relative" }}
+                  >
+                    <span
+                      style={{
+                        color:
+                          (status === "success" && colorGreen) ||
+                          (status === "info" && colorBlue),
+                        fontWeight: "bold",
+                        fontSize: "1rem",
+                        lineHeight: "1.25",
+                      }}
+                    >
+                      {value}
+                    </span>
+
+                    {typeof count !== "undefined" && (
+                      <span
+                        style={{
+                          background: colorYellow,
+                          borderRadius: "100%",
+                          display: "inline-block",
+                          fontSize: ".75rem",
+                          lineHeight: "1",
+                          padding: spaceExtraSmall,
+                          position: "absolute",
+                          right: "-1rem",
+                          top: "-1rem",
+                        }}
+                      >
+                        {count}
+                      </span>
+                    )}
+                  </div>
+                  <span
+                    style={{
+                      color: colorGray,
+                      display: "block",
+                      fontSize: ".75rem",
+                      lineHeight: "1",
+                    }}
+                  >
+                    {label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <form
+            action="/search"
+            role="search"
+            style={{
+              display: "flex",
+              paddingLeft: spaceSmall,
+              paddingRight: spaceSmall,
+              width: "33.33%",
+            }}
+          >
+            <input
+              aria-label="Search"
+              name="q"
+              placeholder="Lorem ipsum…"
+              style={{
+                background: colorNearWhite,
+                border: `1px solid ${colorSilver}`,
+                borderRadius: ".25rem 0 0 .25rem",
+                color: colorBlack,
+                flex: "1 1 auto",
+                fontFamily: "inherit",
+                fontSize: "1rem",
+                lineHeight: "1",
+                padding: spaceSmall,
+              }}
+            />
+            <button
+              style={{
+                background: colorGray,
+                border: "1px solid transparent",
+                borderRadius: "0 .25rem .25rem 0",
+                color: colorWhite,
+                cursor: "pointer",
+                flex: "none",
+                fontSize: "1rem",
+                lineHeight: "1",
+                padding: spaceSmall,
+              }}
+              type="submit"
+            >
+              Search
+            </button>
+          </form>
+        </div>
+
+        {/* END Header */}
+
         {/* BEGIN Lead */}
 
         <div

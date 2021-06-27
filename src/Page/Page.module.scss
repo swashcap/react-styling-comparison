@@ -62,6 +62,111 @@
   }
 }
 
+/* Content header */
+
+.contentHeaderStats {
+  margin-bottom: $spacing-medium;
+  width: 100%;
+
+  @media #{$breakpoint-medium} {
+    margin-bottom: 0;
+    width: 66.66%;
+  }
+  @media #{$breakpoint-large} {
+    margin-bottom: 0;
+    width: 66.66%;
+  }
+}
+
+.contentHeaderStatsWrapper {
+  border-bottom: 1px solid $silver;
+  display: flex;
+  padding-bottom: $spacing-extra-small;
+}
+
+.contentHeaderStatsItem {
+  padding-right: $spacing-large;
+
+  &:last-child {
+    padding-right: 0;
+  }
+}
+
+.contentHeaderStatsValueWrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.contentHeaderStatsValue {
+  font-size: $font-size-5;
+  font-weight: 700;
+  line-height: $line-height-title;
+}
+.contentHeaderStatsValueInfo {
+  color: $blue;
+}
+.contentHeaderStatsValueSuccess {
+  color: $green;
+}
+
+.contentHeaderStatsBadge {
+  background: $yellow;
+  border-radius: 100%;
+  font-size: $font-size-7;
+  line-height: $line-height-solid;
+  padding: $spacing-extra-small;
+  position: absolute;
+  right: -1rem;
+  top: -1rem;
+}
+
+.contentHeaderStatsLabel {
+  color: $gray;
+  display: block;
+  font-size: $font-size-7;
+  line-height: $line-height-solid;
+}
+
+.contentHeaderSearchForm {
+  display: flex;
+  width: 100%;
+
+  @media #{$breakpoint-medium} {
+    width: 33.33%;
+  }
+  @media #{$breakpoint-large} {
+    width: 33.33%;
+  }
+}
+
+.contentHeaderSearchFormInput,
+.contentHeaderSearchFormButton {
+  border-style: solid;
+  border-width: 1px;
+  box-sizing: border-box;;
+  font-family: $sans-serif;
+  font-size: $font-size-5;
+  line-height: $line-height-solid;
+  padding: $spacing-small;
+}
+
+.contentHeaderSearchFormInput {
+  background: $near-white;
+  border-color: $silver;
+  border-radius: $border-radius-2 0 0 $border-radius-2;
+  color: $black;
+  flex: 1 1 auto;
+}
+
+.contentHeaderSearchFormButton {
+  background: $gray;
+  border-color: transparent;
+  border-radius: 0 $border-radius-2 $border-radius-2 0;
+  color: $white;
+  cursor: pointer;
+  flex: none;
+}
+
 /* Lead */
 
 .lead {

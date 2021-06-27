@@ -1,3 +1,5 @@
+export const colorBlack = "#000";
+export const colorBlue = "#357edd";
 export const colorDarkBlue = "#00449e";
 export const colorDarkGray = "#333";
 export const colorDarkGreen = "#137752";
@@ -11,6 +13,7 @@ export const colorNearWhite = "#f4f4f4";
 export const colorOrange = "#ff6300";
 export const colorSilver = "#999";
 export const colorWhite = "#fff";
+export const colorYellow = "#ffd700";
 
 export const spaceExtraSmall = ".25rem";
 export const spaceSmall = ".5rem";
