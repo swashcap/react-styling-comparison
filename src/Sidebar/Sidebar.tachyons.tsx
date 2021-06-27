@@ -2,7 +2,7 @@ import type { FC } from "react";
 import { useState } from "react";
 import classNames from "classnames";
 
-import { SidebarProps } from "./SidebarTypes";
+import type { SidebarProps } from "./SidebarTypes";
 
 export const Sidebar: FC<SidebarProps> = ({
   account,

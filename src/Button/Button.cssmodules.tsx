@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import classNames from "classnames";
 
-import { ButtonProps } from "./ButtonTypes";
+import type { ButtonProps } from "./ButtonTypes";
 import style from "./Button.module.scss";
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(

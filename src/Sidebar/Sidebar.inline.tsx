@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { useState } from "react";
 
-import { SidebarProps } from "./SidebarTypes";
+import type { SidebarProps } from "./SidebarTypes";
 import {
   colorDarkBlue,
   colorDarkGray,

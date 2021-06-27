@@ -2,7 +2,7 @@ import type { FC } from "react";
 import { useState } from "react";
 import classNames from "classnames";
 
-import { SidebarProps } from "./SidebarTypes";
+import type { SidebarProps } from "./SidebarTypes";
 import style from "./Sidebar.module.scss";
 
 export const Sidebar: FC<SidebarProps> = ({
@@ -19,14 +19,14 @@ export const Sidebar: FC<SidebarProps> = ({
   return (
     <div className={classNames(style.sidebar, className)} {...rest}>
       <nav>
-        <ul className={style.navList}>
+        <ul className={style.sidebarNavList}>
           {navItems.map((item) => {
             const { active, icon, name, url } = item;
 
             return (
               <li key={url}>
                 <a
-                  className={classNames(active && style.navListActive)}
+                  className={classNames(active && style.sidebarNavListActive)}
                   href={url}
                   onClick={(event) => {
                     onNavItemClick(event, item);
@@ -36,7 +36,7 @@ export const Sidebar: FC<SidebarProps> = ({
                     aria-hidden
                     className={classNames(
                       `far fa-${icon} fa-1x`,
-                      style.navListIcon
+                      style.sidebarNavListIcon
                     )}
                   />
                   {name}
@@ -47,8 +47,8 @@ export const Sidebar: FC<SidebarProps> = ({
         </ul>
       </nav>
       {subNavMenuKeys.length > 0 && (
-        <nav className={style.projects}>
-          <h3 className={style.projectsHeading}>Projects</h3>
+        <nav className={style.sidebarProjects}>
+          <h3 className={style.sidebarProjectsHeading}>Projects</h3>
           {subNavMenuKeys.map((key, index) => {
             const buttonId = `sidebar-${index}-button`;
             const controlId = `sidebar-${index}-content`;
@@ -59,11 +59,11 @@ export const Sidebar: FC<SidebarProps> = ({
             }
 
             return (
-              <div className={style.projectsGroup} key={key}>
+              <div className={style.sidebarProjectsGroup} key={key}>
                 <button
                   aria-controls={controlId}
                   aria-expanded={isExpanded}
-                  className={style.projectsGroupTriggerButton}
+                  className={style.sidebarProjectsGroupTriggerButton}
                   id={buttonId}
                   onClick={() => {
                     setActiveSubNavIndex(isExpanded ? -1 : index);
@@ -83,16 +83,14 @@ export const Sidebar: FC<SidebarProps> = ({
                 <div
                   aria-labelledby={buttonId}
                   className={classNames(
-                    !isExpanded && style.projectGroupHidden
+                    !isExpanded && style.sidebarProjectGroupHidden
                   )}
                   id={controlId}
                 >
-                  <ul className={style.projectsGroupList}>
+                  <ul className={style.sidebarProjectsGroupList}>
                     {subNavMenu[key].map(({ name, url }) => (
                       <li key={url}>
-                        <a className={style.projectsGroupLink} href={url}>
-                          {name}
-                        </a>
+                        <a href={url}>{name}</a>
                       </li>
                     ))}
                   </ul>
@@ -102,22 +100,25 @@ export const Sidebar: FC<SidebarProps> = ({
           })}
         </nav>
       )}
-      <div className={style.account}>
-        <div aria-hidden className={style.accountAvatar}>
+      <div className={style.sidebarAccount}>
+        <div aria-hidden className={style.sidebarAccountAvatar}>
           {account.name
             .replace(/(\B\w)/g, "")
             .replace(" ", "")
             .toUpperCase()}
         </div>
-        <div className={style.accountGroup}>
-          <h3 className={style.accountName}>{account.name}</h3>
-          <a className={style.accountProfileLink} href={account.profileURL}>
+        <div className={style.sidebarAccountGroup}>
+          <h3 className={style.sidebarAccountName}>{account.name}</h3>
+          <a
+            className={style.sidebarAccountProfileLink}
+            href={account.profileURL}
+          >
             View profile
           </a>
         </div>
         <button
           aria-label="Go to settings"
-          className={style.accountSettingsButton}
+          className={style.sidebarAccountSettingsButton}
           onClick={account.onSettingsClick}
           title="Settings"
           type="button"

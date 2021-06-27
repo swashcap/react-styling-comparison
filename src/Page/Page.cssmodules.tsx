@@ -1,11 +1,16 @@
+import type { FC } from "react";
 import classNames from "classnames";
 
 import { Button } from "../Button/Button.cssmodules";
-import { PageAdvertisementProps, PageProps, PageItemProps } from "./PageTypes";
+import type {
+  PageAdvertisementProps,
+  PageProps,
+  PageItemProps,
+} from "./PageTypes";
 import { Sidebar } from "../Sidebar/Sidebar.cssmodules";
 import style from "./Page.module.scss";
 
-const PageAdvertisement: React.FC<PageAdvertisementProps> = ({
+const PageAdvertisement: FC<PageAdvertisementProps> = ({
   actionText,
   className,
   description,
@@ -44,7 +49,7 @@ const PageAdvertisement: React.FC<PageAdvertisementProps> = ({
   </aside>
 );
 
-const PageItem: React.FC<PageItemProps> = ({
+const PageItem: FC<PageItemProps> = ({
   description,
   fulfillment,
   imageAlt,
@@ -74,7 +79,7 @@ const PageItem: React.FC<PageItemProps> = ({
   </article>
 );
 
-export const Page: React.FC<PageProps> = ({
+export const Page: FC<PageProps> = ({
   advertisements,
   className,
   footer,
