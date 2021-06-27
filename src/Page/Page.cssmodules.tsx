@@ -1,9 +1,48 @@
 import classNames from "classnames";
 
 import { Button } from "../Button/Button.cssmodules";
-import { PageProps, PageItemProps } from "./PageTypes";
+import { PageAdvertisementProps, PageProps, PageItemProps } from "./PageTypes";
 import { Sidebar } from "../Sidebar/Sidebar.cssmodules";
 import style from "./Page.module.scss";
+
+const PageAdvertisement: React.FC<PageAdvertisementProps> = ({
+  actionText,
+  className,
+  description,
+  imageAlt,
+  imageSrc,
+  title,
+  ...rest
+}) => (
+  <aside className={classNames(style.advertisement, className)} {...rest}>
+    <div className={style.pageRow}>
+      <div
+        className={classNames(
+          style.pageRowItem,
+          style.advertisementImageWrapper
+        )}
+      >
+        <img
+          alt={imageAlt}
+          className={style.advertisementImage}
+          src={imageSrc}
+        />
+      </div>
+      <div
+        className={classNames(
+          style.pageRowItem,
+          style.advertisementTextWrapper
+        )}
+      >
+        <h1 className={style.advertisementTitle}>{title}</h1>
+        <p className={style.advertisementDescription}>{description}</p>
+        <Button size="medium" variant="primary">
+          {actionText}
+        </Button>
+      </div>
+    </div>
+  </aside>
+);
 
 const PageItem: React.FC<PageItemProps> = ({
   description,
@@ -36,7 +75,7 @@ const PageItem: React.FC<PageItemProps> = ({
 );
 
 export const Page: React.FC<PageProps> = ({
-  advertisement,
+  advertisements,
   className,
   footer,
   items,
@@ -45,7 +84,8 @@ export const Page: React.FC<PageProps> = ({
   ...rest
 }) => {
   const itemsStart = items.slice(0, 12);
-  const itemsEnd = items.slice(12);
+  const itemsMiddle = items.slice(12, 24);
+  const itemsEnd = items.slice(24);
 
   return (
     <div className={classNames(style.page, className)} {...rest}>
@@ -61,7 +101,7 @@ export const Page: React.FC<PageProps> = ({
       <main className={style.main} id="main">
         {/* BEGIN Lead */}
 
-        <div className={style.lead}>
+        <div className={classNames(style.lead, style.pageSection)}>
           <h1 className={style.leadTitle}>{lead.title}</h1>
           <p className={style.leadDescription}>{lead.description}</p>
           <Button onClick={lead.actionOnClick} size="large" variant="primary">
@@ -71,44 +111,48 @@ export const Page: React.FC<PageProps> = ({
 
         {/* END Lead */}
 
-        <div className={style.productList}>
+        <div className={style.pageRow}>
           {itemsStart.map((item, index) => (
-            <div className={style.productListItem} key={index}>
+            <div
+              className={classNames(style.pageRowItem, style.productListItem)}
+              key={index}
+            >
               <PageItem {...item} />
             </div>
           ))}
         </div>
 
-        {/* BEGIN Ad */}
+        {advertisements[0] && (
+          <PageAdvertisement
+            className={style.pageSection}
+            {...advertisements[0]}
+          />
+        )}
 
-        <aside className={style.advertisement}>
-          <div className={style.advertisementRow}>
-            <div className={style.advertisementImageWrapper}>
-              <img
-                alt={advertisement.imageAlt}
-                className={style.advertisementImage}
-                src={advertisement.imageSrc}
-              />
+        <div className={style.pageRow}>
+          {itemsMiddle.map((item, index) => (
+            <div
+              className={classNames(style.pageRowItem, style.productListItem)}
+              key={index}
+            >
+              <PageItem {...item} />
             </div>
-            <div className={style.advertisementTextWrapper}>
-              <h1 className={style.advertisementTitle}>
-                {advertisement.title}
-              </h1>
-              <p className={style.advertisementDescription}>
-                {advertisement.description}
-              </p>
-              <Button size="medium" variant="primary">
-                {advertisement.actionText}
-              </Button>
-            </div>
-          </div>
-        </aside>
+          ))}
+        </div>
 
-        {/* END Ad */}
+        {advertisements[1] && (
+          <PageAdvertisement
+            className={style.pageSection}
+            {...advertisements[1]}
+          />
+        )}
 
-        <div className={style.productList}>
+        <div className={style.pageRow}>
           {itemsEnd.map((item, index) => (
-            <div className={style.productListItem} key={index}>
+            <div
+              className={classNames(style.pageRowItem, style.productListItem)}
+              key={index}
+            >
               <PageItem {...item} />
             </div>
           ))}
@@ -117,9 +161,12 @@ export const Page: React.FC<PageProps> = ({
         {/* BEGIN Footer */}
 
         <div className={style.footer}>
-          <div className={style.footerMenus}>
+          <div className={classNames(style.pageRow, style.footerMenus)}>
             {footer.menus.map(({ title, links }, index) => (
-              <div className={style.footerMenuItem} key={index}>
+              <div
+                className={classNames(style.pageRowItem, style.footerMenuItem)}
+                key={index}
+              >
                 <h3 className={style.footerMenuTitle}>{title}</h3>
                 <ul className={style.footerMenuLinks}>
                   {links.map(({ name, url }) => (

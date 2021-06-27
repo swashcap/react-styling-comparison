@@ -15,6 +15,22 @@
   position: fixed;
 }
 
+.pageRow {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -1 * $spacing-small;
+  margin-right: -1 * $spacing-small;
+}
+
+.pageRowItem {
+  padding-left: $spacing-small;
+  padding-right: $spacing-small;
+}
+
+.pageSection {
+  margin-bottom: $spacing-large;
+}
+
 /* Header */
 
 .header {
@@ -52,7 +68,6 @@
   background: $lightest-blue;
   border-radius: $border-radius-2;
   color: $dark-gray;
-  margin-bottom: $spacing-large;
   padding: $spacing-large;
 }
 
@@ -73,17 +88,8 @@
 
 /* Product list */
 
-.productList {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: -1 * $spacing-small;
-  margin-right: -1 * $spacing-small;
-}
-
 .productListItem {
   margin-bottom: $spacing-medium;
-  padding-left: $spacing-small;
-  padding-right: $spacing-small;
   width: 100%;
 
   @media #{$breakpoint-medium} {
@@ -101,20 +107,10 @@
 .advertisement {
   background: $near-white;
   border-radius: $border-radius-2;
-  margin-bottom: $spacing-large;
   padding: $spacing-medium;
 }
 
-.advertisementRow {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: -1 * $spacing-small;
-  margin-right: -1 * $spacing-small;
-}
-
 .advertisementImageWrapper {
-  padding-left: $spacing-small;
-  padding-right: $spacing-small;
   width: 100%;
 
   @media #{$breakpoint-medium} {
@@ -131,8 +127,6 @@
 }
 
 .advertisementTextWrapper {
-  padding-left: $spacing-small;
-  padding-right: $spacing-small;
   width: 100%;
 
   @media #{$breakpoint-medium} {
@@ -166,16 +160,10 @@
 }
 
 .footerMenus {
-  display: flex;
-  flex-wrap: wrap;
   margin-bottom: $spacing-large;
-  margin-left: -1 * $spacing-small;
-  margin-right: -1 * $spacing-small;
 }
 
 .footerMenuItem {
-  padding-left: $spacing-small;
-  padding-right: $spacing-small;
   width: 100%;
 
   @media #{$breakpoint-medium} {

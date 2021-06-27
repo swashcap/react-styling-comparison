@@ -1,11 +1,17 @@
 {
-  "advertisement": {
+  "advertisements": [{
     "actionText": "Nulla pariatur",
     "description": "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.",
     "imageAlt": "A placeholder kitten",
     "imageSrc": "//placekitten.com/800/350?image=1",
     "title": "Ut enim ad minim veniam"
-  },
+  }, {
+    "actionText": "Ut enim ad mimum veniam",
+    "description": "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.",
+    "imageAlt": "A placeholder kitten",
+    "imageSrc": "//placekitten.com/800/350?image=2",
+    "title": "Nulla pariatur"
+  }],
   "footer": {
     "actionText": "Excepteur sint",
     "finePrint1": "Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",

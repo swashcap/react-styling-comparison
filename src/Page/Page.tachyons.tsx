@@ -1,8 +1,34 @@
 import classNames from "classnames";
 
 import { Button } from "../Button/Button.tachyons";
-import { PageProps, PageItemProps } from "./PageTypes";
+import { PageAdvertisementProps, PageProps, PageItemProps } from "./PageTypes";
 import { Sidebar } from "../Sidebar/Sidebar.tachyons";
+import React from "react";
+
+const PageAdvertisement: React.FC<PageAdvertisementProps> = ({
+  actionText,
+  className,
+  description,
+  imageAlt,
+  imageSrc,
+  title,
+  ...rest
+}) => (
+  <aside className={classNames("bg-near-white br2 pa3", className)} {...rest}>
+    <div className="flex flex-wrap nl2 nr2">
+      <div className="ph2 w-100 w-two-thirds-m w-two-thirds-l">
+        <img alt={imageAlt} className="db w-100" src={imageSrc} />
+      </div>
+      <div className="ph2 w-100 w-third-m w-third-l">
+        <h1 className="f4 lh-title mb2 mt0">{title}</h1>
+        <p className="mb3 mt2">{description}</p>
+        <Button size="medium" variant="primary">
+          {actionText}
+        </Button>
+      </div>
+    </div>
+  </aside>
+);
 
 const PageItem: React.FC<PageItemProps> = ({
   description,
@@ -34,7 +60,7 @@ const PageItem: React.FC<PageItemProps> = ({
 );
 
 export const Page: React.FC<PageProps> = ({
-  advertisement,
+  advertisements,
   className,
   footer,
   items,
@@ -43,7 +69,8 @@ export const Page: React.FC<PageProps> = ({
   ...rest
 }) => {
   const itemsStart = items.slice(0, 12);
-  const itemsEnd = items.slice(12);
+  const itemsMiddle = items.slice(12, 24);
+  const itemsEnd = items.slice(24);
 
   return (
     <div
@@ -92,28 +119,24 @@ export const Page: React.FC<PageProps> = ({
           ))}
         </div>
 
-        {/* BEGIN Ad */}
+        {advertisements[0] && (
+          <PageAdvertisement className="mb4" {...advertisements[0]} />
+        )}
 
-        <aside className="bg-near-white br2 mb4 pa3">
-          <div className="flex flex-wrap nl2 nr2">
-            <div className="ph2 w-100 w-two-thirds-m w-two-thirds-l">
-              <img
-                alt={advertisement.imageAlt}
-                className="db w-100"
-                src={advertisement.imageSrc}
-              />
+        <div className="flex flex-wrap mb4 nl2 nr2">
+          {itemsMiddle.map((item, index) => (
+            <div
+              className="mb3 mb4-m mb4-l ph2 w-100 w-third-m w-25-l"
+              key={index}
+            >
+              <PageItem {...item} />
             </div>
-            <div className="ph2 w-100 w-third-m w-third-l">
-              <h1 className="f4 lh-title mb2 mt0">{advertisement.title}</h1>
-              <p className="mb3 mt2">{advertisement.description}</p>
-              <Button size="medium" variant="primary">
-                {advertisement.actionText}
-              </Button>
-            </div>
-          </div>
-        </aside>
+          ))}
+        </div>
 
-        {/* END Ad */}
+        {advertisements[1] && (
+          <PageAdvertisement className="mb4" {...advertisements[1]} />
+        )}
 
         <div className="flex flex-wrap mb4 nl2 nr2">
           {itemsEnd.map((item, index) => (

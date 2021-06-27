@@ -1,6 +1,16 @@
 import type { HTMLAttributes, MouseEventHandler, ReactNode } from "react";
 import { SidebarProps } from "../Sidebar/SidebarTypes";
 
+export interface PageAdvertisementProps
+  extends Omit<HTMLAttributes<HTMLElement>, "title"> {
+  actionOnClick?: MouseEventHandler<HTMLButtonElement>;
+  actionText: string;
+  description: ReactNode;
+  imageAlt: string;
+  imageSrc: string;
+  title: ReactNode;
+}
+
 export interface PageItemProps extends HTMLAttributes<HTMLElement> {
   description: string;
   fulfillment?: string;
@@ -11,14 +21,7 @@ export interface PageItemProps extends HTMLAttributes<HTMLElement> {
 }
 
 export interface PageProps extends HTMLAttributes<HTMLElement> {
-  advertisement: {
-    actionOnClick?: MouseEventHandler<HTMLButtonElement>;
-    actionText: string;
-    description: ReactNode;
-    imageAlt: string;
-    imageSrc: string;
-    title: ReactNode;
-  };
+  advertisements: PageAdvertisementProps[];
   footer: {
     actionOnClick?: MouseEventHandler<HTMLButtonElement>;
     actionText: string;

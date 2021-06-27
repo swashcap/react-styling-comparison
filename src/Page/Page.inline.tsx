@@ -1,5 +1,5 @@
 import { Button } from "../Button/Button.inline";
-import { PageProps, PageItemProps } from "./PageTypes";
+import { PageAdvertisementProps, PageProps, PageItemProps } from "./PageTypes";
 import { Sidebar } from "../Sidebar/Sidebar.inline";
 import {
   colorDarkGray,
@@ -16,6 +16,79 @@ import {
   spaceLarge,
   colorGray,
 } from "../utilities/constants";
+import React from "react";
+
+const PageAdvertisement: React.FC<PageAdvertisementProps> = ({
+  actionText,
+  description,
+  imageAlt,
+  imageSrc,
+  style,
+  title,
+  ...rest
+}) => (
+  <aside
+    style={{
+      background: colorNearWhite,
+      borderRadius: ".25rem",
+      padding: spaceMedium,
+      ...style,
+    }}
+    {...rest}
+  >
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        marginLeft: "-.5rem",
+        marginRight: "-.5rem",
+      }}
+    >
+      <div
+        style={{
+          paddingLeft: spaceSmall,
+          paddingRight: spaceSmall,
+          width: "66.66%",
+        }}
+      >
+        <img
+          alt={imageAlt}
+          src={imageSrc}
+          style={{ display: "block", width: "100%" }}
+        />
+      </div>
+      <div
+        style={{
+          paddingLeft: spaceSmall,
+          paddingRight: spaceSmall,
+          width: "33.33%",
+        }}
+      >
+        <h1
+          style={{
+            fontSize: "1.25rem",
+            lineHeight: "1.25",
+            marginBottom: spaceSmall,
+            marginTop: 0,
+          }}
+        >
+          {title}
+        </h1>
+        <p
+          style={{
+            marginBottom: spaceMedium,
+            marginTop: spaceSmall,
+          }}
+        >
+          {description}
+        </p>
+        <Button size="medium" variant="primary">
+          {actionText}
+        </Button>
+      </div>
+    </div>
+  </aside>
+);
 
 const PageItem: React.FC<PageItemProps> = ({
   description,
@@ -79,7 +152,7 @@ const PageItem: React.FC<PageItemProps> = ({
 );
 
 export const Page: React.FC<PageProps> = ({
-  advertisement,
+  advertisements,
   footer,
   items,
   lead,
@@ -88,7 +161,8 @@ export const Page: React.FC<PageProps> = ({
   ...rest
 }) => {
   const itemsStart = items.slice(0, 12);
-  const itemsEnd = items.slice(12);
+  const itemsMiddle = items.slice(12, 24);
+  const itemsEnd = items.slice(24);
 
   return (
     <div
@@ -196,70 +270,47 @@ export const Page: React.FC<PageProps> = ({
           ))}
         </div>
 
-        {/* BEGIN Ad */}
+        {advertisements[0] && (
+          <PageAdvertisement
+            style={{
+              marginBottom: spaceLarge,
+            }}
+            {...advertisements[0]}
+          />
+        )}
 
-        <aside
+        <div
           style={{
-            background: colorNearWhite,
-            borderRadius: ".25rem",
+            display: "flex",
+            flexWrap: "wrap",
             marginBottom: spaceLarge,
-            padding: spaceMedium,
+            marginLeft: "-.5rem",
+            marginRight: "-.5rem",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              marginLeft: "-.5rem",
-              marginRight: "-.5rem",
-            }}
-          >
+          {itemsMiddle.map((item, index) => (
             <div
+              key={index}
               style={{
+                marginBottom: spaceLarge,
                 paddingLeft: spaceSmall,
                 paddingRight: spaceSmall,
-                width: "66.66%",
+                width: "25%",
               }}
             >
-              <img
-                alt={advertisement.imageAlt}
-                src={advertisement.imageSrc}
-                style={{ display: "block", width: "100%" }}
-              />
+              <PageItem {...item} />
             </div>
-            <div
-              style={{
-                paddingLeft: spaceSmall,
-                paddingRight: spaceSmall,
-                width: "33.33%",
-              }}
-            >
-              <h1
-                style={{
-                  fontSize: "1.25rem",
-                  lineHeight: "1.25",
-                  marginBottom: spaceSmall,
-                  marginTop: 0,
-                }}
-              >
-                {advertisement.title}
-              </h1>
-              <p
-                style={{
-                  marginBottom: spaceMedium,
-                  marginTop: spaceSmall,
-                }}
-              >
-                {advertisement.description}
-              </p>
-              <Button size="medium" variant="primary">
-                {advertisement.actionText}
-              </Button>
-            </div>
-          </div>
-        </aside>
+          ))}
+        </div>
 
-        {/* END Ad */}
+        {advertisements[1] && (
+          <PageAdvertisement
+            style={{
+              marginBottom: spaceLarge,
+            }}
+            {...advertisements[1]}
+          />
+        )}
 
         <div
           style={{

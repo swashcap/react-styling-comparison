@@ -32,3 +32,6 @@ export const pageItemPrice: string;
 export const pageItemButtonWrapper: string;
 export const pageItemFulfillment: string;
 export const pageItemFulfillmentDate: string;
+export const pageRow: string;
+export const pageRowItem: string;
+export const pageSection: string;
