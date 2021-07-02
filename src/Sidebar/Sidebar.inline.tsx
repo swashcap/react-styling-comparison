@@ -1,5 +1,5 @@
-import type { FC } from "react";
-import { useState } from "react";
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes, FC } from "react";
+import { useRef, useState } from "react";
 
 import type { SidebarProps } from "./SidebarTypes";
 import {
@@ -16,7 +16,145 @@ import {
   spaceExtraSmall,
   spaceSmall,
   spaceMedium,
+  colorBlue,
 } from "../utilities/constants";
+import { useFocus } from "../utilities/useFocus";
+import { useHover } from "../utilities/useHover";
+
+const SidebarNavListLink: FC<
+  AnchorHTMLAttributes<HTMLAnchorElement> & { active?: boolean }
+> = ({ active, style, ...rest }) => {
+  const ref = useRef<HTMLAnchorElement>();
+  const isFocused = useFocus(ref);
+  const isHovered = useHover(ref);
+
+  return (
+    <a
+      ref={ref}
+      style={{
+        background: active ? colorLightGray : "transparent",
+        borderRadius: ".125rem",
+        color:
+          isFocused || isHovered
+            ? colorBlue
+            : active
+            ? colorDarkBlue
+            : colorDarkGray,
+        display: "block",
+        padding: spaceSmall,
+        textDecoration: "none",
+        ...style,
+      }}
+      {...rest}
+    />
+  );
+};
+
+const SidebarProjectButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
+  style,
+  ...rest
+}) => {
+  const ref = useRef<HTMLButtonElement>();
+  const isFocused = useFocus(ref);
+  const isHovered = useHover(ref);
+
+  return (
+    <button
+      ref={ref}
+      style={{
+        background: "transparent",
+        border: 0,
+        color: isFocused || isHovered ? colorBlue : colorDarkGray,
+        cursor: "pointer",
+        display: "flex",
+        fontFamily: "inherit",
+        fontSize: "1rem",
+        justifyContent: "space-between",
+        lineHeight: "1.5",
+        margin: 0,
+        padding: spaceSmall,
+        width: "100%",
+        ...style,
+      }}
+      type="button"
+      {...rest}
+    />
+  );
+};
+
+const SidebarProjectLink: FC<AnchorHTMLAttributes<HTMLAnchorElement>> = ({
+  style,
+  ...rest
+}) => {
+  const ref = useRef<HTMLAnchorElement>();
+  const isFocused = useFocus(ref);
+  const isHovered = useHover(ref);
+
+  return (
+    <a
+      ref={ref}
+      style={{
+        borderRadius: ".125rem",
+        color: isFocused || isHovered ? colorBlue : colorDarkGray,
+        display: "block",
+        padding: `${spaceExtraSmall} ${spaceSmall} ${spaceExtraSmall} ${spaceMedium}`,
+        textDecoration: "none",
+        ...style,
+      }}
+      {...rest}
+    />
+  );
+};
+
+const SidebarAccountLink: FC<AnchorHTMLAttributes<HTMLAnchorElement>> = ({
+  style,
+  ...rest
+}) => {
+  const ref = useRef<HTMLAnchorElement>();
+  const isFocused = useFocus(ref);
+  const isHovered = useHover(ref);
+
+  return (
+    <a
+      ref={ref}
+      style={{
+        color: isFocused || isHovered ? colorBlue : colorMidGray,
+        fontSize: ".875rem",
+        lineHeight: "1",
+        textDecoration: "underline",
+        ...style,
+      }}
+      {...rest}
+    />
+  );
+};
+
+const SidebarAccountButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
+  style,
+  ...rest
+}) => {
+  const ref = useRef<HTMLButtonElement>();
+  const isFocused = useFocus(ref);
+  const isHovered = useHover(ref);
+
+  return (
+    <button
+      ref={ref}
+      style={{
+        background: "transparent",
+        border: 0,
+        color: isFocused || isHovered ? colorBlue : "inherit",
+        cursor: "pointer",
+        fontFamily: "inherit",
+        margin: `0 calc(-1 * ${spaceSmall}) 0 0`,
+        padding: `${spaceSmall} ${spaceMedium}`,
+        ...style,
+      }}
+      type="button"
+      {...rest}
+    />
+  );
+};
 
 export const Sidebar: FC<SidebarProps> = ({
   account,
@@ -58,18 +196,11 @@ export const Sidebar: FC<SidebarProps> = ({
 
               return (
                 <li key={url}>
-                  <a
+                  <SidebarNavListLink
+                    active={active}
                     href={url}
                     onClick={(event) => {
                       onNavItemClick(event, item);
-                    }}
-                    style={{
-                      background: active ? colorLightGray : "transparent",
-                      borderRadius: ".125rem",
-                      color: active ? colorDarkBlue : colorDarkGray,
-                      display: "block",
-                      padding: spaceSmall,
-                      textDecoration: "none",
                     }}
                   >
                     <i
@@ -80,7 +211,7 @@ export const Sidebar: FC<SidebarProps> = ({
                       }}
                     />
                     {name}
-                  </a>
+                  </SidebarNavListLink>
                 </li>
               );
             })}
@@ -122,28 +253,13 @@ export const Sidebar: FC<SidebarProps> = ({
                     padding: `0 ${spaceSmall}`,
                   }}
                 >
-                  <button
+                  <SidebarProjectButton
                     aria-controls={controlId}
                     aria-expanded={isExpanded}
                     id={buttonId}
                     onClick={() => {
                       setActiveSubNavIndex(isExpanded ? -1 : index);
                     }}
-                    style={{
-                      background: "transparent",
-                      border: 0,
-                      color: colorDarkGray,
-                      cursor: "pointer",
-                      display: "flex",
-                      fontFamily: "inherit",
-                      fontSize: "1rem",
-                      justifyContent: "space-between",
-                      lineHeight: "1.5",
-                      margin: 0,
-                      padding: spaceSmall,
-                      width: "100%",
-                    }}
-                    type="button"
                   >
                     <span>{key}</span>
                     <i
@@ -158,7 +274,7 @@ export const Sidebar: FC<SidebarProps> = ({
                         verticalAlign: "bottom",
                       }}
                     />
-                  </button>
+                  </SidebarProjectButton>
                   <div
                     aria-labelledby={buttonId}
                     id={controlId}
@@ -175,18 +291,9 @@ export const Sidebar: FC<SidebarProps> = ({
                     >
                       {subNavMenu[key].map(({ name, url }) => (
                         <li key={url}>
-                          <a
-                            href={url}
-                            style={{
-                              borderRadius: ".125rem",
-                              color: colorDarkGray,
-                              display: "block",
-                              padding: `${spaceExtraSmall} ${spaceSmall} ${spaceExtraSmall} ${spaceMedium}`,
-                              textDecoration: "none",
-                            }}
-                          >
+                          <SidebarProjectLink href={url}>
                             {name}
-                          </a>
+                          </SidebarProjectLink>
                         </li>
                       ))}
                     </ul>
@@ -248,36 +355,18 @@ export const Sidebar: FC<SidebarProps> = ({
             >
               {account.name}
             </h3>
-            <a
-              href={account.profileURL}
-              style={{
-                color: colorMidGray,
-                fontSize: ".875rem",
-                lineHeight: "1",
-                textDecoration: "underline",
-              }}
-            >
+            <SidebarAccountLink href={account.profileURL}>
               View profile
-            </a>
+            </SidebarAccountLink>
           </div>
         </div>
-        <button
+        <SidebarAccountButton
           aria-label="Go to settings"
           onClick={account.onSettingsClick}
-          style={{
-            background: "transparent",
-            border: 0,
-            color: "inherit",
-            cursor: "pointer",
-            fontFamily: "inherit",
-            margin: `0 calc(-1 * ${spaceSmall}) 0 0`,
-            padding: `${spaceSmall} ${spaceMedium}`,
-          }}
-          title="Settings"
           type="button"
         >
           <i className="far fa-sun fa-1x" />
-        </button>
+        </SidebarAccountButton>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
-import type { FC } from "react";
+import type { AnchorHTMLAttributes, FC } from "react";
+import { useRef } from "react";
 
 import { Button } from "../Button/Button.inline";
 import type {
@@ -26,6 +27,8 @@ import {
   spaceMedium,
   spaceSmall,
 } from "../utilities/constants";
+import { useFocus } from "../utilities/useFocus";
+import { useHover } from "../utilities/useHover";
 
 const PageAdvertisement: FC<PageAdvertisementProps> = ({
   actionText,
@@ -99,6 +102,28 @@ const PageAdvertisement: FC<PageAdvertisementProps> = ({
   </aside>
 );
 
+const PageItemLink: FC<AnchorHTMLAttributes<HTMLAnchorElement>> = ({
+  style,
+  ...rest
+}) => {
+  const ref = useRef<HTMLAnchorElement>();
+  const isFocused = useFocus(ref);
+  const isHovered = useHover(ref);
+
+  return (
+    <a
+      ref={ref}
+      style={{
+        display: "block",
+        opacity: isFocused || isHovered ? ".8" : "1",
+        transition: "opacity 0.15s ease-in",
+        ...style,
+      }}
+      {...rest}
+    />
+  );
+};
+
 const PageItem: FC<PageItemProps> = ({
   description,
   fulfillment,
@@ -109,13 +134,13 @@ const PageItem: FC<PageItemProps> = ({
   ...rest
 }) => (
   <article {...rest}>
-    <a href="#" style={{ display: "block", marginBottom: spaceSmall }}>
+    <PageItemLink href="#" style={{ marginBottom: spaceSmall }}>
       <img
         alt={imageAlt}
         src={imageSrc}
         style={{ display: "block", width: "100%" }}
       />
-    </a>
+    </PageItemLink>
     <div style={{ marginBottom: spaceExtraSmall }}>
       <h2
         style={{
@@ -159,6 +184,27 @@ const PageItem: FC<PageItemProps> = ({
     )}
   </article>
 );
+
+const PageFooterLink: FC<AnchorHTMLAttributes<HTMLAnchorElement>> = ({
+  style,
+  ...rest
+}) => {
+  const ref = useRef<HTMLAnchorElement>();
+  const isFocused = useFocus(ref);
+  const isHovered = useHover(ref);
+
+  return (
+    <a
+      ref={ref}
+      style={{
+        color: isFocused || isHovered ? colorBlue : "inherit",
+        textDecoration: "underline",
+        ...style,
+      }}
+      {...rest}
+    />
+  );
+};
 
 export const Page: FC<PageProps> = ({
   advertisements,
@@ -525,15 +571,7 @@ export const Page: FC<PageProps> = ({
                 >
                   {links.map(({ name, url }) => (
                     <li key={url}>
-                      <a
-                        href={url}
-                        style={{
-                          color: "inherit",
-                          textDecoration: "underline",
-                        }}
-                      >
-                        {name}
-                      </a>
+                      <PageFooterLink href={url}>{name}</PageFooterLink>
                     </li>
                   ))}
                 </ul>

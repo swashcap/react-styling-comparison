@@ -9,6 +9,7 @@ export const colorLightGray = "#eee";
 export const colorLightestBlue = "#cdecff";
 export const colorMidGray = "#555";
 export const colorMoonGray = "#ccc";
+export const colorNavy = "#001b44";
 export const colorNearWhite = "#f4f4f4";
 export const colorOrange = "#ff6300";
 export const colorSilver = "#999";

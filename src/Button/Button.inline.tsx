@@ -1,13 +1,31 @@
 import type { CSSProperties } from "react";
-import { forwardRef } from "react";
+import { forwardRef, useRef } from "react";
 
 import type { ButtonProps } from "./ButtonTypes";
+import {
+  colorBlack,
+  colorDarkBlue,
+  colorMidGray,
+  colorNavy,
+  colorSilver,
+  colorWhite,
+  spaceExtraSmall,
+  spaceLarge,
+  spaceMedium,
+  spaceSmall,
+} from "../utilities/constants";
+import { useFocus } from "../utilities/useFocus";
+import { useHover } from "../utilities/useHover";
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     { fluid, disabled, size = "small", style, variant = "secondary", ...rest },
-    ref
+    ref1
   ) => {
+    const ref2 = useRef<HTMLButtonElement>();
+    const isFocused = useFocus(ref2);
+    const isHovered = useHover(ref2);
+
     const buttonStyle: CSSProperties = {
       borderRadius: ".125rem",
       borderStyle: "solid",
@@ -30,29 +48,49 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     if (size === "large") {
       buttonStyle.fontSize = "1.25rem";
-      buttonStyle.padding = "1rem 2rem";
+      buttonStyle.padding = `${spaceMedium} ${spaceLarge}`;
     } else if (size === "medium") {
       buttonStyle.fontSize = "1rem";
-      buttonStyle.padding = ".5rem 1rem";
+      buttonStyle.padding = `${spaceSmall} ${spaceMedium}`;
     } else {
       buttonStyle.fontSize = ".875rem";
-      buttonStyle.padding = ".25rem .5rem";
+      buttonStyle.padding = `${spaceExtraSmall} ${spaceSmall}`;
     }
 
     if (variant === "primary") {
-      buttonStyle.background = disabled ? "#001b44" : "#00449e";
-      buttonStyle.borderColor = disabled ? "#001b44" : "#00449e";
-      buttonStyle.color = "#fff";
+      buttonStyle.background = disabled
+        ? colorSilver
+        : isFocused || isHovered
+        ? colorNavy
+        : colorDarkBlue;
+      buttonStyle.borderColor = disabled
+        ? colorSilver
+        : isFocused || isHovered
+        ? colorNavy
+        : colorDarkBlue;
+      buttonStyle.color = colorWhite;
       buttonStyle.fontWeight = 700;
     } else if (variant === "tertiary") {
-      buttonStyle.background = "#fff";
-      buttonStyle.borderColor = "#fff";
-      buttonStyle.color = disabled ? "#999" : "#555";
+      buttonStyle.background = colorWhite;
+      buttonStyle.borderColor = colorWhite;
+      buttonStyle.color = disabled
+        ? colorSilver
+        : isFocused || isHovered
+        ? colorBlack
+        : colorMidGray;
       buttonStyle.fontWeight = 400;
     } else {
-      buttonStyle.background = "#fff";
-      buttonStyle.borderColor = disabled ? "#999" : "#555";
-      buttonStyle.color = disabled ? "#999" : "#555";
+      buttonStyle.background = colorWhite;
+      buttonStyle.borderColor = disabled
+        ? colorSilver
+        : isFocused || isHovered
+        ? colorBlack
+        : colorMidGray;
+      buttonStyle.color = disabled
+        ? colorSilver
+        : isFocused || isHovered
+        ? colorBlack
+        : colorMidGray;
       buttonStyle.fontWeight = 700;
     }
 
@@ -60,7 +98,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         disabled={disabled}
         style={{ ...buttonStyle, ...style }}
-        ref={ref}
+        ref={(element) => {
+          if (typeof ref1 === "function") {
+            ref1(element);
+          } else if (ref1) {
+            ref1.current = element;
+          }
+
+          ref2.current = element;
+        }}
         type="button"
         {...rest}
       />
