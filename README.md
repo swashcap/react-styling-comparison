@@ -16,9 +16,9 @@ The [comparison script](./scripts/compare.js) demonstrates:
 │ (index) │       CSS Modules       │    Inline Styles     │         Tachyons         │
 ├─────────┼─────────────────────────┼──────────────────────┼──────────────────────────┤
 │ Button  │  { JS: 320, CSS: 424 }  │ { JS: 788, CSS: 0 }  │ { JS: 457, CSS: 15558 }  │
-│  Page   │ { JS: 2023, CSS: 1630 } │ { JS: 3237, CSS: 0 } │ { JS: 2509, CSS: 15558 } │
+│  Page   │ { JS: 2023, CSS: 1630 } │ { JS: 3517, CSS: 0 } │ { JS: 2509, CSS: 15558 } │
 │ Sidebar │  { JS: 862, CSS: 683 }  │ { JS: 1605, CSS: 0 } │ { JS: 1122, CSS: 15558 } │
-│   All   │ { JS: 2037, CSS: 1630 } │ { JS: 3250, CSS: 0 } │ { JS: 2521, CSS: 15558 } │
+│   All   │ { JS: 2037, CSS: 1630 } │ { JS: 3530, CSS: 0 } │ { JS: 2521, CSS: 15558 } │
 └─────────┴─────────────────────────┴──────────────────────┴──────────────────────────┘
 ```
 

@@ -27,6 +27,7 @@ import {
   spaceMedium,
   spaceSmall,
 } from "../utilities/constants";
+import { useBreakpoints } from "../utilities/useBreakpoints";
 import { useFocus } from "../utilities/useFocus";
 import { useHover } from "../utilities/useHover";
 
@@ -38,69 +39,73 @@ const PageAdvertisement: FC<PageAdvertisementProps> = ({
   style,
   title,
   ...rest
-}) => (
-  <aside
-    style={{
-      background: colorNearWhite,
-      borderRadius: ".25rem",
-      padding: spaceMedium,
-      ...style,
-    }}
-    {...rest}
-  >
-    <div
+}) => {
+  const { md, lg } = useBreakpoints();
+
+  return (
+    <aside
       style={{
-        display: "flex",
-        flexWrap: "wrap",
-        marginLeft: "-.5rem",
-        marginRight: "-.5rem",
+        background: colorNearWhite,
+        borderRadius: ".25rem",
+        padding: spaceMedium,
+        ...style,
       }}
+      {...rest}
     >
       <div
         style={{
-          paddingLeft: spaceSmall,
-          paddingRight: spaceSmall,
-          width: "66.66%",
+          display: "flex",
+          flexWrap: "wrap",
+          marginLeft: "-.5rem",
+          marginRight: "-.5rem",
         }}
       >
-        <img
-          alt={imageAlt}
-          src={imageSrc}
-          style={{ display: "block", width: "100%" }}
-        />
-      </div>
-      <div
-        style={{
-          paddingLeft: spaceSmall,
-          paddingRight: spaceSmall,
-          width: "33.33%",
-        }}
-      >
-        <h1
+        <div
           style={{
-            fontSize: "1.25rem",
-            lineHeight: "1.25",
-            marginBottom: spaceSmall,
-            marginTop: 0,
+            paddingLeft: spaceSmall,
+            paddingRight: spaceSmall,
+            width: md || lg ? "66.66%" : "100%",
           }}
         >
-          {title}
-        </h1>
-        <p
+          <img
+            alt={imageAlt}
+            src={imageSrc}
+            style={{ display: "block", width: "100%" }}
+          />
+        </div>
+        <div
           style={{
-            marginBottom: spaceMedium,
-            marginTop: spaceSmall,
+            paddingLeft: spaceSmall,
+            paddingRight: spaceSmall,
+            width: md || lg ? "33.33%" : "100%",
           }}
         >
-          {description}
-        </p>
-        <Button size="medium" variant="primary">
-          {actionText}
-        </Button>
+          <h1
+            style={{
+              fontSize: "1.25rem",
+              lineHeight: "1.25",
+              marginBottom: spaceSmall,
+              marginTop: 0,
+            }}
+          >
+            {title}
+          </h1>
+          <p
+            style={{
+              marginBottom: spaceMedium,
+              marginTop: spaceSmall,
+            }}
+          >
+            {description}
+          </p>
+          <Button size="medium" variant="primary">
+            {actionText}
+          </Button>
+        </div>
       </div>
-    </div>
-  </aside>
-);
+    </aside>
+  );
+};
 
 const PageItemLink: FC<AnchorHTMLAttributes<HTMLAnchorElement>> = ({
   style,
@@ -216,6 +221,7 @@ export const Page: FC<PageProps> = ({
   style,
   ...rest
 }) => {
+  const { md, lg } = useBreakpoints();
   const itemsStart = items.slice(0, 12);
   const itemsMiddle = items.slice(12, 24);
   const itemsEnd = items.slice(24);
@@ -225,8 +231,8 @@ export const Page: FC<PageProps> = ({
       style={{
         display: "flex",
         flexWrap: "wrap",
-        height: "100vh",
-        overflowY: "hidden",
+        height: lg ? "100vh" : "auto",
+        overflowY: lg ? "hidden" : "auto",
         ...style,
       }}
       {...rest}
@@ -242,13 +248,13 @@ export const Page: FC<PageProps> = ({
       </a>
       <header
         style={{
-          width: "25%",
+          width: lg ? "25%" : "100%",
         }}
       >
         <Sidebar
           style={{
-            overflowY: "scroll",
-            height: "100vh",
+            overflowY: lg ? "scroll" : "auto",
+            height: lg ? "100vh" : "auto",
             ...sidebarPropsStyle,
           }}
           {...sidebarProps}
@@ -257,10 +263,10 @@ export const Page: FC<PageProps> = ({
       <main
         style={{
           fontFamily: "sans-serif",
-          height: "100vh",
-          overflowY: "scroll",
+          height: lg ? "100vh" : "auto",
+          overflowY: lg ? "scroll" : "auto",
           padding: spaceLarge,
-          width: "75%",
+          width: lg ? "75%" : "100%",
         }}
         id="main"
       >
@@ -277,9 +283,10 @@ export const Page: FC<PageProps> = ({
         >
           <div
             style={{
+              marginBottom: md || lg ? 0 : spaceMedium,
               paddingLeft: spaceSmall,
               paddingRight: spaceSmall,
-              width: "66.66%",
+              width: md || lg ? "66.66%" : "100%",
             }}
           >
             <div
@@ -353,7 +360,7 @@ export const Page: FC<PageProps> = ({
               display: "flex",
               paddingLeft: spaceSmall,
               paddingRight: spaceSmall,
-              width: "33.33%",
+              width: lg || md ? "33.33%" : "100%",
             }}
           >
             <input
@@ -444,10 +451,10 @@ export const Page: FC<PageProps> = ({
             <div
               key={index}
               style={{
-                marginBottom: spaceLarge,
+                marginBottom: md || lg ? spaceLarge : spaceMedium,
                 paddingLeft: spaceSmall,
                 paddingRight: spaceSmall,
-                width: "25%",
+                width: lg ? "25%" : md ? "33.33%" : "100%",
               }}
             >
               <PageItem {...item} />
@@ -477,10 +484,10 @@ export const Page: FC<PageProps> = ({
             <div
               key={index}
               style={{
-                marginBottom: spaceLarge,
+                marginBottom: md || lg ? spaceLarge : spaceMedium,
                 paddingLeft: spaceSmall,
                 paddingRight: spaceSmall,
-                width: "25%",
+                width: lg ? "25%" : md ? "33.33%" : "100%",
               }}
             >
               <PageItem {...item} />
@@ -510,10 +517,10 @@ export const Page: FC<PageProps> = ({
             <div
               key={index}
               style={{
-                marginBottom: spaceLarge,
+                marginBottom: md || lg ? spaceLarge : spaceMedium,
                 paddingLeft: spaceSmall,
                 paddingRight: spaceSmall,
-                width: "25%",
+                width: lg ? "25%" : md ? "33.33%" : "100%",
               }}
             >
               <PageItem {...item} />
@@ -546,7 +553,7 @@ export const Page: FC<PageProps> = ({
                 style={{
                   paddingLeft: spaceSmall,
                   paddingRight: spaceSmall,
-                  width: "33.33%",
+                  width: md || lg ? "33.33%" : "100%",
                 }}
               >
                 <h3
