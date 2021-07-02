@@ -1,5 +1,4 @@
 import type { FC } from "react";
-import classNames from "classnames";
 
 import { Button } from "../Button/Button.tachyons";
 import type {
@@ -8,6 +7,7 @@ import type {
   PageItemProps,
 } from "./PageTypes";
 import { Sidebar } from "../Sidebar/Sidebar.tachyons";
+import { clsx } from "../utilities/clsx";
 
 const PageAdvertisement: FC<PageAdvertisementProps> = ({
   actionText,
@@ -18,7 +18,7 @@ const PageAdvertisement: FC<PageAdvertisementProps> = ({
   title,
   ...rest
 }) => (
-  <aside className={classNames("bg-near-white br2 pa3", className)} {...rest}>
+  <aside className={clsx("bg-near-white br2 pa3", className)} {...rest}>
     <div className="flex flex-wrap nl2 nr2">
       <div className="ph2 w-100 w-two-thirds-m w-two-thirds-l">
         <img alt={imageAlt} className="db w-100" src={imageSrc} />
@@ -79,10 +79,7 @@ export const Page: FC<PageProps> = ({
 
   return (
     <div
-      className={classNames(
-        "flex flex-wrap overflow-y-hidden-l vh-100-l",
-        className
-      )}
+      className={clsx("flex flex-wrap overflow-y-hidden-l vh-100-l", className)}
       {...rest}
     >
       <a className="clip" href="#main">
@@ -90,7 +87,7 @@ export const Page: FC<PageProps> = ({
       </a>
       <header className="w-100 w-25-l">
         <Sidebar
-          className={classNames(
+          className={clsx(
             "overflow-y-scroll-l vh-100-l",
             sidebarPropsClassName
           )}
@@ -108,12 +105,12 @@ export const Page: FC<PageProps> = ({
             <div className="b--silver bb flex pb1">
               {header.map(({ count, label, status, value }, index) => (
                 <div
-                  className={classNames(index < header.length - 1 && "pr4")}
+                  className={clsx(index < header.length - 1 && "pr4")}
                   key={index}
                 >
                   <div className="dib relative">
                     <span
-                      className={classNames(
+                      className={clsx(
                         "b f5 lh-title",
                         status === "success" && "green",
                         status === "info" && "blue"

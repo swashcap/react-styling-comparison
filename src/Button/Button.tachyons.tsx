@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
-import classNames from "classnames";
 
 import type { ButtonProps } from "./ButtonTypes";
+import { clsx } from "../utilities/clsx";
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -16,7 +16,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => (
     <button
-      className={classNames(
+      className={clsx(
         "ba br2 dib lh-solid ma0 sans-serif tc",
         !disabled && "pointer",
         fluid && "w-100",

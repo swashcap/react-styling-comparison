@@ -1,8 +1,8 @@
 import type { FC } from "react";
 import { useState } from "react";
-import classNames from "classnames";
 
 import type { SidebarProps } from "./SidebarTypes";
+import { clsx } from "../utilities/clsx";
 
 export const Sidebar: FC<SidebarProps> = ({
   account,
@@ -17,7 +17,7 @@ export const Sidebar: FC<SidebarProps> = ({
 
   return (
     <div
-      className={classNames(
+      className={clsx(
         "bg-near-white dark-gray flex flex-column lh-copy justify-between sans-serif",
         className
       )}
@@ -32,7 +32,7 @@ export const Sidebar: FC<SidebarProps> = ({
               return (
                 <li key={url}>
                   <a
-                    className={classNames(
+                    className={clsx(
                       "br1 dark-gray db hover-blue no-underline pa2",
                       active && "bg-light-gray dark-blue"
                     )}
@@ -76,7 +76,7 @@ export const Sidebar: FC<SidebarProps> = ({
                     <span>{key}</span>
                     <i
                       aria-hidden
-                      className={classNames(
+                      className={clsx(
                         "far fa-1x silver ml2 mt1 v-btm",
                         isExpanded && "fa-caret-square-down",
                         !isExpanded && "fa-caret-square-up"

@@ -1,5 +1,4 @@
 import type { FC } from "react";
-import classNames from "classnames";
 
 import { Button } from "../Button/Button.cssmodules";
 import type {
@@ -8,6 +7,7 @@ import type {
   PageItemProps,
 } from "./PageTypes";
 import { Sidebar } from "../Sidebar/Sidebar.cssmodules";
+import { clsx } from "../utilities/clsx";
 import style from "./Page.module.scss";
 
 const PageAdvertisement: FC<PageAdvertisementProps> = ({
@@ -19,26 +19,16 @@ const PageAdvertisement: FC<PageAdvertisementProps> = ({
   title,
   ...rest
 }) => (
-  <aside className={classNames(style.advertisement, className)} {...rest}>
+  <aside className={clsx(style.advertisement, className)} {...rest}>
     <div className={style.pageRow}>
-      <div
-        className={classNames(
-          style.pageRowItem,
-          style.advertisementImageWrapper
-        )}
-      >
+      <div className={clsx(style.pageRowItem, style.advertisementImageWrapper)}>
         <img
           alt={imageAlt}
           className={style.advertisementImage}
           src={imageSrc}
         />
       </div>
-      <div
-        className={classNames(
-          style.pageRowItem,
-          style.advertisementTextWrapper
-        )}
-      >
+      <div className={clsx(style.pageRowItem, style.advertisementTextWrapper)}>
         <h1 className={style.advertisementTitle}>{title}</h1>
         <p className={style.advertisementDescription}>{description}</p>
         <Button size="medium" variant="primary">
@@ -94,29 +84,27 @@ export const Page: FC<PageProps> = ({
   const itemsEnd = items.slice(24);
 
   return (
-    <div className={classNames(style.page, className)} {...rest}>
+    <div className={clsx(style.page, className)} {...rest}>
       <a className={style.skipLink} href="#main">
         Skip to main content
       </a>
       <header className={style.header}>
         <Sidebar
-          className={classNames(style.headerSidebar, sidebarPropsClassName)}
+          className={clsx(style.headerSidebar, sidebarPropsClassName)}
           {...sidebarProps}
         />
       </header>
       <main className={style.main} id="main">
         {/* BEGIN Header */}
 
-        <div className={classNames(style.pageRow, style.pageSection)}>
-          <div
-            className={classNames(style.pageRowItem, style.contentHeaderStats)}
-          >
+        <div className={clsx(style.pageRow, style.pageSection)}>
+          <div className={clsx(style.pageRowItem, style.contentHeaderStats)}>
             <div className={style.contentHeaderStatsWrapper}>
               {header.map(({ count, label, status, value }, index) => (
                 <div className={style.contentHeaderStatsItem} key={index}>
                   <div className={style.contentHeaderStatsValueWrapper}>
                     <span
-                      className={classNames(
+                      className={clsx(
                         style.contentHeaderStatsValue,
                         status === "success" &&
                           style.contentHeaderStatsValueSuccess,
@@ -138,10 +126,7 @@ export const Page: FC<PageProps> = ({
           </div>
           <form
             action="/search"
-            className={classNames(
-              style.pageRowItem,
-              style.contentHeaderSearchForm
-            )}
+            className={clsx(style.pageRowItem, style.contentHeaderSearchForm)}
             role="search"
           >
             <input
@@ -163,7 +148,7 @@ export const Page: FC<PageProps> = ({
 
         {/* BEGIN Lead */}
 
-        <div className={classNames(style.lead, style.pageSection)}>
+        <div className={clsx(style.lead, style.pageSection)}>
           <h1 className={style.leadTitle}>{lead.title}</h1>
           <p className={style.leadDescription}>{lead.description}</p>
           <Button onClick={lead.actionOnClick} size="large" variant="primary">
@@ -176,7 +161,7 @@ export const Page: FC<PageProps> = ({
         <div className={style.pageRow}>
           {itemsStart.map((item, index) => (
             <div
-              className={classNames(style.pageRowItem, style.productListItem)}
+              className={clsx(style.pageRowItem, style.productListItem)}
               key={index}
             >
               <PageItem {...item} />
@@ -194,7 +179,7 @@ export const Page: FC<PageProps> = ({
         <div className={style.pageRow}>
           {itemsMiddle.map((item, index) => (
             <div
-              className={classNames(style.pageRowItem, style.productListItem)}
+              className={clsx(style.pageRowItem, style.productListItem)}
               key={index}
             >
               <PageItem {...item} />
@@ -212,7 +197,7 @@ export const Page: FC<PageProps> = ({
         <div className={style.pageRow}>
           {itemsEnd.map((item, index) => (
             <div
-              className={classNames(style.pageRowItem, style.productListItem)}
+              className={clsx(style.pageRowItem, style.productListItem)}
               key={index}
             >
               <PageItem {...item} />
@@ -223,10 +208,10 @@ export const Page: FC<PageProps> = ({
         {/* BEGIN Footer */}
 
         <div className={style.footer}>
-          <div className={classNames(style.pageRow, style.footerMenus)}>
+          <div className={clsx(style.pageRow, style.footerMenus)}>
             {footer.menus.map(({ title, links }, index) => (
               <div
-                className={classNames(style.pageRowItem, style.footerMenuItem)}
+                className={clsx(style.pageRowItem, style.footerMenuItem)}
                 key={index}
               >
                 <h3 className={style.footerMenuTitle}>{title}</h3>

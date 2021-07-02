@@ -1,8 +1,8 @@
 import { forwardRef } from "react";
-import classNames from "classnames";
 
-import type { ButtonProps } from "./ButtonTypes";
 import style from "./Button.module.scss";
+import type { ButtonProps } from "./ButtonTypes";
+import { clsx } from "../utilities/clsx";
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -10,7 +10,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => (
     <button
-      className={classNames(
+      className={clsx(
         style.button,
         fluid && style.fluid,
         size === "large" && style.large,

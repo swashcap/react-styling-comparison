@@ -1,9 +1,9 @@
 import type { FC } from "react";
 import { useState } from "react";
-import classNames from "classnames";
 
-import type { SidebarProps } from "./SidebarTypes";
 import style from "./Sidebar.module.scss";
+import type { SidebarProps } from "./SidebarTypes";
+import { clsx } from "../utilities/clsx";
 
 export const Sidebar: FC<SidebarProps> = ({
   account,
@@ -17,7 +17,7 @@ export const Sidebar: FC<SidebarProps> = ({
   const [activeSubNavIndex, setActiveSubNavIndex] = useState(0);
 
   return (
-    <div className={classNames(style.sidebar, className)} {...rest}>
+    <div className={clsx(style.sidebar, className)} {...rest}>
       <nav>
         <ul className={style.sidebarNavList}>
           {navItems.map((item) => {
@@ -26,7 +26,7 @@ export const Sidebar: FC<SidebarProps> = ({
             return (
               <li key={url}>
                 <a
-                  className={classNames(active && style.sidebarNavListActive)}
+                  className={clsx(active && style.sidebarNavListActive)}
                   href={url}
                   onClick={(event) => {
                     onNavItemClick(event, item);
@@ -34,7 +34,7 @@ export const Sidebar: FC<SidebarProps> = ({
                 >
                   <i
                     aria-hidden
-                    className={classNames(
+                    className={clsx(
                       `far fa-${icon} fa-1x`,
                       style.sidebarNavListIcon
                     )}
@@ -73,7 +73,7 @@ export const Sidebar: FC<SidebarProps> = ({
                   <span>{key}</span>
                   <i
                     aria-hidden
-                    className={classNames(
+                    className={clsx(
                       "far fa-1x",
                       isExpanded && "fa-caret-square-down",
                       !isExpanded && "fa-caret-square-up"
@@ -82,7 +82,7 @@ export const Sidebar: FC<SidebarProps> = ({
                 </button>
                 <div
                   aria-labelledby={buttonId}
-                  className={classNames(
+                  className={clsx(
                     !isExpanded && style.sidebarProjectGroupHidden
                   )}
                   id={controlId}
