@@ -1,6 +1,6 @@
-# tachyons-vs-css-modules
+# react-styling-comparison
 
-_An experiment testing React + Tachyons impact on bundle size._
+_An experiment testing React + styling methods' impact on bundle size._
 
 ## Findings
 
