@@ -18,6 +18,7 @@ const files = new Map([
   ["button:js", "./dist/Button.cssmodules.js"],
   ["button:css", "./dist/Button.cssmodules.min.css"],
   ["button:inline", "./dist/Button.inline.js"],
+  ["button:styletron", "./dist/Button.styletron.js"],
   ["button:tachyons", "./dist/Button.tachyons.js"],
   ["page:js", "./dist/Page.cssmodules.js"],
   ["page:css", "./dist/Page.cssmodules.min.css"],
@@ -26,10 +27,12 @@ const files = new Map([
   ["sidebar:js", "./dist/Sidebar.cssmodules.js"],
   ["sidebar:css", "./dist/Sidebar.cssmodules.min.css"],
   ["sidebar:inline", "./dist/Sidebar.inline.js"],
+  ["sidebar:styletron", "./dist/Sidebar.styletron.js"],
   ["sidebar:tachyons", "./dist/Sidebar.tachyons.js"],
   ["all:js", "./dist/index.cssmodules.js"],
   ["all:css", "./dist/index.cssmodules.min.css"],
   ["all:inline", "./dist/index.inline.js"],
+  ["all:styletron", "./dist/index.styletron.js"],
   ["all:tachyons", "./dist/index.tachyons.js"],
   ["tachyons", "./dist/tachyons.min.css"],
 ]);
@@ -49,6 +52,10 @@ Promise.all(Array.from(files.values()).map(getFileSize))
           JS: sizes.get("button:inline"),
           CSS: 0,
         },
+        Styletron: {
+          JS: sizes.get("button:styletron"),
+          CSS: 0,
+        },
         Tachyons: {
           JS: sizes.get("button:tachyons"),
           CSS: sizes.get("tachyons"),
@@ -61,6 +68,10 @@ Promise.all(Array.from(files.values()).map(getFileSize))
         },
         "Inline Styles": {
           JS: sizes.get("page:inline"),
+          CSS: 0,
+        },
+        Styletron: {
+          JS: "?",
           CSS: 0,
         },
         Tachyons: {
@@ -77,6 +88,10 @@ Promise.all(Array.from(files.values()).map(getFileSize))
           JS: sizes.get("sidebar:inline"),
           CSS: 0,
         },
+        Styletron: {
+          JS: sizes.get("sidebar:styletron"),
+          CSS: 0,
+        },
         Tachyons: {
           JS: sizes.get("sidebar:tachyons"),
           CSS: sizes.get("tachyons"),
@@ -89,6 +104,10 @@ Promise.all(Array.from(files.values()).map(getFileSize))
         },
         "Inline Styles": {
           JS: sizes.get("all:inline"),
+          CSS: 0,
+        },
+        Styletron: {
+          JS: sizes.get("all:styletron"),
           CSS: 0,
         },
         Tachyons: {

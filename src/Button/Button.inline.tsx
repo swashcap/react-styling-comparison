@@ -9,6 +9,10 @@ import {
   colorNavy,
   colorSilver,
   colorWhite,
+  fontSansSerif,
+  fontSize4,
+  fontSize5,
+  fontSize6,
   spaceExtraSmall,
   spaceLarge,
   spaceMedium,
@@ -31,8 +35,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       borderStyle: "solid",
       borderWidth: "1px",
       display: "inline-block",
-      fontFamily:
-        "-apple-system, BlinkMacSystemFont, 'avenir next', avenir, helvetica, 'helvetica neue', ubuntu, roboto, noto, 'segoe ui', arial, sans-serif",
+      fontFamily: fontSansSerif,
       lineHeight: 1,
       margin: 0,
       textAlign: "center",
@@ -47,13 +50,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     if (size === "large") {
-      buttonStyle.fontSize = "1.25rem";
+      buttonStyle.fontSize = fontSize4;
       buttonStyle.padding = `${spaceMedium} ${spaceLarge}`;
     } else if (size === "medium") {
-      buttonStyle.fontSize = "1rem";
+      buttonStyle.fontSize = fontSize5;
       buttonStyle.padding = `${spaceSmall} ${spaceMedium}`;
     } else {
-      buttonStyle.fontSize = ".875rem";
+      buttonStyle.fontSize = fontSize6;
       buttonStyle.padding = `${spaceExtraSmall} ${spaceSmall}`;
     }
 

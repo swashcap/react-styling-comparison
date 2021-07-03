@@ -17,6 +17,11 @@ import {
   spaceSmall,
   spaceMedium,
   colorBlue,
+  fontSansSerif,
+  fontSize7,
+  lineHeightCopy,
+  fontSize5,
+  lineheightSolid,
 } from "../utilities/constants";
 import { useFocus } from "../utilities/useFocus";
 import { useHover } from "../utilities/useHover";
@@ -175,10 +180,9 @@ export const Sidebar: FC<SidebarProps> = ({
         color: colorDarkGray,
         display: "flex",
         flexDirection: "column",
-        fontFamily:
-          "-apple-system, BlinkMacSystemFont, 'avenir next', avenir, helvetica, 'helvetica neue', ubuntu, roboto, noto, 'segoe ui', arial, sans-serif",
+        fontFamily: fontSansSerif,
         justifyContent: "space-between",
-        lineHeight: "1.5",
+        lineHeight: lineHeightCopy,
         ...style,
       }}
     >
@@ -229,7 +233,7 @@ export const Sidebar: FC<SidebarProps> = ({
             <h3
               style={{
                 color: colorGray,
-                fontSize: ".75rem",
+                fontSize: fontSize7,
                 fontWeight: 500,
                 margin: `0 ${spaceMedium} ${spaceExtraSmall}`,
                 textTransform: "uppercase",
@@ -347,9 +351,9 @@ export const Sidebar: FC<SidebarProps> = ({
             <h3
               style={{
                 color: colorDarkGray,
-                fontSize: "1rem",
+                fontSize: fontSize5,
                 fontWeight: 500,
-                lineHeight: "1",
+                lineHeight: lineheightSolid,
                 margin: 0,
               }}
             >

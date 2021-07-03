@@ -4,6 +4,7 @@ import { Story } from "@storybook/react";
 import { Button as ButtonTachyons } from "./Button.tachyons";
 import { Button as ButtonCSSModules } from "./Button.cssmodules";
 import { Button as ButtonInline } from "./Button.inline";
+import { Button as ButtonStyletron } from "./Button.styletron";
 import { ButtonProps } from "./ButtonTypes";
 
 const Center: FC<HTMLAttributes<HTMLElement>> = ({ style, ...rest }) => (
@@ -64,6 +65,12 @@ CSSModules.storyName = "CSS Modules";
 export const InlineStyles: Story<ButtonProps> = (props) => (
   <Center>
     <ButtonInline {...props} />
+  </Center>
+);
+
+export const Styletron: Story<ButtonProps> = (props) => (
+  <Center>
+    <ButtonStyletron {...props} />
   </Center>
 );
 

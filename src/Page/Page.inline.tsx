@@ -22,6 +22,7 @@ import {
   colorSilver,
   colorWhite,
   colorYellow,
+  fontSansSerif,
   spaceExtraSmall,
   spaceLarge,
   spaceMedium,
@@ -262,7 +263,7 @@ export const Page: FC<PageProps> = ({
       </header>
       <main
         style={{
-          fontFamily: "sans-serif",
+          fontFamily: fontSansSerif,
           height: lg ? "100vh" : "auto",
           overflowY: lg ? "scroll" : "auto",
           padding: spaceLarge,

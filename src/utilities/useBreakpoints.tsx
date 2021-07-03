@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 
+import { breakpointNs, breakpointMd, breakpointLg } from "./constants";
+
 const mediaQueryListMap =
   typeof matchMedia !== "undefined"
     ? {
-        ns: matchMedia("(min-width: 30em)"),
-        md: matchMedia("(min-width: 30em) and (max-width: 60em)"),
-        lg: matchMedia("(min-width: 60em)"),
+        ns: matchMedia(breakpointNs),
+        md: matchMedia(breakpointMd),
+        lg: matchMedia(breakpointLg),
       }
     : {
         ns: null,

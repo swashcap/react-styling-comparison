@@ -4,6 +4,7 @@ import { Story } from "@storybook/react";
 
 import { Sidebar as SidebarTachyons } from "./Sidebar.tachyons";
 import { Sidebar as SidebarCSSModules } from "./Sidebar.cssmodules";
+import { Sidebar as SidebarStyletron } from "./Sidebar.styletron";
 import { Sidebar as SidebarInline } from "./Sidebar.inline";
 import { SidebarProps } from "./SidebarTypes";
 
@@ -50,6 +51,12 @@ CSSModules.storyName = "CSS Modules";
 export const InlineStyles: Story<SidebarProps> = (args) => (
   <WithNavItems {...args}>
     {(props) => <SidebarInline {...props} />}
+  </WithNavItems>
+);
+
+export const Styletron: Story<SidebarProps> = (args) => (
+  <WithNavItems {...args}>
+    {(props) => <SidebarStyletron {...props} />}
   </WithNavItems>
 );
 
