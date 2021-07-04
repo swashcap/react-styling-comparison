@@ -88,10 +88,10 @@ export const theme = {
     title: lineHeightTitle,
   },
   space: {
-    extraSmall: spaceExtraSmall,
-    small: spaceSmall,
-    medium: spaceMedium,
-    large: spaceLarge,
+    1: spaceExtraSmall,
+    2: spaceSmall,
+    3: spaceMedium,
+    4: spaceLarge,
   },
 };
 

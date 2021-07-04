@@ -50,10 +50,10 @@ const BaseButton = styled<
   margin: 0,
   padding:
     $size === "large"
-      ? `${$theme.space.medium} ${$theme.space.large}`
+      ? `${$theme.space[3]} ${$theme.space[4]}`
       : $size === "medium"
-      ? `${$theme.space.small} ${$theme.space.medium}`
-      : `${$theme.space.extraSmall} ${$theme.space.small}`,
+      ? `${$theme.space[2]} ${$theme.space[3]}`
+      : `${$theme.space[1]} ${$theme.space[2]}`,
   textAlign: "center",
   width: $fluid ? "100%" : undefined,
   ":focus": disabled

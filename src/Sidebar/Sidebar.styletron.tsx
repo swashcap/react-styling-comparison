@@ -17,7 +17,7 @@ const BaseSidebar = styled("div", ({ $theme }) => ({
 const SidebarNavList = styled("ul", ({ $theme }) => ({
   listStyle: "none",
   margin: 0,
-  padding: $theme.space.small,
+  padding: $theme.space[2],
 }));
 
 const SidebarNavLink = styled<
@@ -29,7 +29,7 @@ const SidebarNavLink = styled<
   color: $active ? $theme.color.darkBlue : $theme.color.darkGray,
   display: "block",
   textDecoration: "none",
-  padding: $theme.space.small,
+  padding: $theme.space[2],
 
   ":focus": {
     color: $theme.color.blue,
@@ -40,24 +40,24 @@ const SidebarNavLink = styled<
 }));
 
 const SidebarNavLinkIcon = styled("i", ({ $theme }) => ({
-  marginRight: $theme.space.small,
+  marginRight: $theme.space[2],
 }));
 
 const SidebarSubNav = styled("nav", ({ $theme }) => ({
   borderTop: `1px solid ${$theme.color.moonGray}`,
-  padding: `${$theme.space.medium} 0`,
+  padding: `${$theme.space[3]} 0`,
 }));
 
 const SidebarSubNavHeading = styled("h3", ({ $theme }) => ({
   color: $theme.color.gray,
   fontSize: $theme.fontSize["7"],
   fontWeight: 500,
-  margin: `0 ${$theme.space.medium} ${$theme.space.extraSmall}`,
+  margin: `0 ${$theme.space[3]} ${$theme.space[1]}`,
   textTransform: "uppercase",
 }));
 
 const SidebarSubNavItem = styled("div", ({ $theme }) => ({
-  padding: `0 ${$theme.space.small}`,
+  padding: `0 ${$theme.space[2]}`,
 }));
 
 const SidebarSubNavButton = styled("button", ({ $theme }) => ({
@@ -71,7 +71,7 @@ const SidebarSubNavButton = styled("button", ({ $theme }) => ({
   justifyContent: "space-between",
   lineHeight: $theme.lineHeight.copy,
   margin: 0,
-  padding: $theme.space.small,
+  padding: $theme.space[2],
   width: "100%",
 
   ":focus": {
@@ -100,7 +100,7 @@ const SidebarSubNavItemsLink = styled("a", ({ $theme }) => ({
   borderRadius: $theme.borderRadius[1],
   color: $theme.color.darkGray,
   display: "block",
-  padding: `${$theme.space.extraSmall} ${$theme.space.small} ${$theme.space.extraSmall} ${$theme.space.medium}`,
+  padding: `${$theme.space[1]} ${$theme.space[2]} ${$theme.space[1]} ${$theme.space[3]}`,
   textDecoration: "none",
 
   ":focus": {
@@ -116,7 +116,7 @@ const SidebarAccount = styled("div", ({ $theme }) => ({
   borderTop: `1px solid ${$theme.color.moonGray}`,
   display: "flex",
   justifyContent: "space-between",
-  padding: $theme.space.medium,
+  padding: $theme.space[3],
 }));
 
 const SidebarAccountWrapper = styled("div", {
@@ -133,8 +133,8 @@ const SidebarAccountAvatar = styled("div", ({ $theme }) => ({
   fontWeight: 600,
   height: "2rem",
   lineHeight: "2rem",
-  marginLeft: `calc(-1 * ${$theme.space.extraSmall})`,
-  marginRight: $theme.space.small,
+  marginLeft: `calc(-1 * ${$theme.space[1]})`,
+  marginRight: $theme.space[2],
   textAlign: "center",
   width: "2rem",
 }));
@@ -168,8 +168,8 @@ const SidebarAccountButton = styled("button", ({ $theme }) => ({
   color: "inherit",
   cursor: "pointer",
   fontFamily: "inherit",
-  margin: `0 calc(-1 * ${$theme.space.small}) 0 0`,
-  padding: `${$theme.space.small} ${$theme.space.medium}`,
+  margin: `0 calc(-1 * ${$theme.space[2]}) 0 0`,
+  padding: `${$theme.space[2]} ${$theme.space[3]}`,
 
   ":focus": {
     color: $theme.color.blue,
