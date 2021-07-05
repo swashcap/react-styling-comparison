@@ -37,19 +37,40 @@ rendering](https://reactjs.org/docs/react-dom-server.html) reveals the
 differences aren't limited to client-side assets:
 
 ```shell
-$ for f in scripts/sync/runners/*.js; do NODE_ENV=production node "$f" 2>/dev/null; sleep 2; done
-[cssmodules] renderToString, loop x10000: 7998.686909005046 ms
-[inline] renderToString, loop x10000: 18091.06332500279 ms
-[styletron] renderToString, loop x10000: 44551.43927501142 ms
-[tachyons] renderToString, loop x10000: 8756.898630008101 ms
-$ for f in scripts/stream/runners/*.js; do NODE_ENV=production node "$f" 2>/dev/null; sleep 2; done
-[cssmodules] renderToNodeStream, 10 parallel x1000: 10240.492806002498 ms
-[inline] renderToNodeStream, 10 parallel x1000: 23002.188173994422 ms
-[styletron] renderToNodeStream, 10 parallel x1000: 46393.27696800232 ms
-[tachyons] renderToNodeStream, 10 parallel x1000: 11854.956960007548 ms
+$ for f in scripts/sync/*.mjs; do NODE_ENV=production node "$f" 2>/dev/null; sleep 2; done
+[cssmodules] renderToString, loop x10000: 8589.73320800066 ms
+[inline] renderToString, loop x10000: 19195.538488984108 ms
+[styletron] renderToString, loop x10000: 45080.270787000656 ms
+[tachyons] renderToString, loop x10000: 9311.0293879807 ms
+$ for f in scripts/stream/*.mjs; do NODE_ENV=production node "$f" 2>/dev/null; sleep 2; done
+[cssmodules] renderToNodeStream, 10 parallel x1000: 10195.603729009628 ms
+[inline] renderToNodeStream, 10 parallel x1000: 22350.854984998703 ms
+[styletron] renderToNodeStream, 10 parallel x1000: 46235.102649986744 ms
+[tachyons] renderToNodeStream, 10 parallel x1000: 11901.377384006977 ms
 ```
 
-Less `className` strings result in slightly faster render times.
+### Lighthouse
+
+Running all server-side rendering through a [fastify](https://www.fastify.io)
+server yields the following Lighthouse statistics:
+
+#### Mobile
+
+|            | FCP  | TTI  |
+| ---------- | ---: | ---: |
+| cssmodules | 1.6s | 1.6s |
+| inline     | 1.5s | 1.6s |
+| styletron  | 1.7s | 1.7s |
+| tachyons   | 2.1s | 2.1s |
+
+#### Desktop
+
+|            | FCP  | TTI  |
+| ---------- | ---: | ---: |
+| cssmodules | 0.5s | 0.5s |
+| inline     | 0.5s | 0.5s |
+| styletron  | 0.6s | 0.6s |
+| tachyons   | 0.6s | 0.6s |
 
 ### Example components
 

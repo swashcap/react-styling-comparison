@@ -1,0 +1,93 @@
+@import "../../tachyons/scss/variables";
+
+/** Button */
+
+.button {
+  border-radius: $border-radius-1;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  display: inline-block;
+  font-family: $sans-serif;
+  line-height: 1;
+  margin: 0;
+  text-align: center;
+
+  &[disabled] {
+    cursor: default;
+  }
+}
+
+/** Button: Fluid */
+
+.fluid {
+  width: 100%;
+}
+
+/** Button: Sizes */
+
+.large {
+  font-size: $font-size-4;
+  padding: $spacing-medium $spacing-large;
+}
+
+.medium {
+  font-size: $font-size-5;
+  padding: $spacing-small $spacing-medium;
+}
+
+.small {
+  font-size: $font-size-6;
+  padding: $spacing-extra-small $spacing-small;
+}
+
+/** Button: Variants */
+
+.primary {
+  background: $dark-blue;
+  border-color: $dark-blue;
+  color: $white;
+  font-weight: 700;
+
+  &:focus,
+  &:hover {
+    background: $navy;
+    border-color: $navy;
+  }
+  &[disabled] {
+    background: $silver;
+    border-color: $silver;
+  }
+}
+
+.secondary {
+  background: $white;
+  border-color: $mid-gray;
+  color: $mid-gray;
+  font-weight: 700;
+
+  &:focus,
+  &:hover {
+    border-color: $black;
+    color: $black;
+  }
+  &[disabled] {
+    border-color: $silver;
+    color: $silver;
+  }
+}
+
+.tertiary {
+  background: $white;
+  border-color: $white;
+  color: $mid-gray;
+  font-weight: 400;
+
+  &:focus,
+  &:hover {
+    color: $black;
+  }
+  &[disabled] {
+    color: $silver;
+  }
+}
