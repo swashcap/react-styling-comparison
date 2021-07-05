@@ -12,19 +12,19 @@ const BasePageAdvertisement = styled(Box, ({ $theme }) => ({
 }));
 
 const PageAdvertisementImageWrapper = styled(PageRowItem, ({ $theme }) => ({
-  [`@media ${$theme.breakpoint.md}`]: {
+  [$theme.breakpoint.md]: {
     width: "66.66%",
   },
-  [`@media ${$theme.breakpoint.lg}`]: {
+  [$theme.breakpoint.lg]: {
     width: "66.66%",
   },
 }));
 
 const PageAdvertisementTextWrapper = styled(PageRowItem, ({ $theme }) => ({
-  [`@media ${$theme.breakpoint.md}`]: {
+  [$theme.breakpoint.md]: {
     width: "33.33%",
   },
-  [`@media ${$theme.breakpoint.lg}`]: {
+  [$theme.breakpoint.lg]: {
     width: "33.33%",
   },
 }));

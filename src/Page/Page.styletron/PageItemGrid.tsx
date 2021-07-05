@@ -8,11 +8,11 @@ import { styled } from "../../utilities/theme";
 const Item = styled(PageRowItem, ({ $theme }) => ({
   width: "100%",
 
-  [`@media ${$theme.breakpoint.md}`]: {
+  [$theme.breakpoint.md]: {
     marginBottom: $theme.space[4],
     width: "33.33%",
   },
-  [`@media ${$theme.breakpoint.lg}`]: {
+  [$theme.breakpoint.lg]: {
     marginBottom: $theme.space[4],
     width: "25%",
   },

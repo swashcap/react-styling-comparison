@@ -14,10 +14,10 @@ const BasePageFooter = styled(Box, ({ $theme }) => ({
 const PageFooterMenuWrapper = styled(PageRowItem, ({ $theme }) => ({
   width: "100%",
 
-  [`@media ${$theme.breakpoint.md}`]: {
+  [$theme.breakpoint.md]: {
     width: "33.33%",
   },
-  [`@media ${$theme.breakpoint.lg}`]: {
+  [$theme.breakpoint.lg]: {
     width: "33.33%",
   },
 }));

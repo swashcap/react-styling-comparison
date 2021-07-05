@@ -50,9 +50,9 @@ export const theme = {
     2: borderRadius2,
   },
   breakpoint: {
-    ns: breakpointNs,
-    md: breakpointMd,
-    lg: breakpointLg,
+    ns: `@media${breakpointNs}`,
+    md: `@media${breakpointMd}`,
+    lg: `@media${breakpointLg}`,
   },
   color: {
     black: colorBlack,

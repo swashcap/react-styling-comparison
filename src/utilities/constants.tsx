@@ -1,9 +1,9 @@
 export const borderRadius1 = ".125rem";
 export const borderRadius2 = ".25rem";
 
-export const breakpointNs = "(min-width: 30em)";
-export const breakpointMd = "(min-width: 30em) and (max-width: 60em)";
-export const breakpointLg = "(min-width: 60em)";
+export const breakpointNs = "(min-width:30em)";
+export const breakpointMd = "(min-width:30em)and(max-width:60em)";
+export const breakpointLg = "(min-width:60em)";
 
 export const colorBlack = "#000";
 export const colorBlue = "#357edd";

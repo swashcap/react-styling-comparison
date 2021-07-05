@@ -13,7 +13,7 @@ const BasePage = styled("div", ({ $theme }) => ({
   display: "flex",
   flexWrap: "wrap",
 
-  [`@media ${$theme.breakpoint.lg}`]: {
+  [$theme.breakpoint.lg]: {
     height: "100vh",
     overflowY: "hidden",
   },
@@ -28,7 +28,7 @@ const PageMain = styled("main", ({ $theme }) => ({
   fontFamily: $theme.fontFamily.sansSerif,
   padding: $theme.space[4],
 
-  [`@media ${$theme.breakpoint.lg}`]: {
+  [$theme.breakpoint.lg]: {
     height: "100vh",
     overflow: "scroll",
     width: "75%",

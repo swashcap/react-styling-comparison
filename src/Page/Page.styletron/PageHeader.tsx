@@ -8,10 +8,10 @@ import { styled } from "../../utilities/theme";
 const PageHeaderStatsWrapper = styled(PageRowItem, ({ $theme }) => ({
   width: "100%",
 
-  [`@media ${$theme.breakpoint.md}`]: {
+  [$theme.breakpoint.md]: {
     width: "66.66%",
   },
-  [`@media ${$theme.breakpoint.lg}`]: {
+  [$theme.breakpoint.lg]: {
     width: "66.66%",
   },
 }));
@@ -65,10 +65,10 @@ const PageHeaderSearchForm = styled<
   display: "flex",
   width: "100%",
 
-  [`@media ${$theme.breakpoint.md}`]: {
+  [$theme.breakpoint.md]: {
     width: "33.33%",
   },
-  [`@media ${$theme.breakpoint.lg}`]: {
+  [$theme.breakpoint.lg]: {
     width: "33.33%",
   },
 }));

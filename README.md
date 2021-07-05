@@ -12,14 +12,14 @@ The [comparison script](./scripts/compare.js) demonstrates:
 * Components built with CSS Modules are lighter invidually and combined
 
 ```
-┌─────────┬─────────────────────────┬──────────────────────┬───────────────────────┬──────────────────────────┐
-│ (index) │       CSS Modules       │    Inline Styles     │       Styletron       │         Tachyons         │
-├─────────┼─────────────────────────┼──────────────────────┼───────────────────────┼──────────────────────────┤
-│ Button  │  { JS: 320, CSS: 424 }  │ { JS: 789, CSS: 0 }  │ { JS: 2687, CSS: 0 }  │ { JS: 457, CSS: 15558 }  │
-│  Page   │ { JS: 2023, CSS: 1630 } │ { JS: 3513, CSS: 0 } │ { JS: 5843, CSS: 0 }  │ { JS: 2509, CSS: 15558 } │
-│ Sidebar │  { JS: 862, CSS: 683 }  │ { JS: 1607, CSS: 0 } │ { JS: 3814, CSS: 0 }  │ { JS: 1122, CSS: 15558 } │
-│   All   │ { JS: 2037, CSS: 1630 } │ { JS: 3527, CSS: 0 } │ { JS: 12562, CSS: 0 } │ { JS: 2521, CSS: 15558 } │
-└─────────┴─────────────────────────┴──────────────────────┴───────────────────────┴──────────────────────────┘
+┌─────────┬─────────────────────────┬──────────────────────┬──────────────────────┬──────────────────────────┐
+│ (index) │       CSS Modules       │    Inline Styles     │      Styletron       │         Tachyons         │
+├─────────┼─────────────────────────┼──────────────────────┼──────────────────────┼──────────────────────────┤
+│ Button  │  { JS: 320, CSS: 424 }  │ { JS: 789, CSS: 0 }  │ { JS: 2190, CSS: 0 } │ { JS: 457, CSS: 15558 }  │
+│  Page   │ { JS: 2023, CSS: 1630 } │ { JS: 3516, CSS: 0 } │ { JS: 5339, CSS: 0 } │ { JS: 2509, CSS: 15558 } │
+│ Sidebar │  { JS: 862, CSS: 683 }  │ { JS: 1607, CSS: 0 } │ { JS: 3319, CSS: 0 } │ { JS: 1122, CSS: 15558 } │
+│   All   │ { JS: 2037, CSS: 1630 } │ { JS: 3530, CSS: 0 } │ { JS: 5470, CSS: 0 } │ { JS: 2521, CSS: 15558 } │
+└─────────┴─────────────────────────┴──────────────────────┴──────────────────────┴──────────────────────────┘
 ```
 
 (All sizes gzipped.)
@@ -38,10 +38,10 @@ differences aren't limited to client-side assets:
 
 ```shell
 $ for f in scripts/sync/runners/*.js; do NODE_ENV=production node "$f" 2>/dev/null; sleep 2; done
-[cssmodules] renderToString, loop x10000: 8093.106004998088 ms
-[inline] renderToString, loop x10000: 18414.959434002638 ms
-[styletron] renderToString, loop x10000: 61850.563933998346 ms
-[tachyons] renderToString, loop x10000: 9034.34268400073 ms
+[cssmodules] renderToString, loop x10000: 8235.425366997719 ms
+[inline] renderToString, loop x10000: 17849.767059996724 ms
+[styletron] renderToString, loop x10000: 59204.46427099407 ms
+[tachyons] renderToString, loop x10000: 9118.485968992114 ms
 $ for f in scripts/stream/runners/*.js; do NODE_ENV=production node "$f" 2>/dev/null; sleep 2; done
 [cssmodules] renderToNodeStream, 10 parallel x1000: 10536.082528993487 ms
 [inline] renderToNodeStream, 10 parallel x1000: 23292.33995001018 ms

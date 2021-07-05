@@ -46,11 +46,11 @@ export const BaseBox = styled<"div", BaseBoxProps>(
     const style: StyleObject = getStyle(rest, space);
 
     if ($md) {
-      style[`@media ${breakpoint.md}`] = getStyle($md, space);
+      style[breakpoint.md] = getStyle($md, space);
     }
 
     if ($lg) {
-      style[`@media ${breakpoint.lg}`] = getStyle($lg, space);
+      style[breakpoint.lg] = getStyle($lg, space);
     }
 
     return style;

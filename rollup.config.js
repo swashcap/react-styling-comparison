@@ -4,6 +4,7 @@ import csso from "postcss-csso";
 import incstr from "incstr";
 import path from "path";
 import postcss from "rollup-plugin-postcss";
+import replace from "@rollup/plugin-replace";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import { terser } from "rollup-plugin-terser";
 
@@ -42,6 +43,9 @@ const makeConfig = (input, isCJS) => {
       commonjs(),
       nodeResolve({
         extensions: [".js", ".ts", ".tsx"],
+      }),
+      replace({
+        "process.env.NODE_ENV": JSON.stringify("production"),
       }),
       !isCJS && terser(),
     ].filter(Boolean),

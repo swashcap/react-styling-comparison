@@ -5,13 +5,13 @@ import { styled } from "../../utilities/theme";
 import { Sidebar as BaseSidebar } from "../../Sidebar/Sidebar.styletron";
 
 const BasePageSidebar = styled("header", ({ $theme }) => ({
-  [`@media ${$theme.breakpoint.lg}`]: {
+  [$theme.breakpoint.lg]: {
     width: "25%",
   },
 }));
 
 const Sidebar = styled(BaseSidebar, ({ $theme }) => ({
-  [`@media ${$theme.breakpoint.lg}`]: {
+  [$theme.breakpoint.lg]: {
     overflowY: "scroll",
     height: "100vh",
   },
