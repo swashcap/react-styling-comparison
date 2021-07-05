@@ -1,15 +1,13 @@
-const React = require("react");
 const streamToPromise = require("stream-to-promise");
 const { performance } = require("perf_hooks");
-const { renderToNodeStream, renderToString } = require("react-dom/server");
 
 const props = require("../src/Page/args.json");
 
-module.exports.loop = (PageComponent, prefix) => {
+module.exports.loop = (render, prefix) => {
   const start = performance.now();
 
   for (let i = 0; i < 10000; i += 1) {
-    console.error(renderToString(React.createElement(PageComponent, props)));
+    console.error(render(props));
   }
 
   console.log(
@@ -17,16 +15,32 @@ module.exports.loop = (PageComponent, prefix) => {
   );
 };
 
-module.exports.stream = async (PageComponent, prefix) => {
+module.exports.templateStart = (stylesheets = "") => `<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>react-styling-comparison</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    ${stylesheets}
+  </head>
+  <body>
+    <div id="app">`;
+
+module.exports.templateEnd = () => `
+    <div>
+  </body>
+</html>`;
+
+module.exports.stream = async (render, prefix) => {
   const start = performance.now();
 
   for (let i = 0; i < 1000; i += 1) {
     const rendered = await Promise.all(
-      Array.from(new Array(10)).map(() =>
-        streamToPromise(
-          renderToNodeStream(React.createElement(PageComponent, props))
-        )
-      )
+      Array.from(new Array(10)).map(async () => {
+        const value = render(props);
+
+        return streamToPromise(value instanceof Promise ? await value : value);
+      })
     );
 
     console.error(rendered.join(""));

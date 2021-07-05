@@ -10,9 +10,9 @@ const mediaQueryListMap =
         lg: matchMedia(breakpointLg),
       }
     : {
-        ns: null,
-        md: null,
-        lg: null,
+        ns: { matches: false },
+        md: { matches: false },
+        lg: { matches: false },
       };
 
 export interface Breakpoints {

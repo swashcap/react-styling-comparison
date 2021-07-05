@@ -37,15 +37,16 @@ rendering](https://reactjs.org/docs/react-dom-server.html) reveals the
 differences aren't limited to client-side assets:
 
 ```shell
-$ node scripts/ssr-tachyons.js 2> /dev/null
-[tachyons] renderToString, loop x10000: 33153.42862698436 ms
-[tachyons] renderToNodeStream, 10 parallel x1000: 35053.46060299873 ms
-$ node scripts/ssr-cssmodules.js 2> /dev/null
-[cssmodules] renderToString, loop x10000: 31617.192449986935 ms
-[cssmodules] renderToNodeStream, 10 parallel x1000: 33382.98804599047 ms
-$ node scripts/ssr-inline.js 2> /dev/null
-[inline] renderToString, loop x10000: 40916.44756999612 ms
-[inline] renderToNodeStream, 10 parallel x1000: 44937.595535993576 ms
+$ for f in scripts/sync/runners/*.js; do NODE_ENV=production node "$f" 2>/dev/null; sleep 2; done
+[cssmodules] renderToString, loop x10000: 8093.106004998088 ms
+[inline] renderToString, loop x10000: 18414.959434002638 ms
+[styletron] renderToString, loop x10000: 61850.563933998346 ms
+[tachyons] renderToString, loop x10000: 9034.34268400073 ms
+$ for f in scripts/stream/runners/*.js; do NODE_ENV=production node "$f" 2>/dev/null; sleep 2; done
+[cssmodules] renderToNodeStream, 10 parallel x1000: 10536.082528993487 ms
+[inline] renderToNodeStream, 10 parallel x1000: 23292.33995001018 ms
+[styletron] renderToNodeStream, 10 parallel x1000: 65150.07007598877 ms
+[tachyons] renderToNodeStream, 10 parallel x1000: 11899.745504006743 ms
 ```
 
 Less `className` strings result in slightly faster render times.

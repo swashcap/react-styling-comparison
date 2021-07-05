@@ -43,8 +43,8 @@ const makeConfig = (input, isCJS) => {
       nodeResolve({
         extensions: [".js", ".ts", ".tsx"],
       }),
-      terser(),
-    ],
+      !isCJS && terser(),
+    ].filter(Boolean),
   };
 
   if (isCJS) {

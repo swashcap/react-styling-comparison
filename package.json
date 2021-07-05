@@ -1,9 +1,5 @@
 {
   "author": "Cory Reed",
-  "dependencies": {
-    "styletron-engine-atomic": "^1.4.8",
-    "styletron-react": "^6.0.1"
-  },
   "description": "An experiment testing React + styling methods' impact on bundle size.",
   "devDependencies": {
     "@babel/core": "^7.14.6",
@@ -35,6 +31,7 @@
     "husky": "^4.3.6",
     "incstr": "^1.2.3",
     "lint-staged": "^11.0.0",
+    "multistream": "^4.1.0",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.3.5",
     "postcss-csso": "^5.0.1",
@@ -48,6 +45,8 @@
     "sass": "^1.35.1",
     "sass-loader": "^10.1.0",
     "stream-to-promise": "^3.0.0",
+    "styletron-engine-atomic": "^1.4.8",
+    "styletron-react": "^6.0.1",
     "typescript": "^4.3.4"
   },
   "keywords": [

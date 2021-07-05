@@ -1,9 +1,14 @@
 import "../src/tachyons/tachyons.scss";
 import { StyletronProvider } from "../src/utilities/StyletronProvider";
+import { Client } from "styletron-react";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
 };
+
+const client = new Client({
+  prefix: "styletron_",
+});
 
 /**
  * Add StyletronProvider to all stories.
@@ -12,7 +17,7 @@ export const parameters = {
  */
 export const decorators = [
   (Story) => (
-    <StyletronProvider>
+    <StyletronProvider value={client}>
       <Story />
     </StyletronProvider>
   ),
