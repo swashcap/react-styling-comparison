@@ -1,19 +1,11 @@
-import type { AnchorHTMLAttributes, FC, HTMLAttributes } from "react";
+import type { FC, HTMLAttributes } from "react";
 import { useState } from "react";
+import { useStyletron } from "styletron-react";
 
 import type { SidebarProps } from "./SidebarTypes";
 import { Box } from "../utilities/Box";
-import { styled } from "../utilities/theme";
-
-const BaseSidebar = styled("div", ({ $theme }) => ({
-  background: $theme.color.nearWhite,
-  color: $theme.color.darkGray,
-  display: "flex",
-  flexDirection: "column",
-  fontFamily: $theme.fontFamily.sansSerif,
-  justifyContent: "space-between",
-  lineHeight: $theme.lineHeight.copy,
-}));
+import { clsx } from "../utilities/clsx";
+import { useTheme } from "../utilities/theme";
 
 const SidebarIcon: FC<HTMLAttributes<HTMLElement> & { name: string }> = ({
   className,
@@ -23,165 +15,9 @@ const SidebarIcon: FC<HTMLAttributes<HTMLElement> & { name: string }> = ({
   <i aria-hidden className={`far fa-${name} fa-1x ${className}`} {...rest} />
 );
 
-const SidebarNavList = styled("ul", ({ $theme }) => ({
-  listStyle: "none",
-  margin: 0,
-  padding: $theme.space[2],
-}));
-
-const SidebarNavLink = styled<
-  "a",
-  AnchorHTMLAttributes<HTMLAnchorElement> & { $active?: boolean }
->("a", ({ $active, $theme }) => ({
-  background: $active ? $theme.color.lightGray : undefined,
-  borderRadius: $theme.borderRadius[1],
-  color: $active ? $theme.color.darkBlue : $theme.color.darkGray,
-  display: "block",
-  textDecoration: "none",
-  padding: $theme.space[2],
-
-  ":focus": {
-    color: $theme.color.blue,
-  },
-  ":hover": {
-    color: $theme.color.blue,
-  },
-}));
-
-const SidebarNavLinkIcon = styled(SidebarIcon, ({ $theme }) => ({
-  marginRight: $theme.space[2],
-}));
-
-const SidebarSubNav = styled(Box, ({ $theme }) => ({
-  borderTop: `1px solid ${$theme.color.moonGray}`,
-}));
-
-const SidebarSubNavHeading = styled("h3", ({ $theme }) => ({
-  color: $theme.color.gray,
-  fontSize: $theme.fontSize["7"],
-  fontWeight: $theme.fontWeight[500],
-  margin: `0 ${$theme.space[3]} ${$theme.space[1]}`,
-  textTransform: "uppercase",
-}));
-
-const SidebarSubNavButton = styled("button", ({ $theme }) => ({
-  background: "transparent",
-  border: "none",
-  color: $theme.color.darkGray,
-  cursor: "pointer",
-  display: "flex",
-  fontFamily: "inherit",
-  fontSize: $theme.fontSize[5],
-  justifyContent: "space-between",
-  lineHeight: $theme.lineHeight.copy,
-  margin: 0,
-  padding: $theme.space[2],
-  width: "100%",
-
-  ":focus": {
-    color: $theme.color.blue,
-  },
-  ":hover": {
-    color: $theme.color.blue,
-  },
-}));
-
-const SidebarSubNavItems = styled<
-  "div",
-  HTMLAttributes<HTMLDivElement> & { $isExpanded: boolean }
->("div", ({ $isExpanded }) => ({
-  display: $isExpanded ? "block" : "none",
-}));
-
-const SidebarSubNavItemsList = styled("ul", {
-  listStyle: "none",
-  margin: 0,
-  padding: 0,
-});
-
-const SidebarSubNavItemsLink = styled("a", ({ $theme }) => ({
-  borderRadius: $theme.borderRadius[1],
-  color: $theme.color.darkGray,
-  display: "block",
-  padding: `${$theme.space[1]} ${$theme.space[2]} ${$theme.space[1]} ${$theme.space[3]}`,
-  textDecoration: "none",
-
-  ":focus": {
-    color: $theme.color.blue,
-  },
-  ":hover": {
-    color: $theme.color.blue,
-  },
-}));
-
-const SidebarAccount = styled(Box, ({ $theme }) => ({
-  alignItems: "center",
-  borderTop: `1px solid ${$theme.color.moonGray}`,
-  display: "flex",
-  justifyContent: "space-between",
-}));
-
-const SidebarAccountWrapper = styled("div", {
-  alignItems: "center",
-  display: "flex",
-});
-
-const SidebarAccountAvatar = styled("div", ({ $theme }) => ({
-  background: $theme.color.darkGreen,
-  borderRadius: "100%",
-  color: $theme.color.white,
-  flex: "none",
-  fontSize: $theme.fontSize[6],
-  fontWeight: $theme.fontWeight[600],
-  height: "2rem",
-  lineHeight: "2rem",
-  marginLeft: `calc(-1 * ${$theme.space[1]})`,
-  marginRight: $theme.space[2],
-  textAlign: "center",
-  width: "2rem",
-}));
-
-const SidebarAccountName = styled("h3", ({ $theme }) => ({
-  color: $theme.color.darkGray,
-  fontSize: $theme.fontSize[5],
-  fontWeight: 500,
-  lineHeight: $theme.lineHeight.solid,
-  margin: 0,
-}));
-
-const SidebarAccountLink = styled("a", ({ $theme }) => ({
-  color: $theme.color.midGray,
-  fontSize: $theme.fontSize[6],
-  lineHeight: $theme.lineHeight.solid,
-  textDecoration: "underline",
-
-  ":focus": {
-    color: $theme.color.blue,
-  },
-  ":hover": {
-    color: $theme.color.blue,
-  },
-}));
-
-const SidebarAccountButton = styled("button", ({ $theme }) => ({
-  background: "transparent",
-  border: "none",
-  color: "inherit",
-  cursor: "pointer",
-  fontFamily: "inherit",
-  margin: `0 calc(-1 * ${$theme.space[2]}) 0 0`,
-  padding: `${$theme.space[2]} ${$theme.space[3]}`,
-
-  ":focus": {
-    color: $theme.color.blue,
-  },
-  ":hover": {
-    color: $theme.color.blue,
-  },
-}));
-
 export const Sidebar: FC<SidebarProps> = ({
   account,
+  className,
   onNavItemClick,
   navItems,
   subNavMenu,
@@ -189,35 +25,88 @@ export const Sidebar: FC<SidebarProps> = ({
 }) => {
   const subNavMenuKeys = Object.keys(subNavMenu);
   const [activeSubNavIndex, setActiveSubNavIndex] = useState(0);
+  const [css] = useStyletron();
+  const theme = useTheme();
+  const { color, fontSize, space } = theme;
 
   return (
-    <BaseSidebar {...rest}>
+    <div
+      className={clsx(
+        css({
+          background: color.nearWhite,
+          color: color.darkGray,
+          display: "flex",
+          flexDirection: "column",
+          fontFamily: theme.fontFamily.sansSerif,
+          justifyContent: "space-between",
+          lineHeight: theme.lineHeight.copy,
+        }),
+        className
+      )}
+      {...rest}
+    >
       <div>
         <nav>
-          <SidebarNavList>
+          <ul
+            className={css({ listStyle: "none", margin: 0, padding: space[2] })}
+          >
             {navItems.map((item) => {
               const { active, icon, name, url } = item;
 
               return (
                 <li key={url}>
-                  <SidebarNavLink
-                    $active={active}
+                  <a
+                    className={css({
+                      background: active ? color.lightGray : undefined,
+                      borderRadius: theme.borderRadius[1],
+                      color: active ? color.darkBlue : color.darkGray,
+                      display: "block",
+                      textDecoration: "none",
+                      padding: space[2],
+
+                      ":focus": {
+                        color: color.blue,
+                      },
+                      ":hover": {
+                        color: color.blue,
+                      },
+                    })}
                     href={url}
                     onClick={(event) => {
                       onNavItemClick(event, item);
                     }}
                   >
-                    <SidebarNavLinkIcon name={icon} />
+                    <SidebarIcon
+                      className={css({ marginRight: space[2] })}
+                      name={icon}
+                    />
                     {name}
-                  </SidebarNavLink>
+                  </a>
                 </li>
               );
             })}
-          </SidebarNavList>
+          </ul>
         </nav>
         {subNavMenuKeys.length > 0 && (
-          <SidebarSubNav as="nav" pl={3} pr={3}>
-            <SidebarSubNavHeading>Projects</SidebarSubNavHeading>
+          <Box
+            as="nav"
+            className={css({
+              borderTop: `1px solid ${color.moonGray}`,
+            })}
+            pb={3}
+            pt={3}
+          >
+            <h3
+              className={css({
+                color: color.gray,
+                fontSize: fontSize[7],
+                fontWeight: theme.fontWeight[500],
+                margin: `0 ${space[3]} ${space[1]}`,
+                textTransform: "uppercase",
+              })}
+            >
+              Projects
+            </h3>
             {subNavMenuKeys.map((key, index) => {
               const buttonId = `sidebar-${index}-button`;
               const controlId = `sidebar-${index}-content`;
@@ -229,63 +118,177 @@ export const Sidebar: FC<SidebarProps> = ({
 
               return (
                 <Box key={key} pl={2} pr={2}>
-                  <SidebarSubNavButton
+                  <button
                     aria-controls={controlId}
                     aria-expanded={isExpanded}
+                    className={css({
+                      background: "transparent",
+                      border: "none",
+                      color: color.darkGray,
+                      cursor: "pointer",
+                      display: "flex",
+                      fontFamily: "inherit",
+                      fontSize: fontSize[5],
+                      justifyContent: "space-between",
+                      lineHeight: theme.lineHeight.copy,
+                      margin: 0,
+                      padding: space[2],
+                      width: "100%",
+
+                      ":focus": {
+                        color: color.blue,
+                      },
+                      ":hover": {
+                        color: color.blue,
+                      },
+                    })}
                     id={buttonId}
                     onClick={() => {
                       setActiveSubNavIndex(isExpanded ? -1 : index);
                     }}
+                    type="button"
                   >
                     <span>{key}</span>
                     <SidebarIcon
                       name={`caret-square-${isExpanded ? "down" : "up"}`}
                     />
-                  </SidebarSubNavButton>
-                  <SidebarSubNavItems
-                    $isExpanded={isExpanded}
+                  </button>
+                  <div
                     aria-labelledby={buttonId}
+                    className={css({
+                      display: isExpanded ? "block" : "none",
+                    })}
                     id={controlId}
                   >
-                    <SidebarSubNavItemsList>
+                    <ul
+                      className={css({
+                        listStyle: "none",
+                        margin: 0,
+                        padding: 0,
+                      })}
+                    >
                       {subNavMenu[key].map(({ name, url }) => (
                         <li key={url}>
-                          <SidebarSubNavItemsLink href={url}>
+                          <a
+                            className={css({
+                              borderRadius: theme.borderRadius[1],
+                              color: color.darkGray,
+                              display: "block",
+                              padding: `${space[1]} ${space[2]} ${space[1]} ${space[3]}`,
+                              textDecoration: "none",
+
+                              ":focus": {
+                                color: color.blue,
+                              },
+                              ":hover": {
+                                color: color.blue,
+                              },
+                            })}
+                            href={url}
+                          >
                             {name}
-                          </SidebarSubNavItemsLink>
+                          </a>
                         </li>
                       ))}
-                    </SidebarSubNavItemsList>
-                  </SidebarSubNavItems>
+                    </ul>
+                  </div>
                 </Box>
               );
             })}
-          </SidebarSubNav>
+          </Box>
         )}
       </div>
-      <SidebarAccount pa={3}>
-        <SidebarAccountWrapper>
-          <SidebarAccountAvatar aria-hidden>
+      <Box
+        className={css({
+          alignItems: "center",
+          borderTop: `1px solid ${color.moonGray}`,
+          display: "flex",
+          justifyContent: "space-between",
+        })}
+        pb={3}
+        pl={3}
+        pr={3}
+        pt={3}
+      >
+        <div className={css({ alignItems: "center", display: "flex" })}>
+          <div
+            aria-hidden
+            className={css({
+              background: color.darkGreen,
+              borderRadius: "100%",
+              color: color.white,
+              flex: "none",
+              fontSize: fontSize[6],
+              fontWeight: theme.fontWeight[600],
+              height: "2rem",
+              lineHeight: "2rem",
+              marginLeft: `calc(-1 * ${space[1]})`,
+              marginRight: space[2],
+              textAlign: "center",
+              width: "2rem",
+            })}
+          >
             {account.name
               .replace(/(\B\w)/g, "")
               .replace(" ", "")
               .toUpperCase()}
-          </SidebarAccountAvatar>
-          <div>
-            <SidebarAccountName>{account.name}</SidebarAccountName>
-            <SidebarAccountLink href={account.profileURL}>
-              View profile
-            </SidebarAccountLink>
           </div>
-        </SidebarAccountWrapper>
-        <SidebarAccountButton
+          <div>
+            <h3
+              className={css({
+                color: color.darkGray,
+                fontSize: fontSize[5],
+                fontWeight: 500,
+                lineHeight: theme.lineHeight.solid,
+                margin: 0,
+              })}
+            >
+              {account.name}
+            </h3>
+            <a
+              className={css({
+                color: color.midGray,
+                fontSize: fontSize[6],
+                lineHeight: theme.lineHeight.solid,
+                textDecoration: "underline",
+
+                ":focus": {
+                  color: color.blue,
+                },
+                ":hover": {
+                  color: color.blue,
+                },
+              })}
+              href={account.profileURL}
+            >
+              View profile
+            </a>
+          </div>
+        </div>
+        <button
           aria-label="Go to settings"
+          className={css({
+            background: "transparent",
+            border: "none",
+            color: "inherit",
+            cursor: "pointer",
+            fontFamily: "inherit",
+            margin: `0 calc(-1 * ${space[2]}) 0 0`,
+            padding: `${space[2]} ${space[3]}`,
+
+            ":focus": {
+              color: color.blue,
+            },
+            ":hover": {
+              color: color.blue,
+            },
+          })}
           onClick={account.onSettingsClick}
           type="button"
         >
           <SidebarIcon name="sun" />
-        </SidebarAccountButton>
-      </SidebarAccount>
-    </BaseSidebar>
+        </button>
+      </Box>
+    </div>
   );
 };

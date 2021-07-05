@@ -1,58 +1,10 @@
 import type { FC } from "react";
+import { useStyletron } from "styletron-react";
 
+import type { PageItemProps } from "../PageTypes";
 import { Box } from "../../utilities/Box";
 import { Button } from "../../Button/Button.styletron";
-import { styled } from "../../utilities/theme";
-import type { PageItemProps } from "../PageTypes";
-
-const PageItemLink = styled("a", ({ $theme }) => ({
-  display: "block",
-  marginBottom: $theme.space[2],
-  transition: "opacity .15s ease-in",
-
-  ":focus": {
-    opacity: ".8",
-  },
-  ":hover": {
-    opacity: ".8",
-  },
-}));
-
-const PageItemImage = styled("img", {
-  display: "block",
-  width: "100%",
-});
-
-const PageItemTitle = styled("h2", ({ $theme }) => ({
-  display: "inline",
-  fontSize: $theme.fontSize[5],
-  lineHeight: $theme.lineHeight.copy,
-  margin: 0,
-  paddingRight: $theme.space[1],
-}));
-
-const PageItemDescription = styled("p", ({ $theme }) => ({
-  color: $theme.color.midGray,
-  display: "inline",
-  fontSize: $theme.fontSize[6],
-  margin: 0,
-}));
-
-const PageItemPrice = styled("span", ({ $theme }) => ({
-  color: $theme.color.orange,
-  display: "block",
-  fontSize: $theme.fontSize[4],
-  marginBottom: $theme.space[2],
-}));
-
-const PageItemFulfillment = styled("span", ({ $theme }) => ({
-  color: $theme.color.midGray,
-  fontSize: $theme.fontSize[6],
-}));
-
-const PageItemFulfillmentText = styled("span", ({ $theme }) => ({
-  color: $theme.color.green,
-}));
+import { useTheme } from "../../utilities/theme";
 
 export const PageItem: FC<PageItemProps> = ({
   description,
@@ -62,24 +14,83 @@ export const PageItem: FC<PageItemProps> = ({
   price,
   title,
   ...rest
-}) => (
-  <article {...rest}>
-    <PageItemLink href="#">
-      <PageItemImage alt={imageAlt} src={imageSrc} />
-    </PageItemLink>
-    <Box mb={1}>
-      <PageItemTitle>{title}</PageItemTitle>
-      <PageItemDescription>{description}</PageItemDescription>
-    </Box>
-    <PageItemPrice>{price}</PageItemPrice>
-    <Box mb={2}>
-      <Button size="medium">Lorem ipsum</Button>
-    </Box>
-    {fulfillment && (
-      <PageItemFulfillment>
-        Get it by{" "}
-        <PageItemFulfillmentText>{fulfillment}</PageItemFulfillmentText>
-      </PageItemFulfillment>
-    )}
-  </article>
-);
+}) => {
+  const [css] = useStyletron();
+  const theme = useTheme();
+  const { color, fontSize, space } = theme;
+
+  return (
+    <article {...rest}>
+      <a
+        className={css({
+          display: "block",
+          marginBottom: space[2],
+          transition: "opacity .15s ease-in",
+
+          ":focus": {
+            opacity: ".8",
+          },
+          ":hover": {
+            opacity: ".8",
+          },
+        })}
+        href="#"
+      >
+        <img
+          alt={imageAlt}
+          className={css({ display: "block", width: "100%" })}
+          src={imageSrc}
+        />
+      </a>
+      <Box mb={1}>
+        <h2
+          className={css({
+            display: "inline",
+            fontSize: fontSize[5],
+            lineHeight: theme.lineHeight.copy,
+            margin: 0,
+            paddingRight: space[1],
+          })}
+        >
+          {title}
+        </h2>
+        <p
+          className={css({
+            color: color.midGray,
+            display: "inline",
+            fontSize: fontSize[6],
+            margin: 0,
+          })}
+        >
+          {description}
+        </p>
+      </Box>
+      <span
+        className={css({
+          color: color.orange,
+          display: "block",
+          fontSize: fontSize[4],
+          marginBottom: space[2],
+        })}
+      >
+        {price}
+      </span>
+      <Box mb={2}>
+        <Button size="medium">Lorem ipsum</Button>
+      </Box>
+      {fulfillment && (
+        <span
+          className={css({
+            color: color.midGray,
+            fontSize: fontSize[6],
+          })}
+        >
+          Get it by{" "}
+          <span className={css({ color: theme.color.green })}>
+            {fulfillment}
+          </span>
+        </span>
+      )}
+    </article>
+  );
+};

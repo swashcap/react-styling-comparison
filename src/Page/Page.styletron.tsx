@@ -1,4 +1,5 @@
 import type { FC } from "react";
+import { useStyletron } from "styletron-react";
 
 import type { PageProps } from "./PageTypes";
 import { PageAdvertisement } from "./Page.styletron/PageAdvertisement";
@@ -7,36 +8,12 @@ import { PageHeader } from "./Page.styletron/PageHeader";
 import { PageItemGrid } from "./Page.styletron/PageItemGrid";
 import { PageLead } from "./Page.styletron/PageLead";
 import { PageSidebar } from "./Page.styletron/PageSidebar";
-import { styled } from "../utilities/theme";
-
-const BasePage = styled("div", ({ $theme }) => ({
-  display: "flex",
-  flexWrap: "wrap",
-
-  [$theme.breakpoint.lg]: {
-    height: "100vh",
-    overflowY: "hidden",
-  },
-}));
-
-const PageSkipLink = styled("a", {
-  clip: "rect(1px, 1px, 1px, 1px)",
-  position: "fixed",
-});
-
-const PageMain = styled("main", ({ $theme }) => ({
-  fontFamily: $theme.fontFamily.sansSerif,
-  padding: $theme.space[4],
-
-  [$theme.breakpoint.lg]: {
-    height: "100vh",
-    overflow: "scroll",
-    width: "75%",
-  },
-}));
+import { clsx } from "../utilities/clsx";
+import { useTheme } from "../utilities/theme";
 
 export const Page: FC<PageProps> = ({
   advertisements,
+  className,
   footer,
   header,
   items,
@@ -48,13 +25,50 @@ export const Page: FC<PageProps> = ({
   const itemsMiddle = items.slice(12, 24);
   const itemsEnd = items.slice(24);
 
+  const [css] = useStyletron();
+  const theme = useTheme();
+
   return (
-    <BasePage {...rest}>
-      <PageSkipLink href="#main">Skip to main content</PageSkipLink>
+    <div
+      className={clsx(
+        css({
+          display: "flex",
+          flexWrap: "wrap",
+
+          [theme.breakpoint.lg]: {
+            height: "100vh",
+            overflowY: "hidden",
+          },
+        }),
+        className
+      )}
+      {...rest}
+    >
+      <a
+        className={css({
+          clip: "rect(1px, 1px, 1px, 1px)",
+          position: "fixed",
+        })}
+        href="#main"
+      >
+        Skip to main content
+      </a>
 
       <PageSidebar sidebarProps={sidebarProps} />
 
-      <PageMain id="main">
+      <main
+        className={css({
+          fontFamily: theme.fontFamily.sansSerif,
+          padding: theme.space[4],
+
+          [theme.breakpoint.lg]: {
+            height: "100vh",
+            overflow: "scroll",
+            width: "75%",
+          },
+        })}
+        id="main"
+      >
         <PageHeader header={header} />
 
         <PageLead lead={lead} />
@@ -74,7 +88,7 @@ export const Page: FC<PageProps> = ({
         <PageItemGrid items={itemsEnd} />
 
         <PageFooter footer={footer} />
-      </PageMain>
-    </BasePage>
+      </main>
+    </div>
   );
 };

@@ -1,6 +1,6 @@
 import "../src/tachyons/tachyons.scss";
 import { StyletronProvider } from "../src/utilities/StyletronProvider";
-import { Client } from "styletron-engine-atomic"
+import { Client } from "styletron-engine-atomic";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

@@ -1,46 +1,39 @@
 import { forwardRef } from "react";
 import type { StyleObject } from "styletron-react";
+import { useStyletron } from "styletron-react";
 
 import type { ButtonProps } from "./ButtonTypes";
-import { styled } from "../utilities/theme";
+import { useTheme } from "../utilities/theme";
 
-const BaseButton = styled<
-  "button",
-  Omit<ButtonProps, "fluid" | "size" | "variant"> & {
-    $fluid: ButtonProps["fluid"];
-    $size: ButtonProps["size"];
-    $variant: ButtonProps["variant"];
-  }
->(
-  "button",
-  ({
-    disabled,
-    $fluid,
-    $size,
-    $theme,
-    $theme: { color, fontSize, fontWeight, space },
-    $variant,
-  }) => {
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    { disabled, fluid, size = "small", variant = "secondary", ...rest },
+    ref
+  ) => {
+    const [css] = useStyletron();
+    const theme = useTheme();
+    const { color, fontSize, fontWeight, space } = theme;
+
     const style: StyleObject = {
-      borderRadius: $theme.borderRadius[1],
+      borderRadius: theme.borderRadius[1],
       borderStyle: "solid",
       borderWidth: "1px",
       cursor: disabled ? "default" : "pointer",
       display: "inline-block",
-      fontFamily: $theme.fontFamily.sansSerif,
-      lineHeight: $theme.lineHeight.solid,
+      fontFamily: theme.fontFamily.sansSerif,
+      lineHeight: theme.lineHeight.solid,
       margin: 0,
       textAlign: "center",
     };
 
-    if ($fluid) {
+    if (fluid) {
       style.width = "100%";
     }
 
-    if ($size === "large") {
+    if (size === "large") {
       style.fontSize = fontSize[4];
       style.padding = `${space[3]} ${space[4]}`;
-    } else if ($size === "medium") {
+    } else if (size === "medium") {
       style.fontSize = fontSize[5];
       style.padding = `${space[2]} ${space[3]}`;
     } else {
@@ -48,7 +41,7 @@ const BaseButton = styled<
       style.padding = `${space[1]} ${space[2]}`;
     }
 
-    if ($variant === "primary") {
+    if (variant === "primary") {
       style.background = style.borderColor = disabled
         ? color.silver
         : color.darkBlue;
@@ -61,7 +54,7 @@ const BaseButton = styled<
           borderColor: color.navy,
         };
       }
-    } else if ($variant === "secondary") {
+    } else if (variant === "secondary") {
       style.background = color.white;
       style.borderColor = style.color = disabled ? color.silver : color.midGray;
       style.fontWeight = fontWeight[700];
@@ -84,18 +77,14 @@ const BaseButton = styled<
       }
     }
 
-    return style;
+    return (
+      <button
+        className={css(style)}
+        disabled={disabled}
+        ref={ref}
+        type="button"
+        {...rest}
+      />
+    );
   }
-);
-
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ fluid, size = "small", variant = "secondary", ...rest }, ref) => (
-    <BaseButton
-      $fluid={fluid}
-      $size={size}
-      $variant={variant}
-      ref={ref}
-      {...rest}
-    />
-  )
 );

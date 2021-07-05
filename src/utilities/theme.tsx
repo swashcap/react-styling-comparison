@@ -1,8 +1,5 @@
 import type { FC, ReactNode } from "react";
-import { createContext } from "react";
-import { createStyled } from "styletron-react";
-import type { StyletronComponent, StyleObject } from "styletron-react";
-import { driver, getInitialStyle } from "styletron-standard";
+import { createContext, useContext } from "react";
 
 import {
   borderRadius1,
@@ -50,9 +47,9 @@ export const theme = {
     2: borderRadius2,
   },
   breakpoint: {
-    ns: `@media${breakpointNs}`,
-    md: `@media${breakpointMd}`,
-    lg: `@media${breakpointLg}`,
+    ns: `@media ${breakpointNs}`,
+    md: `@media ${breakpointMd}`,
+    lg: `@media ${breakpointLg}`,
   },
   color: {
     black: colorBlack,
@@ -107,10 +104,6 @@ export const theme = {
 
 export type Theme = typeof theme;
 
-export interface ThemeProps {
-  $theme: Theme;
-}
-
 export const ThemeContext = createContext<Theme>(theme);
 
 export const ThemeProvider: FC<{ children?: ReactNode; value?: Theme }> = ({
@@ -118,41 +111,4 @@ export const ThemeProvider: FC<{ children?: ReactNode; value?: Theme }> = ({
   value,
 }) => <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 
-/* eslint-disable @typescript-eslint/no-explicit-any,@typescript-eslint/ban-types */
-export interface StyledFn {
-  <
-    C extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
-    P extends object
-  >(
-    component: C,
-    style: (props: P & ThemeProps) => StyleObject
-  ): StyletronComponent<
-    Pick<
-      React.ComponentProps<C>,
-      Exclude<keyof React.ComponentProps<C>, { className: string }>
-    > &
-      P
-  >;
-  <C extends keyof JSX.IntrinsicElements | React.ComponentType<any>>(
-    component: C,
-    style: StyleObject
-  ): StyletronComponent<
-    Pick<
-      React.ComponentProps<C>,
-      Exclude<keyof React.ComponentProps<C>, { className: string }>
-    >
-  >;
-}
-
-export const styled = createStyled({
-  driver,
-  getInitialStyle,
-  wrapper(StyledComponent) {
-    return (props: any) => (
-      <ThemeContext.Consumer>
-        {(theme) => <StyledComponent {...props} $theme={theme} />}
-      </ThemeContext.Consumer>
-    );
-  },
-}) as StyledFn;
-/* eslint-enabledisable @typescript-eslint/no-explicit-any,@typescript-eslint/ban-types */
+export const useTheme = () => useContext(ThemeContext);
