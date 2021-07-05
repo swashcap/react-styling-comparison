@@ -3,6 +3,7 @@ import { forwardRef, useRef } from "react";
 
 import type { ButtonProps } from "./ButtonTypes";
 import {
+  borderRadius1,
   colorBlack,
   colorDarkBlue,
   colorMidGray,
@@ -13,6 +14,7 @@ import {
   fontSize4,
   fontSize5,
   fontSize6,
+  lineHeightSolid,
   spaceExtraSmall,
   spaceLarge,
   spaceMedium,
@@ -31,12 +33,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const isHovered = useHover(ref2);
 
     const buttonStyle: CSSProperties = {
-      borderRadius: ".125rem",
+      borderRadius: borderRadius1,
       borderStyle: "solid",
       borderWidth: "1px",
       display: "inline-block",
       fontFamily: fontSansSerif,
-      lineHeight: 1,
+      lineHeight: lineHeightSolid,
       margin: 0,
       textAlign: "center",
     };

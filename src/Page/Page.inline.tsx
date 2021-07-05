@@ -9,6 +9,8 @@ import type {
 } from "./PageTypes";
 import { Sidebar } from "../Sidebar/Sidebar.inline";
 import {
+  borderRadius1,
+  borderRadius2,
   colorBlack,
   colorBlue,
   colorDarkGray,
@@ -23,6 +25,15 @@ import {
   colorWhite,
   colorYellow,
   fontSansSerif,
+  fontSize1,
+  fontSize3,
+  fontSize4,
+  fontSize5,
+  fontSize6,
+  fontSize7,
+  lineHeightCopy,
+  lineHeightSolid,
+  lineHeightTitle,
   spaceExtraSmall,
   spaceLarge,
   spaceMedium,
@@ -47,7 +58,7 @@ const PageAdvertisement: FC<PageAdvertisementProps> = ({
     <aside
       style={{
         background: colorNearWhite,
-        borderRadius: ".25rem",
+        borderRadius: borderRadius2,
         padding: spaceMedium,
         ...style,
       }}
@@ -83,8 +94,8 @@ const PageAdvertisement: FC<PageAdvertisementProps> = ({
         >
           <h1
             style={{
-              fontSize: "1.25rem",
-              lineHeight: "1.25",
+              fontSize: fontSize4,
+              lineHeight: lineHeightTitle,
               marginBottom: spaceSmall,
               marginTop: 0,
             }}
@@ -151,8 +162,8 @@ const PageItem: FC<PageItemProps> = ({
       <h2
         style={{
           display: "inline",
-          fontSize: "1rem",
-          lineHeight: 1.5,
+          fontSize: fontSize5,
+          lineHeight: lineHeightCopy,
           margin: 0,
           paddingRight: spaceExtraSmall,
         }}
@@ -164,7 +175,7 @@ const PageItem: FC<PageItemProps> = ({
           display: "inline",
           margin: 0,
           color: colorMidGray,
-          fontSize: ".875rem",
+          fontSize: fontSize6,
         }}
       >
         {description}
@@ -174,7 +185,7 @@ const PageItem: FC<PageItemProps> = ({
       style={{
         color: colorOrange,
         display: "block",
-        fontSize: "1.25rem",
+        fontSize: fontSize4,
         marginBottom: spaceSmall,
       }}
     >
@@ -184,7 +195,7 @@ const PageItem: FC<PageItemProps> = ({
       <Button size="medium">Lorem ipsum</Button>
     </div>
     {fulfillment && (
-      <span style={{ color: colorMidGray, fontSize: ".875rem" }}>
+      <span style={{ color: colorMidGray, fontSize: fontSize6 }}>
         Get it by <span style={{ color: colorGreen }}>{fulfillment}</span>
       </span>
     )}
@@ -315,8 +326,8 @@ export const Page: FC<PageProps> = ({
                           (status === "success" && colorGreen) ||
                           (status === "info" && colorBlue),
                         fontWeight: "bold",
-                        fontSize: "1rem",
-                        lineHeight: "1.25",
+                        fontSize: fontSize5,
+                        lineHeight: lineHeightTitle,
                       }}
                     >
                       {value}
@@ -328,8 +339,8 @@ export const Page: FC<PageProps> = ({
                           background: colorYellow,
                           borderRadius: "100%",
                           display: "inline-block",
-                          fontSize: ".75rem",
-                          lineHeight: "1",
+                          fontSize: fontSize7,
+                          lineHeight: lineHeightSolid,
                           padding: spaceExtraSmall,
                           position: "absolute",
                           right: "-1rem",
@@ -344,8 +355,8 @@ export const Page: FC<PageProps> = ({
                     style={{
                       color: colorGray,
                       display: "block",
-                      fontSize: ".75rem",
-                      lineHeight: "1",
+                      fontSize: fontSize7,
+                      lineHeight: lineHeightSolid,
                     }}
                   >
                     {label}
@@ -371,12 +382,12 @@ export const Page: FC<PageProps> = ({
               style={{
                 background: colorNearWhite,
                 border: `1px solid ${colorSilver}`,
-                borderRadius: ".25rem 0 0 .25rem",
+                borderRadius: `${borderRadius1} 0 0 ${borderRadius1}`,
                 color: colorBlack,
                 flex: "1 1 auto",
-                fontFamily: "inherit",
-                fontSize: "1rem",
-                lineHeight: "1",
+                fontFamily: fontSansSerif,
+                fontSize: fontSize5,
+                lineHeight: lineHeightSolid,
                 padding: spaceSmall,
               }}
             />
@@ -384,12 +395,13 @@ export const Page: FC<PageProps> = ({
               style={{
                 background: colorGray,
                 border: "1px solid transparent",
-                borderRadius: "0 .25rem .25rem 0",
+                borderRadius: `0 ${borderRadius1} ${borderRadius1} 0`,
                 color: colorWhite,
                 cursor: "pointer",
                 flex: "none",
-                fontSize: "1rem",
-                lineHeight: "1",
+                fontFamily: fontSansSerif,
+                fontSize: fontSize5,
+                lineHeight: lineHeightSolid,
                 padding: spaceSmall,
               }}
               type="submit"
@@ -406,7 +418,7 @@ export const Page: FC<PageProps> = ({
         <div
           style={{
             background: colorLightestBlue,
-            borderRadius: ".25rem",
+            borderRadius: borderRadius2,
             color: colorDarkGray,
             marginBottom: spaceLarge,
             padding: spaceLarge,
@@ -414,8 +426,9 @@ export const Page: FC<PageProps> = ({
         >
           <h1
             style={{
+              fontSize: fontSize1,
               fontWeight: 800,
-              lineHeight: "1.25",
+              lineHeight: lineHeightTitle,
               marginBottom: spaceSmall,
               marginTop: 0,
             }}
@@ -424,8 +437,8 @@ export const Page: FC<PageProps> = ({
           </h1>
           <p
             style={{
-              fontSize: "1.5rem",
-              lineHeight: "1.5",
+              fontSize: fontSize3,
+              lineHeight: lineHeightCopy,
               marginBottom: spaceMedium,
               marginTop: 0,
             }}
@@ -560,8 +573,8 @@ export const Page: FC<PageProps> = ({
                 <h3
                   style={{
                     fontWeight: "bold",
-                    fontSize: "1rem",
-                    lineHeight: "1.5",
+                    fontSize: fontSize5,
+                    lineHeight: lineHeightCopy,
                     marginBottom: spaceExtraSmall,
                     marginTop: 0,
                   }}
@@ -570,8 +583,8 @@ export const Page: FC<PageProps> = ({
                 </h3>
                 <ul
                   style={{
-                    fontSize: ".875rem",
-                    lineHeight: "1.5",
+                    fontSize: fontSize6,
+                    lineHeight: lineHeightCopy,
                     listStyle: "none",
                     margin: 0,
                     padding: 0,
@@ -589,8 +602,8 @@ export const Page: FC<PageProps> = ({
           <aside>
             <p
               style={{
-                fontSize: ".875rem",
-                lineHeight: "1.5",
+                fontSize: fontSize6,
+                lineHeight: lineHeightCopy,
                 marginBottom: spaceSmall,
                 marginTop: 0,
               }}
@@ -609,8 +622,8 @@ export const Page: FC<PageProps> = ({
                 borderTop: `1px solid ${colorMoonGray}`,
                 color: colorGray,
                 display: "block",
-                fontSize: ".75rem",
-                lineHeight: "1.5",
+                fontSize: fontSize7,
+                lineHeight: lineHeightCopy,
                 marginTop: spaceMedium,
                 paddingTop: spaceSmall,
               }}

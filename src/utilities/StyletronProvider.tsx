@@ -5,10 +5,17 @@ import { Client } from "styletron-engine-atomic";
 
 import { ThemeProvider, theme } from "./theme";
 
-const debug =
-  process.env.NODE_ENV === "production" ? undefined : new DebugEngine();
+const IS_PROD_ENV = process.env.NODE_ENV === "production";
 
-const client = new Client();
+const debug = IS_PROD_ENV ? undefined : new DebugEngine();
+
+const client = new Client(
+  IS_PROD_ENV
+    ? undefined
+    : {
+        prefix: "styletron_",
+      }
+);
 
 export const StyletronProvider: FC<{ children?: ReactNode }> = ({
   children,

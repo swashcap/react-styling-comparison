@@ -1,3 +1,6 @@
+export const borderRadius1 = ".125rem";
+export const borderRadius2 = ".25rem";
+
 export const breakpointNs = "(min-width: 30em)";
 export const breakpointMd = "(min-width: 30em) and (max-width: 60em)";
 export const breakpointLg = "(min-width: 60em)";
@@ -31,7 +34,7 @@ export const fontSize5 = "1rem";
 export const fontSize6 = ".875rem";
 export const fontSize7 = ".75rem";
 
-export const lineheightSolid = "1";
+export const lineHeightSolid = "1";
 export const lineHeightTitle = "1.25";
 export const lineHeightCopy = "1.5";
 

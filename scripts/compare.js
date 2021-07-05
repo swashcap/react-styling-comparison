@@ -23,6 +23,7 @@ const files = new Map([
   ["page:js", "./dist/Page.cssmodules.js"],
   ["page:css", "./dist/Page.cssmodules.min.css"],
   ["page:inline", "./dist/Page.inline.js"],
+  ["page:styletron", "./dist/Page.styletron.js"],
   ["page:tachyons", "./dist/Page.tachyons.js"],
   ["sidebar:js", "./dist/Sidebar.cssmodules.js"],
   ["sidebar:css", "./dist/Sidebar.cssmodules.min.css"],
@@ -71,7 +72,7 @@ Promise.all(Array.from(files.values()).map(getFileSize))
           CSS: 0,
         },
         Styletron: {
-          JS: "?",
+          JS: sizes.get("page:styletron"),
           CSS: 0,
         },
         Tachyons: {

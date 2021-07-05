@@ -86,6 +86,7 @@ export default [
   makeConfig("./src/Button/Button.tachyons.tsx"),
   makeConfig("./src/Page/Page.cssmodules.tsx"),
   makeConfig("./src/Page/Page.inline.tsx"),
+  makeConfig("./src/Page/Page.styletron.tsx"),
   makeConfig("./src/Page/Page.tachyons.tsx"),
   makeConfig("./src/Sidebar/Sidebar.inline.tsx"),
   makeConfig("./src/Sidebar/Sidebar.cssmodules.tsx"),

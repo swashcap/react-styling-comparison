@@ -2,6 +2,7 @@ import type { AnchorHTMLAttributes, FC, HTMLAttributes } from "react";
 import { useState } from "react";
 
 import type { SidebarProps } from "./SidebarTypes";
+import { Box } from "../utilities/Box";
 import { styled } from "../utilities/theme";
 
 const BaseSidebar = styled("div", ({ $theme }) => ({
@@ -14,6 +15,14 @@ const BaseSidebar = styled("div", ({ $theme }) => ({
   lineHeight: $theme.lineHeight.copy,
 }));
 
+const SidebarIcon: FC<HTMLAttributes<HTMLElement> & { name: string }> = ({
+  className,
+  name,
+  ...rest
+}) => (
+  <i aria-hidden className={`far fa-${name} fa-1x ${className}`} {...rest} />
+);
+
 const SidebarNavList = styled("ul", ({ $theme }) => ({
   listStyle: "none",
   margin: 0,
@@ -25,7 +34,7 @@ const SidebarNavLink = styled<
   AnchorHTMLAttributes<HTMLAnchorElement> & { $active?: boolean }
 >("a", ({ $active, $theme }) => ({
   background: $active ? $theme.color.lightGray : undefined,
-  borderRadius: $theme.borderRadius["1"],
+  borderRadius: $theme.borderRadius[1],
   color: $active ? $theme.color.darkBlue : $theme.color.darkGray,
   display: "block",
   textDecoration: "none",
@@ -39,25 +48,20 @@ const SidebarNavLink = styled<
   },
 }));
 
-const SidebarNavLinkIcon = styled("i", ({ $theme }) => ({
+const SidebarNavLinkIcon = styled(SidebarIcon, ({ $theme }) => ({
   marginRight: $theme.space[2],
 }));
 
-const SidebarSubNav = styled("nav", ({ $theme }) => ({
+const SidebarSubNav = styled(Box, ({ $theme }) => ({
   borderTop: `1px solid ${$theme.color.moonGray}`,
-  padding: `${$theme.space[3]} 0`,
 }));
 
 const SidebarSubNavHeading = styled("h3", ({ $theme }) => ({
   color: $theme.color.gray,
   fontSize: $theme.fontSize["7"],
-  fontWeight: 500,
+  fontWeight: $theme.fontWeight[500],
   margin: `0 ${$theme.space[3]} ${$theme.space[1]}`,
   textTransform: "uppercase",
-}));
-
-const SidebarSubNavItem = styled("div", ({ $theme }) => ({
-  padding: `0 ${$theme.space[2]}`,
 }));
 
 const SidebarSubNavButton = styled("button", ({ $theme }) => ({
@@ -96,7 +100,6 @@ const SidebarSubNavItemsList = styled("ul", {
 });
 
 const SidebarSubNavItemsLink = styled("a", ({ $theme }) => ({
-  border: "none",
   borderRadius: $theme.borderRadius[1],
   color: $theme.color.darkGray,
   display: "block",
@@ -111,12 +114,11 @@ const SidebarSubNavItemsLink = styled("a", ({ $theme }) => ({
   },
 }));
 
-const SidebarAccount = styled("div", ({ $theme }) => ({
+const SidebarAccount = styled(Box, ({ $theme }) => ({
   alignItems: "center",
   borderTop: `1px solid ${$theme.color.moonGray}`,
   display: "flex",
   justifyContent: "space-between",
-  padding: $theme.space[3],
 }));
 
 const SidebarAccountWrapper = styled("div", {
@@ -129,8 +131,8 @@ const SidebarAccountAvatar = styled("div", ({ $theme }) => ({
   borderRadius: "100%",
   color: $theme.color.white,
   flex: "none",
-  fontSize: ".875rem",
-  fontWeight: 600,
+  fontSize: $theme.fontSize[6],
+  fontWeight: $theme.fontWeight[600],
   height: "2rem",
   lineHeight: "2rem",
   marginLeft: `calc(-1 * ${$theme.space[1]})`,
@@ -148,7 +150,6 @@ const SidebarAccountName = styled("h3", ({ $theme }) => ({
 }));
 
 const SidebarAccountLink = styled("a", ({ $theme }) => ({
-  border: "none",
   color: $theme.color.midGray,
   fontSize: $theme.fontSize[6],
   lineHeight: $theme.lineHeight.solid,
@@ -206,10 +207,7 @@ export const Sidebar: FC<SidebarProps> = ({
                       onNavItemClick(event, item);
                     }}
                   >
-                    <SidebarNavLinkIcon
-                      aria-hidden
-                      className={`far fa-${icon} fa-1x`}
-                    />
+                    <SidebarNavLinkIcon name={icon} />
                     {name}
                   </SidebarNavLink>
                 </li>
@@ -218,7 +216,7 @@ export const Sidebar: FC<SidebarProps> = ({
           </SidebarNavList>
         </nav>
         {subNavMenuKeys.length > 0 && (
-          <SidebarSubNav>
+          <SidebarSubNav as="nav" pl={3} pr={3}>
             <SidebarSubNavHeading>Projects</SidebarSubNavHeading>
             {subNavMenuKeys.map((key, index) => {
               const buttonId = `sidebar-${index}-button`;
@@ -230,7 +228,7 @@ export const Sidebar: FC<SidebarProps> = ({
               }
 
               return (
-                <SidebarSubNavItem key={key}>
+                <Box key={key} pl={2} pr={2}>
                   <SidebarSubNavButton
                     aria-controls={controlId}
                     aria-expanded={isExpanded}
@@ -240,11 +238,8 @@ export const Sidebar: FC<SidebarProps> = ({
                     }}
                   >
                     <span>{key}</span>
-                    <i
-                      aria-hidden
-                      className={`far fa-1x fa-caret-square-${
-                        isExpanded ? "down" : "up"
-                      }`}
+                    <SidebarIcon
+                      name={`caret-square-${isExpanded ? "down" : "up"}`}
                     />
                   </SidebarSubNavButton>
                   <SidebarSubNavItems
@@ -262,13 +257,13 @@ export const Sidebar: FC<SidebarProps> = ({
                       ))}
                     </SidebarSubNavItemsList>
                   </SidebarSubNavItems>
-                </SidebarSubNavItem>
+                </Box>
               );
             })}
           </SidebarSubNav>
         )}
       </div>
-      <SidebarAccount>
+      <SidebarAccount pa={3}>
         <SidebarAccountWrapper>
           <SidebarAccountAvatar aria-hidden>
             {account.name
@@ -288,7 +283,7 @@ export const Sidebar: FC<SidebarProps> = ({
           onClick={account.onSettingsClick}
           type="button"
         >
-          <i className="far fa-sun fa-1x" />
+          <SidebarIcon name="sun" />
         </SidebarAccountButton>
       </SidebarAccount>
     </BaseSidebar>

@@ -5,6 +5,8 @@ import type { StyletronComponent, StyleObject } from "styletron-react";
 import { driver, getInitialStyle } from "styletron-standard";
 
 import {
+  borderRadius1,
+  borderRadius2,
   breakpointLg,
   breakpointMd,
   breakpointNs,
@@ -35,7 +37,7 @@ import {
   fontSize7,
   lineHeightCopy,
   lineHeightTitle,
-  lineheightSolid,
+  lineHeightSolid,
   spaceExtraSmall,
   spaceLarge,
   spaceMedium,
@@ -44,7 +46,8 @@ import {
 
 export const theme = {
   borderRadius: {
-    1: ".125rem",
+    1: borderRadius1,
+    2: borderRadius2,
   },
   breakpoint: {
     ns: breakpointNs,
@@ -82,9 +85,16 @@ export const theme = {
     6: fontSize6,
     7: fontSize7,
   },
+  fontWeight: {
+    400: 400,
+    500: 500,
+    600: 600,
+    700: 700,
+    800: 800,
+  },
   lineHeight: {
     copy: lineHeightCopy,
-    solid: lineheightSolid,
+    solid: lineHeightSolid,
     title: lineHeightTitle,
   },
   space: {

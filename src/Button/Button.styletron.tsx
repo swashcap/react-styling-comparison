@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import type { StyleObject } from "styletron-react";
 
 import type { ButtonProps } from "./ButtonTypes";
 import { styled } from "../utilities/theme";
@@ -10,77 +11,73 @@ const BaseButton = styled<
     $size: ButtonProps["size"];
     $variant: ButtonProps["variant"];
   }
->("button", ({ disabled, $fluid, $size, $theme, $variant }) => ({
-  background:
-    $variant === "primary"
-      ? disabled
-        ? $theme.color.silver
-        : $theme.color.darkBlue
-      : $theme.color.white,
-  borderRadius: ".125rem",
-  borderColor:
-    $variant === "primary"
-      ? disabled
-        ? $theme.color.silver
-        : $theme.color.darkBlue
-      : $variant === "secondary"
-      ? disabled
-        ? $theme.color.silver
-        : $theme.color.midGray
-      : $theme.color.white,
-  borderStyle: "solid",
-  borderWidth: "1px",
-  color:
-    $variant === "primary"
-      ? $theme.color.white
-      : disabled
-      ? $theme.color.silver
-      : $theme.color.midGray,
-  cursor: disabled ? "default" : "pointer",
-  display: "inline-block",
-  fontFamily: $theme.fontFamily.sansSerif,
-  fontSize:
-    $size === "large"
-      ? $theme.fontSize[4]
-      : $size === "medium"
-      ? $theme.fontSize[5]
-      : $theme.fontSize[6],
-  fontWeight: $variant === "tertiary" ? 400 : 700,
-  lineHeight: "1",
-  margin: 0,
-  padding:
-    $size === "large"
-      ? `${$theme.space[3]} ${$theme.space[4]}`
-      : $size === "medium"
-      ? `${$theme.space[2]} ${$theme.space[3]}`
-      : `${$theme.space[1]} ${$theme.space[2]}`,
-  textAlign: "center",
-  width: $fluid ? "100%" : undefined,
-  ":focus": disabled
-    ? undefined
-    : {
-        background: $variant === "primary" ? $theme.color.navy : undefined,
-        borderColor:
-          $variant === "primary"
-            ? $theme.color.navy
-            : $variant === "secondary"
-            ? $theme.color.black
-            : undefined,
-        color: $variant == "primary" ? undefined : $theme.color.black,
-      },
-  ":hover": disabled
-    ? undefined
-    : {
-        background: $variant === "primary" ? $theme.color.navy : undefined,
-        borderColor:
-          $variant === "primary"
-            ? $theme.color.navy
-            : $variant === "secondary"
-            ? $theme.color.black
-            : undefined,
-        color: $variant == "primary" ? undefined : $theme.color.black,
-      },
-}));
+>("button", ({ disabled, $fluid, $size, $theme, $variant }) => {
+  const style: StyleObject = {
+    borderRadius: $theme.borderRadius[1],
+    borderStyle: "solid",
+    borderWidth: "1px",
+    cursor: disabled ? "default" : "pointer",
+    display: "inline-block",
+    fontFamily: $theme.fontFamily.sansSerif,
+    lineHeight: "1",
+    margin: 0,
+    textAlign: "center",
+  };
+
+  if ($fluid) {
+    style.width = "100%";
+  }
+
+  if ($size === "large") {
+    style.fontSize = $theme.fontSize[4];
+    style.padding = `${$theme.space[3]} ${$theme.space[4]}`;
+  } else if ($size === "medium") {
+    style.fontSize = $theme.fontSize[5];
+    style.padding = `${$theme.space[2]} ${$theme.space[3]}`;
+  } else {
+    style.fontSize = $theme.fontSize[6];
+    style.padding = `${$theme.space[1]} ${$theme.space[2]}`;
+  }
+
+  if ($variant === "primary") {
+    style.background = disabled ? $theme.color.silver : $theme.color.darkBlue;
+    style.borderColor = disabled ? $theme.color.silver : $theme.color.darkBlue;
+    style.color = $theme.color.white;
+    style.fontWeight = $theme.fontWeight[700];
+
+    if (!disabled) {
+      style[":focus"] = style[":hover"] = {
+        background: $theme.color.navy,
+        borderColor: $theme.color.navy,
+      };
+    }
+  } else if ($variant === "secondary") {
+    style.background = $theme.color.white;
+    style.borderColor = disabled ? $theme.color.silver : $theme.color.midGray;
+    style.color = disabled ? $theme.color.silver : $theme.color.midGray;
+    style.fontWeight = $theme.fontWeight[700];
+
+    if (!disabled) {
+      style[":focus"] = style[":hover"] = {
+        borderColor: $theme.color.black,
+        color: $theme.color.black,
+      };
+    }
+  } else {
+    style.background = $theme.color.white;
+    style.borderColor = $theme.color.white;
+    style.color = disabled ? $theme.color.silver : $theme.color.midGray;
+    style.fontWeight = $theme.fontWeight[400];
+
+    if (!disabled) {
+      style[":focus"] = style[":hover"] = {
+        color: $theme.color.black,
+      };
+    }
+  }
+
+  return style;
+});
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ fluid, size = "small", variant = "secondary", ...rest }, ref) => (

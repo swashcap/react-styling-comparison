@@ -3,6 +3,8 @@ import { useRef, useState } from "react";
 
 import type { SidebarProps } from "./SidebarTypes";
 import {
+  borderRadius1,
+  colorBlue,
   colorDarkBlue,
   colorDarkGray,
   colorDarkGreen,
@@ -13,15 +15,16 @@ import {
   colorNearWhite,
   colorSilver,
   colorWhite,
-  spaceExtraSmall,
-  spaceSmall,
-  spaceMedium,
-  colorBlue,
   fontSansSerif,
+  fontSize4,
+  fontSize5,
+  fontSize6,
   fontSize7,
   lineHeightCopy,
-  fontSize5,
-  lineheightSolid,
+  lineHeightSolid,
+  spaceExtraSmall,
+  spaceMedium,
+  spaceSmall,
 } from "../utilities/constants";
 import { useFocus } from "../utilities/useFocus";
 import { useHover } from "../utilities/useHover";
@@ -38,7 +41,7 @@ const SidebarNavListLink: FC<
       ref={ref}
       style={{
         background: active ? colorLightGray : "transparent",
-        borderRadius: ".125rem",
+        borderRadius: borderRadius1,
         color:
           isFocused || isHovered
             ? colorBlue
@@ -73,9 +76,9 @@ const SidebarProjectButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
         cursor: "pointer",
         display: "flex",
         fontFamily: "inherit",
-        fontSize: "1rem",
+        fontSize: fontSize5,
         justifyContent: "space-between",
-        lineHeight: "1.5",
+        lineHeight: lineHeightCopy,
         margin: 0,
         padding: spaceSmall,
         width: "100%",
@@ -99,7 +102,7 @@ const SidebarProjectLink: FC<AnchorHTMLAttributes<HTMLAnchorElement>> = ({
     <a
       ref={ref}
       style={{
-        borderRadius: ".125rem",
+        borderRadius: borderRadius1,
         color: isFocused || isHovered ? colorBlue : colorDarkGray,
         display: "block",
         padding: `${spaceExtraSmall} ${spaceSmall} ${spaceExtraSmall} ${spaceMedium}`,
@@ -124,8 +127,8 @@ const SidebarAccountLink: FC<AnchorHTMLAttributes<HTMLAnchorElement>> = ({
       ref={ref}
       style={{
         color: isFocused || isHovered ? colorBlue : colorMidGray,
-        fontSize: ".875rem",
-        lineHeight: "1",
+        fontSize: fontSize6,
+        lineHeight: lineHeightSolid,
         textDecoration: "underline",
         ...style,
       }}
@@ -332,7 +335,7 @@ export const Sidebar: FC<SidebarProps> = ({
               borderRadius: "100%",
               color: colorWhite,
               flex: "none",
-              fontSize: ".875rem",
+              fontSize: fontSize4,
               fontWeight: 600,
               height: "2rem",
               lineHeight: "2rem",
@@ -353,7 +356,7 @@ export const Sidebar: FC<SidebarProps> = ({
                 color: colorDarkGray,
                 fontSize: fontSize5,
                 fontWeight: 500,
-                lineHeight: lineheightSolid,
+                lineHeight: lineHeightSolid,
                 margin: 0,
               }}
             >
