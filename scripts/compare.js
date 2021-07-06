@@ -43,80 +43,60 @@ Promise.all(Array.from(files.values()).map(getFileSize))
     const keys = Array.from(files.keys());
     const sizes = new Map(fileSizes.map((size, index) => [keys[index], size]));
 
-    console.table({
-      Button: {
-        "CSS Modules": {
-          JS: sizes.get("button:js"),
-          CSS: sizes.get("button:css"),
-        },
-        "Inline Styles": {
-          JS: sizes.get("button:inline"),
-          CSS: 0,
-        },
-        Styletron: {
-          JS: sizes.get("button:styletron"),
-          CSS: 0,
-        },
-        Tachyons: {
-          JS: sizes.get("button:tachyons"),
-          CSS: sizes.get("tachyons"),
-        },
-      },
-      Page: {
-        "CSS Modules": {
-          JS: sizes.get("page:js"),
-          CSS: sizes.get("page:css"),
-        },
-        "Inline Styles": {
-          JS: sizes.get("page:inline"),
-          CSS: 0,
-        },
-        Styletron: {
-          JS: sizes.get("page:styletron"),
-          CSS: 0,
-        },
-        Tachyons: {
-          JS: sizes.get("page:tachyons"),
-          CSS: sizes.get("tachyons"),
-        },
-      },
-      Sidebar: {
-        "CSS Modules": {
-          JS: sizes.get("sidebar:js"),
-          CSS: sizes.get("sidebar:css"),
-        },
-        "Inline Styles": {
-          JS: sizes.get("sidebar:inline"),
-          CSS: 0,
-        },
-        Styletron: {
-          JS: sizes.get("sidebar:styletron"),
-          CSS: 0,
-        },
-        Tachyons: {
-          JS: sizes.get("sidebar:tachyons"),
-          CSS: sizes.get("tachyons"),
-        },
-      },
-      "App (Page + React)": {
-        "CSS Modules": {
-          JS: sizes.get("app:js"),
-          CSS: sizes.get("app:css"),
-        },
-        "Inline Styles": {
-          JS: sizes.get("app:inline"),
-          CSS: 0,
-        },
-        Styletron: {
-          JS: sizes.get("app:styletron"),
-          CSS: 0,
-        },
-        Tachyons: {
-          JS: sizes.get("app:tachyons"),
-          CSS: sizes.get("tachyons"),
-        },
-      },
-    });
+    console.log(
+      "|     | Button JS | Button CSS | Sidebar JS | Sidebar CSS | Page JS | Page CSS | App (Page + React) |"
+    );
+    console.log(
+      "| --- | --------: | ---------: | ---------: | ----------: | ------: | -------: | -----------------: |"
+    );
+    console.log(
+      `| ${[
+        "CSS Modules",
+        sizes.get("button:js"),
+        sizes.get("button:css"),
+        sizes.get("sidebar:js"),
+        sizes.get("sidebar:css"),
+        sizes.get("page:js"),
+        sizes.get("page:css"),
+        sizes.get("app:js"),
+      ].join(" | ")} |`
+    );
+    console.log(
+      `| ${[
+        "Inline Styles",
+        sizes.get("button:inline"),
+        0,
+        sizes.get("sidebar:inline"),
+        0,
+        sizes.get("page:inline"),
+        0,
+        sizes.get("app:inline"),
+      ].join(" | ")} |`
+    );
+    console.log(
+      `| ${[
+        "Styletron",
+        sizes.get("button:styletron"),
+        0,
+        sizes.get("sidebar:styletron"),
+        0,
+        sizes.get("page:styletron"),
+        0,
+        sizes.get("app:styletron"),
+      ].join(" | ")} |`
+    );
+    console.log(
+      `| ${[
+        "Tachyons",
+        sizes.get("button:tachyons"),
+        sizes.get("tachyons"),
+        sizes.get("sidebar:tachyons"),
+        sizes.get("tachyons"),
+        sizes.get("page:tachyons"),
+        sizes.get("tachyons"),
+        sizes.get("app:tachyons"),
+      ].join(" | ")} |`
+    );
   })
   .catch((error) => {
     console.error(error);
