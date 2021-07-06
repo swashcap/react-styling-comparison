@@ -28,45 +28,26 @@ const nextId = () => {
 
 const idCache = {};
 
-const makeConfig = (input, isCJS) => {
-  const { name } = path.parse(input);
+const defaultExternal = ["react", /react\/jsx.*/, /@babel\/runtime.*/];
 
-  const config = {
-    external: ["react", /react\/jsx.*/, /@babel\/runtime.*/],
-    input,
-    plugins: [
-      babel({
-        babelHelpers: "runtime",
-        exclude: "node_modules/**",
-        extensions: [".js", ".ts", ".tsx"],
-      }),
-      commonjs(),
-      nodeResolve({
-        extensions: [".js", ".ts", ".tsx"],
-      }),
-      replace({
-        "process.env.NODE_ENV": JSON.stringify("production"),
-      }),
-      !isCJS && terser(),
-    ].filter(Boolean),
-  };
+const getPlugins = (input) => {
+  const plugins = [
+    babel({
+      babelHelpers: "runtime",
+      exclude: "node_modules/**",
+      extensions: [".js", ".ts", ".tsx"],
+    }),
+    commonjs(),
+    nodeResolve({
+      extensions: [".js", ".ts", ".tsx"],
+    }),
+  ];
 
-  if (isCJS) {
-    config.output = {
-      file: path.join("dist", `${name}.cjs.js`),
-      format: "cjs",
-    };
-  } else {
-    config.output = {
-      file: path.join("dist", `${name}.js`),
-    };
-  }
-
-  if (name.includes("cssmodules")) {
-    config.plugins.push(
+  if (input.includes("cssmodules")) {
+    plugins.push(
       postcss({
         autoModules: false,
-        extract: path.resolve("./dist/", `${name}.min.css`),
+        extract: path.resolve("./dist/", `${path.parse(input).name}.min.css`),
         minimize: true,
         modules: {
           generateScopedName(name, filename) {
@@ -80,28 +61,69 @@ const makeConfig = (input, isCJS) => {
     );
   }
 
-  return config;
+  if (!input.includes("cjs")) {
+    plugins.push(
+      replace({
+        "process.env.NODE_ENV": JSON.stringify("production"),
+      }),
+      terser()
+    );
+  }
+
+  return plugins;
 };
 
 export default [
-  makeConfig("./src/components/Button/Button.cssmodules.tsx"),
-  makeConfig("./src/components/Button/Button.inline.tsx"),
-  makeConfig("./src/components/Button/Button.styletron.tsx"),
-  makeConfig("./src/components/Button/Button.tachyons.tsx"),
-  makeConfig("./src/components/Page/Page.cssmodules.tsx"),
-  makeConfig("./src/components/Page/Page.inline.tsx"),
-  makeConfig("./src/components/Page/Page.styletron.tsx"),
-  makeConfig("./src/components/Page/Page.tachyons.tsx"),
-  makeConfig("./src/components/Sidebar/Sidebar.inline.tsx"),
-  makeConfig("./src/components/Sidebar/Sidebar.cssmodules.tsx"),
-  makeConfig("./src/components/Sidebar/Sidebar.styletron.tsx"),
-  makeConfig("./src/components/Sidebar/Sidebar.tachyons.tsx"),
-  makeConfig("./src/index.cssmodules.ts"),
-  makeConfig("./src/index.cssmodules.ts", "cjs"),
-  makeConfig("./src/index.inline.ts"),
-  makeConfig("./src/index.inline.ts", "cjs"),
-  makeConfig("./src/index.styletron.ts"),
-  makeConfig("./src/index.styletron.ts", "cjs"),
-  makeConfig("./src/index.tachyons.ts"),
-  makeConfig("./src/index.tachyons.ts", "cjs"),
+  // Components
+  ...[
+    "./src/components/Button/Button.cssmodules.tsx",
+    "./src/components/Button/Button.inline.tsx",
+    "./src/components/Button/Button.styletron.tsx",
+    "./src/components/Button/Button.tachyons.tsx",
+    "./src/components/Page/Page.cssmodules.tsx",
+    "./src/components/Page/Page.inline.tsx",
+    "./src/components/Page/Page.styletron.tsx",
+    "./src/components/Page/Page.tachyons.tsx",
+    "./src/components/Sidebar/Sidebar.inline.tsx",
+    "./src/components/Sidebar/Sidebar.cssmodules.tsx",
+    "./src/components/Sidebar/Sidebar.styletron.tsx",
+    "./src/components/Sidebar/Sidebar.tachyons.tsx",
+  ].map((input) => ({
+    external: defaultExternal,
+    input,
+    output: {
+      file: path.join("dist", `${path.parse(input).name}.js`),
+    },
+    plugins: getPlugins(input),
+  })),
+
+  // CommonJS
+  ...[
+    "./src/components/Page/Page.cssmodules.tsx",
+    "./src/components/Page/Page.inline.tsx",
+    "./src/index.styletron.tsx",
+    "./src/components/Page/Page.tachyons.tsx",
+  ].map((input) => ({
+    external: defaultExternal,
+    input,
+    output: {
+      file: path.join("dist", `${path.parse(input).name}.cjs.js`),
+      format: "cjs",
+    },
+    plugins: getPlugins(input),
+  })),
+
+  // App
+  ...[
+    "src/app.cssmodules.tsx",
+    "src/app.inline.tsx",
+    "src/app.styletron.tsx",
+    "src/app.tachyons.tsx",
+  ].map((input) => ({
+    input,
+    output: {
+      file: path.join("dist", `${path.parse(input).name}.js`),
+    },
+    plugins: getPlugins(input),
+  })),
 ];

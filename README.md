@@ -12,14 +12,14 @@ The [comparison script](./scripts/compare.js) demonstrates:
 * Components built with CSS Modules are lighter invidually and combined
 
 ```
-┌─────────┬─────────────────────────┬──────────────────────┬──────────────────────┬──────────────────────────┐
-│ (index) │       CSS Modules       │    Inline Styles     │      Styletron       │         Tachyons         │
-├─────────┼─────────────────────────┼──────────────────────┼──────────────────────┼──────────────────────────┤
-│ Button  │  { JS: 320, CSS: 424 }  │ { JS: 789, CSS: 0 }  │ { JS: 1363, CSS: 0 } │ { JS: 457, CSS: 15558 }  │
-│  Page   │ { JS: 2023, CSS: 1630 } │ { JS: 3516, CSS: 0 } │ { JS: 4476, CSS: 0 } │ { JS: 2509, CSS: 15558 } │
-│ Sidebar │  { JS: 862, CSS: 683 }  │ { JS: 1607, CSS: 0 } │ { JS: 2373, CSS: 0 } │ { JS: 1122, CSS: 15558 } │
-│   All   │ { JS: 2037, CSS: 1630 } │ { JS: 3530, CSS: 0 } │ { JS: 4597, CSS: 0 } │ { JS: 2521, CSS: 15558 } │
-└─────────┴─────────────────────────┴──────────────────────┴──────────────────────┴──────────────────────────┘
+┌────────────────────┬──────────────────────────┬───────────────────────┬───────────────────────┬───────────────────────────┐
+│      (index)       │       CSS Modules        │     Inline Styles     │       Styletron       │         Tachyons          │
+├────────────────────┼──────────────────────────┼───────────────────────┼───────────────────────┼───────────────────────────┤
+│       Button       │  { JS: 320, CSS: 424 }   │  { JS: 789, CSS: 0 }  │ { JS: 1363, CSS: 0 }  │  { JS: 457, CSS: 15558 }  │
+│        Page        │ { JS: 2034, CSS: 1630 }  │ { JS: 3529, CSS: 0 }  │ { JS: 4488, CSS: 0 }  │ { JS: 2522, CSS: 15558 }  │
+│      Sidebar       │  { JS: 862, CSS: 683 }   │ { JS: 1607, CSS: 0 }  │ { JS: 2373, CSS: 0 }  │ { JS: 1122, CSS: 15558 }  │
+│ App (Page + React) │ { JS: 44624, CSS: 1630 } │ { JS: 46040, CSS: 0 } │ { JS: 51955, CSS: 0 } │ { JS: 45050, CSS: 15558 } │
+└────────────────────┴──────────────────────────┴───────────────────────┴───────────────────────┴───────────────────────────┘
 ```
 
 (All sizes gzipped.)
@@ -51,26 +51,14 @@ $ for f in scripts/stream/*.mjs; do NODE_ENV=production node "$f" 2>/dev/null; s
 
 ### Lighthouse
 
-Running all server-side rendering through a [fastify](https://www.fastify.io)
-server yields the following Lighthouse statistics:
+This project contains web applications of the [Page component](#page) that have server-side rendering through a lightweight [fastify](https://www.fastify.io) server and rehydrate the React application on the client. Running these through Lighthouse's Performance tool (Mobile, average of 10 runs) yields the following numbers:
 
-#### Mobile
-
-|            | FCP  | TTI  |
-| ---------- | ---: | ---: |
-| cssmodules | 1.6s | 1.6s |
-| inline     | 1.5s | 1.6s |
-| styletron  | 1.7s | 1.7s |
-| tachyons   | 2.1s | 2.1s |
-
-#### Desktop
-
-|            | FCP  | TTI  |
-| ---------- | ---: | ---: |
-| cssmodules | 0.5s | 0.5s |
-| inline     | 0.5s | 0.5s |
-| styletron  | 0.6s | 0.6s |
-| tachyons   | 0.6s | 0.6s |
+|            | Score | First Content Paint | Time to Interactive | Speed Index | Total Blocking Time | Largest Contentful Paint |
+| ---------- | ----: | ------------------: | ------------------: | ----------: | ------------------: | -----------------------: |
+| cssmodules |    99 |                1.6s |                2.4s |        1.6s |                97ms |                     1.8s |
+| inline     |    99 |                1.6s |                2.2s |        1.6s |               128ms |                     1.7s |
+| styletron  |    99 |                1.5s |                2.6s |        1.5s |               158ms |                     1.7s |
+| tachyons   |    96 |                2.0s |                2.9s |        2.1s |               154ms |                     2.3s |
 
 ### Example components
 
@@ -78,19 +66,19 @@ This test uses two components for testing. Both components are coded separately
 with CSS Modules and Tachyons, using the same DOM and styles. There's no visual
 difference in the components.
 
-#### [Button](./src/Button)
+#### [Button](./src/components/Button)
 
 A simple button with a few properties.
 
 <img alt="Screenshot of button" height="84" src="./img/button.jpg" width="219" />
 
-#### [Sidebar](./src/Sidebar)
+#### [Sidebar](./src/components/Sidebar)
 
 A more complicacted navigation component with some state.
 
 <img alt="Screenshot of sidebar" height="820" src="./img/sidebar.jpg" width="315" />
 
-#### [Page](./src/Page)
+#### [Page](./src/components/Page)
 
 A larger component that includes Button and Sidebar along with fake products and
 some additional content.
@@ -130,3 +118,16 @@ npm run build
 npm run compare
 ```
 
+### Running the server
+
+Run the project's server to load the web applications in a local browser:
+
+```shell
+# Build the project
+npm run build
+
+# Run the server
+node src/server/server.mjs --handler cssmodules --mode sync
+```
+
+Open [localhost:3000](http://localhost:3000) to see the web application.

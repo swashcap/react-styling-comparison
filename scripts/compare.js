@@ -30,11 +30,11 @@ const files = new Map([
   ["sidebar:inline", "./dist/Sidebar.inline.js"],
   ["sidebar:styletron", "./dist/Sidebar.styletron.js"],
   ["sidebar:tachyons", "./dist/Sidebar.tachyons.js"],
-  ["all:js", "./dist/index.cssmodules.js"],
-  ["all:css", "./dist/index.cssmodules.min.css"],
-  ["all:inline", "./dist/index.inline.js"],
-  ["all:styletron", "./dist/index.styletron.js"],
-  ["all:tachyons", "./dist/index.tachyons.js"],
+  ["app:css", "./dist/app.cssmodules.min.css"],
+  ["app:inline", "./dist/app.inline.js"],
+  ["app:js", "./dist/app.cssmodules.js"],
+  ["app:styletron", "./dist/app.styletron.js"],
+  ["app:tachyons", "./dist/app.tachyons.js"],
   ["tachyons", "./dist/tachyons.min.css"],
 ]);
 
@@ -98,21 +98,21 @@ Promise.all(Array.from(files.values()).map(getFileSize))
           CSS: sizes.get("tachyons"),
         },
       },
-      All: {
+      "App (Page + React)": {
         "CSS Modules": {
-          JS: sizes.get("all:js"),
-          CSS: sizes.get("all:css"),
+          JS: sizes.get("app:js"),
+          CSS: sizes.get("app:css"),
         },
         "Inline Styles": {
-          JS: sizes.get("all:inline"),
+          JS: sizes.get("app:inline"),
           CSS: 0,
         },
         Styletron: {
-          JS: sizes.get("all:styletron"),
+          JS: sizes.get("app:styletron"),
           CSS: 0,
         },
         Tachyons: {
-          JS: sizes.get("all:tachyons"),
+          JS: sizes.get("app:tachyons"),
           CSS: sizes.get("tachyons"),
         },
       },

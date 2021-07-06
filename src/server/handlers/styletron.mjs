@@ -29,7 +29,10 @@ export const stream = async (props) => {
 ${engine.getStylesheetsHtml()}`,
   })}
 ${content}
-${templateEnd()}`);
+${templateEnd({
+  pageData: props,
+  scripts: `<script async src="/public/app.styletron.js"></script>`,
+})}`);
 };
 
 export const sync = (props) => {
@@ -47,5 +50,8 @@ export const sync = (props) => {
 ${engine.getStylesheetsHtml()}`,
   })}
 	${content}
-	${templateEnd()}`;
+  ${templateEnd({
+    pageData: props,
+    scripts: `<script async src="/public/app.styletron.js"></script>`,
+  })}`;
 };
