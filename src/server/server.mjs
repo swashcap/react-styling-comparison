@@ -25,7 +25,9 @@ const cli = meow(
   }
 );
 
-if (!/^(cssmodules|inline|styletron|tachyons)$/.test(cli.flags.handler)) {
+if (
+  !/^(cssmodules|emotion|inline|styletron|tachyons)$/.test(cli.flags.handler)
+) {
   throw new Error("Invalid handler");
 } else if (!/^(stream|sync)$/.test(cli.flags.mode)) {
   throw new Error("Invalid mode");

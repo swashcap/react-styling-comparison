@@ -15,26 +15,30 @@ const getFileSize = async (filename) => {
 };
 
 const files = new Map([
-  ["button:js", "./dist/Button.cssmodules.js"],
-  ["button:css", "./dist/Button.cssmodules.min.css"],
-  ["button:inline", "./dist/Button.inline.js"],
-  ["button:styletron", "./dist/Button.styletron.js"],
-  ["button:tachyons", "./dist/Button.tachyons.js"],
-  ["page:js", "./dist/Page.cssmodules.js"],
-  ["page:css", "./dist/Page.cssmodules.min.css"],
-  ["page:inline", "./dist/Page.inline.js"],
-  ["page:styletron", "./dist/Page.styletron.js"],
-  ["page:tachyons", "./dist/Page.tachyons.js"],
-  ["sidebar:js", "./dist/Sidebar.cssmodules.js"],
-  ["sidebar:css", "./dist/Sidebar.cssmodules.min.css"],
-  ["sidebar:inline", "./dist/Sidebar.inline.js"],
-  ["sidebar:styletron", "./dist/Sidebar.styletron.js"],
-  ["sidebar:tachyons", "./dist/Sidebar.tachyons.js"],
   ["app:css", "./dist/app.cssmodules.min.css"],
+  ["app:emotion", "./dist/app.emotion.js"],
   ["app:inline", "./dist/app.inline.js"],
   ["app:js", "./dist/app.cssmodules.js"],
   ["app:styletron", "./dist/app.styletron.js"],
   ["app:tachyons", "./dist/app.tachyons.js"],
+  ["button:css", "./dist/Button.cssmodules.min.css"],
+  ["button:emotion", "./dist/Button.emotion.js"],
+  ["button:inline", "./dist/Button.inline.js"],
+  ["button:js", "./dist/Button.cssmodules.js"],
+  ["button:styletron", "./dist/Button.styletron.js"],
+  ["button:tachyons", "./dist/Button.tachyons.js"],
+  ["page:css", "./dist/Page.cssmodules.min.css"],
+  ["page:emotion", "./dist/Page.emotion.js"],
+  ["page:inline", "./dist/Page.inline.js"],
+  ["page:js", "./dist/Page.cssmodules.js"],
+  ["page:styletron", "./dist/Page.styletron.js"],
+  ["page:tachyons", "./dist/Page.tachyons.js"],
+  ["sidebar:css", "./dist/Sidebar.cssmodules.min.css"],
+  ["sidebar:emotion", "./dist/Sidebar.emotion.js"],
+  ["sidebar:inline", "./dist/Sidebar.inline.js"],
+  ["sidebar:js", "./dist/Sidebar.cssmodules.js"],
+  ["sidebar:styletron", "./dist/Sidebar.styletron.js"],
+  ["sidebar:tachyons", "./dist/Sidebar.tachyons.js"],
   ["tachyons", "./dist/tachyons.min.css"],
 ]);
 
@@ -59,6 +63,18 @@ Promise.all(Array.from(files.values()).map(getFileSize))
         sizes.get("page:js"),
         sizes.get("page:css"),
         sizes.get("app:js"),
+      ].join(" | ")} |`
+    );
+    console.log(
+      `| ${[
+        "Emotion",
+        sizes.get("button:emotion"),
+        0,
+        sizes.get("sidebar:emotion"),
+        0,
+        sizes.get("page:emotion"),
+        0,
+        sizes.get("app:emotion"),
       ].join(" | ")} |`
     );
     console.log(

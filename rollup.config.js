@@ -28,9 +28,9 @@ const nextId = () => {
 
 const idCache = {};
 
-const defaultExternal = ["react", /react\/jsx.*/, /@babel\/runtime.*/];
+const defaultExternal = [/^react/, /^react\/jsx.*/, /@babel\/runtime.*/];
 
-const getPlugins = (input) => {
+const getPlugins = (input, isCJS = false) => {
   const plugins = [
     babel({
       babelHelpers: "runtime",
@@ -61,7 +61,7 @@ const getPlugins = (input) => {
     );
   }
 
-  if (!input.includes("cjs")) {
+  if (!isCJS) {
     plugins.push(
       replace({
         "process.env.NODE_ENV": JSON.stringify("production"),
@@ -77,15 +77,18 @@ export default [
   // Components
   ...[
     "./src/components/Button/Button.cssmodules.tsx",
+    "./src/components/Button/Button.emotion.tsx",
     "./src/components/Button/Button.inline.tsx",
     "./src/components/Button/Button.styletron.tsx",
     "./src/components/Button/Button.tachyons.tsx",
     "./src/components/Page/Page.cssmodules.tsx",
+    "./src/components/Page/Page.emotion.tsx",
     "./src/components/Page/Page.inline.tsx",
     "./src/components/Page/Page.styletron.tsx",
     "./src/components/Page/Page.tachyons.tsx",
-    "./src/components/Sidebar/Sidebar.inline.tsx",
     "./src/components/Sidebar/Sidebar.cssmodules.tsx",
+    "./src/components/Sidebar/Sidebar.emotion.tsx",
+    "./src/components/Sidebar/Sidebar.inline.tsx",
     "./src/components/Sidebar/Sidebar.styletron.tsx",
     "./src/components/Sidebar/Sidebar.tachyons.tsx",
   ].map((input) => ({
@@ -101,21 +104,24 @@ export default [
   ...[
     "./src/components/Page/Page.cssmodules.tsx",
     "./src/components/Page/Page.inline.tsx",
-    "./src/index.styletron.tsx",
     "./src/components/Page/Page.tachyons.tsx",
+    "./src/index.emotion.tsx",
+    "./src/index.styletron.tsx",
   ].map((input) => ({
-    external: defaultExternal,
+    // Work around @babel/runtime's missing ESM config
+    external: [...defaultExternal].filter((e) => !e.test("@babel/runtime")),
     input,
     output: {
       file: path.join("dist", `${path.parse(input).name}.cjs.js`),
       format: "cjs",
     },
-    plugins: getPlugins(input),
+    plugins: getPlugins(input, true),
   })),
 
   // App
   ...[
     "src/app.cssmodules.tsx",
+    "src/app.emotion.tsx",
     "src/app.inline.tsx",
     "src/app.styletron.tsx",
     "src/app.tachyons.tsx",

@@ -2,10 +2,11 @@ import type { FC } from "react";
 import { useState } from "react";
 import { Story } from "@storybook/react";
 
-import { Sidebar as SidebarTachyons } from "./Sidebar.tachyons";
 import { Sidebar as SidebarCSSModules } from "./Sidebar.cssmodules";
-import { Sidebar as SidebarStyletron } from "./Sidebar.styletron";
+import { Sidebar as SidebarEmotion } from "./Sidebar.emotion";
 import { Sidebar as SidebarInline } from "./Sidebar.inline";
+import { Sidebar as SidebarStyletron } from "./Sidebar.styletron";
+import { Sidebar as SidebarTachyons } from "./Sidebar.tachyons";
 import { SidebarProps } from "./SidebarTypes";
 
 import args from "./args.json";
@@ -47,6 +48,12 @@ export const CSSModules: Story<SidebarProps> = (args) => (
 );
 
 CSSModules.storyName = "CSS Modules";
+
+export const Emotion: Story<SidebarProps> = (args) => (
+  <WithNavItems {...args}>
+    {(props) => <SidebarEmotion {...props} />}
+  </WithNavItems>
+);
 
 export const InlineStyles: Story<SidebarProps> = (args) => (
   <WithNavItems {...args}>

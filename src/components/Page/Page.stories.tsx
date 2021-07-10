@@ -1,6 +1,7 @@
 import { Story } from "@storybook/react";
 
 import { Page as PageCSSModules } from "./Page.cssmodules";
+import { Page as PageEmotion } from "./Page.emotion";
 import { Page as PageInline } from "./Page.inline";
 import { Page as PageStyletron } from "./Page.styletron";
 import { Page as PageTachyons } from "./Page.tachyons";
@@ -17,6 +18,8 @@ export const CSSModules: Story<PageProps> = (args) => (
 );
 
 CSSModules.storyName = "CSS Modules";
+
+export const Emotion: Story<PageProps> = (args) => <PageEmotion {...args} />;
 
 export const InlineStyles: Story<PageProps> = (args) => (
   <PageInline {...args} />

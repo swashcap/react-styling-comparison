@@ -1,10 +1,11 @@
 import type { HTMLAttributes, FC } from "react";
 import { Story } from "@storybook/react";
 
-import { Button as ButtonTachyons } from "./Button.tachyons";
 import { Button as ButtonCSSModules } from "./Button.cssmodules";
+import { Button as ButtonEmotion } from "./Button.emotion";
 import { Button as ButtonInline } from "./Button.inline";
 import { Button as ButtonStyletron } from "./Button.styletron";
+import { Button as ButtonTachyons } from "./Button.tachyons";
 import { ButtonProps } from "./ButtonTypes";
 
 const Center: FC<HTMLAttributes<HTMLElement>> = ({ style, ...rest }) => (
@@ -36,6 +37,11 @@ export default {
         type: "boolean",
       },
     },
+    fluid: {
+      control: {
+        type: "boolean",
+      },
+    },
     size: {
       control: {
         options: ["large", "medium", "small"],
@@ -61,6 +67,12 @@ export const CSSModules: Story<ButtonProps> = (props) => (
 );
 
 CSSModules.storyName = "CSS Modules";
+
+export const Emotion: Story<ButtonProps> = (props) => (
+  <Center>
+    <ButtonEmotion {...props} />
+  </Center>
+);
 
 export const InlineStyles: Story<ButtonProps> = (props) => (
   <Center>

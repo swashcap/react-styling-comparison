@@ -1,7 +1,18 @@
 const path = require("path");
 
+const babelConfig = require("../babel.config.js");
+
 module.exports = {
   addons: ["@storybook/addon-links", "@storybook/addon-essentials"],
+  /**
+   * {@link https://github.com/storybookjs/storybook/issues/7540#issuecomment-779707222}
+   */
+  babel(config) {
+    return {
+      ...config,
+      overrides: babelConfig.overrides,
+    };
+  },
   stories: ["../src/**/*.stories.@(js|jsx|ts|tsx)"],
   /**
    * Disable react-docgen until this is fixed:

@@ -1,5 +1,6 @@
 import "../src/tachyons/tachyons.scss";
-import { StyletronProvider } from "../src/utilities/StyletronProvider";
+import { EmotionProvider } from "../src/components/utilities/EmotionProvider";
+import { StyletronProvider } from "../src/components/utilities/StyletronProvider";
 import { Client } from "styletron-engine-atomic";
 
 export const parameters = {
@@ -18,7 +19,9 @@ const client = new Client({
 export const decorators = [
   (Story) => (
     <StyletronProvider value={client}>
-      <Story />
+      <EmotionProvider>
+        <Story />
+      </EmotionProvider>
     </StyletronProvider>
   ),
 ];

@@ -2,6 +2,14 @@
 
 _An experiment testing React + styling methods' impact on bundle size._
 
+## Solutions explored
+
+* [CSS Modules](https://github.com/css-modules/css-modules)
+* [Inline Styles](https://reactjs.org/docs/dom-elements.html#style)
+* [Emotion](https://emotion.sh/)
+* [Styletron](https://www.styletron.org)
+* [Tachyons](https://tachyons.io)
+
 ## Findings
 
 ### Lighthouse
@@ -22,11 +30,10 @@ The [comparison script](./scripts/compare.js) demonstrates:
 |               | Button JS | Button CSS | Sidebar JS | Sidebar CSS | Page JS | Page CSS | App (Page + React) |
 | ------------- | --------: | ---------: | ---------: | ----------: | ------: | -------: | -----------------: |
 | CSS Modules   |       320 |        424 |        862 |         683 |    2034 |     1630 |              44624 |
+| Emotion       |      6482 |          0 |       7355 |           0 |    9240 |        0 |              52822 |
 | Inline Styles |       789 |          0 |       1607 |           0 |    3529 |        0 |              46040 |
-| Styletron     |      1363 |          0 |       2373 |           0 |    4488 |        0 |              51955 |
+| Styletron     |      1363 |          0 |       2371 |           0 |    4487 |        0 |              51954 |
 | Tachyons      |       457 |      15558 |       1122 |       15558 |    2522 |    15558 |              45050 |
-
-(All sizes gzipped.)
 
 ### Server-side rendering
 
