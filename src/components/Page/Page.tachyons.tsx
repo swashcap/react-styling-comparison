@@ -134,24 +134,22 @@ export const Page: FC<PageProps> = ({
               ))}
             </div>
           </div>
-          <form
-            action="/search"
-            className="flex ph2 w-100 w-third-m w-third-l"
-            role="search"
-          >
-            <input
-              aria-label="Search"
-              className="b--silver ba bg-near-white black border-box br2 br--left f5 flex-auto input-reset lh-solid pa2 sans-serif"
-              name="q"
-              placeholder="Lorem ipsum…"
-            />
-            <button
-              className="b--transparent ba bg-gray br2 br--right f5 flex-none lh-solid pa2 pointer sans-serif white"
-              type="submit"
-            >
-              Search
-            </button>
-          </form>
+          <div className="ph2 w-100 w-third-m w-third-l">
+            <form action="/search" className="flex" role="search">
+              <input
+                aria-label="Search"
+                className="b--silver ba bg-near-white black border-box br2 br--left f5 flex-auto input-reset lh-solid pa2 sans-serif"
+                name="q"
+                placeholder="Lorem ipsum…"
+              />
+              <button
+                className="b--transparent ba bg-gray br2 br--right f5 flex-none lh-solid pa2 pointer sans-serif white"
+                type="submit"
+              >
+                Search
+              </button>
+            </form>
+          </div>
         </div>
 
         {/* END Header */}

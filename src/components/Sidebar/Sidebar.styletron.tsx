@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useStyletron } from "styletron-react";
 
 import type { SidebarProps } from "./SidebarTypes";
-import { Box } from "../utilities/Box";
 import { clsx } from "../utilities/clsx";
 import { useTheme } from "../utilities/theme";
 
@@ -88,13 +87,12 @@ export const Sidebar: FC<SidebarProps> = ({
           </ul>
         </nav>
         {subNavMenuKeys.length > 0 && (
-          <Box
-            as="nav"
+          <nav
             className={css({
               borderTop: `1px solid ${color.moonGray}`,
+              paddingBottom: space[3],
+              paddingTop: space[3],
             })}
-            pb={3}
-            pt={3}
           >
             <h3
               className={css({
@@ -117,7 +115,13 @@ export const Sidebar: FC<SidebarProps> = ({
               }
 
               return (
-                <Box key={key} pl={2} pr={2}>
+                <div
+                  className={css({
+                    paddingLeft: space[2],
+                    paddingRight: space[2],
+                  })}
+                  key={key}
+                >
                   <button
                     aria-controls={controlId}
                     aria-expanded={isExpanded}
@@ -192,23 +196,20 @@ export const Sidebar: FC<SidebarProps> = ({
                       ))}
                     </ul>
                   </div>
-                </Box>
+                </div>
               );
             })}
-          </Box>
+          </nav>
         )}
       </div>
-      <Box
+      <div
         className={css({
           alignItems: "center",
           borderTop: `1px solid ${color.moonGray}`,
           display: "flex",
           justifyContent: "space-between",
+          padding: space[3],
         })}
-        pb={3}
-        pl={3}
-        pr={3}
-        pt={3}
       >
         <div className={css({ alignItems: "center", display: "flex" })}>
           <div
@@ -288,7 +289,7 @@ export const Sidebar: FC<SidebarProps> = ({
         >
           <SidebarIcon name="sun" />
         </button>
-      </Box>
+      </div>
     </div>
   );
 };

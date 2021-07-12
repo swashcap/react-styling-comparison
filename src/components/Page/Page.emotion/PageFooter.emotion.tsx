@@ -1,8 +1,9 @@
 import type { FC, HTMLAttributes } from "react";
 
 import type { PageProps } from "../PageTypes";
+import type { Theme } from "../../utilities/theme";
 import { Button } from "../../Button/Button.emotion";
-import { Theme } from "../../utilities/theme";
+import { PageRow, PageRowItem } from "./PageRow.emotion";
 
 export const PageFooter: FC<
   HTMLAttributes<HTMLElement> & { footer: PageProps["footer"] }
@@ -20,20 +21,14 @@ export const PageFooter: FC<
     })}
     {...rest}
   >
-    <div
+    <PageRow
       css={(theme: Theme) => ({
-        display: "flex",
-        flexWrap: "wrap",
         marginBottom: theme.space[4],
-        marginLeft: `calc(-1 * ${theme.space[2]})`,
-        marginRight: `calc(-1 * ${theme.space[2]})`,
       })}
     >
       {menus.map(({ title, links }, index) => (
-        <div
+        <PageRowItem
           css={(theme: Theme) => ({
-            paddingLeft: theme.space[2],
-            paddingRight: theme.space[2],
             width: "100%",
 
             [theme.breakpoint.md]: {
@@ -83,9 +78,9 @@ export const PageFooter: FC<
               </li>
             ))}
           </ul>
-        </div>
+        </PageRowItem>
       ))}
-    </div>
+    </PageRow>
     <aside>
       <p
         css={(theme: Theme) => ({

@@ -1,25 +1,20 @@
 import type { FC, HTMLAttributes } from "react";
-import { Theme } from "../../utilities/theme";
 
 import type { PageProps } from "../PageTypes";
+import type { Theme } from "../../utilities/theme";
+import { PageRow, PageRowItem } from "./PageRow.emotion";
 
 export const PageHeader: FC<
   HTMLAttributes<HTMLElement> & { header: PageProps["header"] }
 > = ({ header, ...rest }) => (
-  <div
+  <PageRow
     css={(theme: Theme) => ({
-      display: "flex",
-      flexWrap: "wrap",
       marginBottom: theme.space[4],
-      marginLeft: `calc(-1 * ${theme.space[2]})`,
-      marginRight: `calc(-1 * ${theme.space[2]})`,
     })}
     {...rest}
   >
-    <div
+    <PageRowItem
       css={(theme: Theme) => ({
-        paddingLeft: theme.space[2],
-        paddingRight: theme.space[2],
         width: "100%",
 
         [theme.breakpoint.md]: {
@@ -95,13 +90,9 @@ export const PageHeader: FC<
           </div>
         ))}
       </div>
-    </div>
-    <form
-      action="/search"
+    </PageRowItem>
+    <PageRowItem
       css={(theme: Theme) => ({
-        display: "flex",
-        paddingLeft: theme.space[2],
-        paddingRight: theme.space[2],
         width: "100%",
 
         [theme.breakpoint.md]: {
@@ -111,43 +102,50 @@ export const PageHeader: FC<
           width: "33.33%",
         },
       })}
-      role="search"
     >
-      <input
-        aria-label="Search"
-        css={(theme: Theme) => ({
-          appearance: "none",
-          background: theme.color.nearWhite,
-          border: `1px solid ${theme.color.silver}`,
-          borderRadius: `${theme.borderRadius[2]} 0 0 ${theme.borderRadius[2]}`,
-          color: theme.color.black,
-          flex: "1 1 auto",
-          fontFamily: theme.fontFamily.sansSerif,
-          fontSize: theme.fontSize[5],
-          lineHeight: theme.lineHeight.solid,
-          minWidth: 0,
-          padding: theme.space[2],
-        })}
-        name="q"
-        placeholder="Lorem ipsum…"
-      />
-      <button
-        css={(theme: Theme) => ({
-          background: theme.color.gray,
-          border: "1px solid transparent",
-          borderRadius: `0 ${theme.borderRadius[2]} ${theme.borderRadius[2]} 0`,
-          color: theme.color.white,
-          cursor: "pointer",
-          flex: "none",
-          fontFamily: theme.fontFamily.sansSerif,
-          fontSize: theme.fontSize[5],
-          lineHeight: theme.lineHeight.solid,
-          padding: theme.space[2],
-        })}
-        type="submit"
+      <form
+        action="/search"
+        css={{
+          display: "flex",
+        }}
+        role="search"
       >
-        Search
-      </button>
-    </form>
-  </div>
+        <input
+          aria-label="Search"
+          css={(theme: Theme) => ({
+            appearance: "none",
+            background: theme.color.nearWhite,
+            border: `1px solid ${theme.color.silver}`,
+            borderRadius: `${theme.borderRadius[2]} 0 0 ${theme.borderRadius[2]}`,
+            color: theme.color.black,
+            flex: "1 1 auto",
+            fontFamily: theme.fontFamily.sansSerif,
+            fontSize: theme.fontSize[5],
+            lineHeight: theme.lineHeight.solid,
+            minWidth: 0,
+            padding: theme.space[2],
+          })}
+          name="q"
+          placeholder="Lorem ipsum…"
+        />
+        <button
+          css={(theme: Theme) => ({
+            background: theme.color.gray,
+            border: "1px solid transparent",
+            borderRadius: `0 ${theme.borderRadius[2]} ${theme.borderRadius[2]} 0`,
+            color: theme.color.white,
+            cursor: "pointer",
+            flex: "none",
+            fontFamily: theme.fontFamily.sansSerif,
+            fontSize: theme.fontSize[5],
+            lineHeight: theme.lineHeight.solid,
+            padding: theme.space[2],
+          })}
+          type="submit"
+        >
+          Search
+        </button>
+      </form>
+    </PageRowItem>
+  </PageRow>
 );

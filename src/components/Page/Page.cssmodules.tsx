@@ -125,24 +125,31 @@ export const Page: FC<PageProps> = ({
               ))}
             </div>
           </div>
-          <form
-            action="/search"
-            className={clsx(style.pageRowItem, style.contentHeaderSearchForm)}
-            role="search"
+          <div
+            className={clsx(
+              style.pageRowItem,
+              style.contentHeaderSearchFormWrapper
+            )}
           >
-            <input
-              aria-label="Search"
-              className={style.contentHeaderSearchFormInput}
-              name="q"
-              placeholder="Lorem ipsum…"
-            />
-            <button
-              className={style.contentHeaderSearchFormButton}
-              type="submit"
+            <form
+              action="/search"
+              className={style.contentHeaderSearchForm}
+              role="search"
             >
-              Search
-            </button>
-          </form>
+              <input
+                aria-label="Search"
+                className={style.contentHeaderSearchFormInput}
+                name="q"
+                placeholder="Lorem ipsum…"
+              />
+              <button
+                className={style.contentHeaderSearchFormButton}
+                type="submit"
+              >
+                Search
+              </button>
+            </form>
+          </div>
         </div>
 
         {/* END Header */}

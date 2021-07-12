@@ -76,13 +76,19 @@ export const Page: FC<PageProps> = ({
         <PageItemGrid items={itemsStart} />
 
         {advertisements[0] && (
-          <PageAdvertisement mb={4} {...advertisements[0]} />
+          <PageAdvertisement
+            className={css({ marginBottom: theme.space[4] })}
+            {...advertisements[0]}
+          />
         )}
 
         <PageItemGrid items={itemsMiddle} />
 
         {advertisements[1] && (
-          <PageAdvertisement mb={4} {...advertisements[1]} />
+          <PageAdvertisement
+            className={css({ marginBottom: theme.space[4] })}
+            {...advertisements[1]}
+          />
         )}
 
         <PageItemGrid items={itemsEnd} />

@@ -2,7 +2,6 @@ import type { FC } from "react";
 import { useStyletron } from "styletron-react";
 
 import type { PageItemProps } from "../PageTypes";
-import { Box } from "../../utilities/Box";
 import { Button } from "../../Button/Button.styletron";
 import { useTheme } from "../../utilities/theme";
 
@@ -43,7 +42,7 @@ export const PageItem: FC<PageItemProps> = ({
           src={imageSrc}
         />
       </a>
-      <Box mb={1}>
+      <div className={css({ marginBottom: space[1] })}>
         <h2
           className={css({
             display: "inline",
@@ -65,7 +64,7 @@ export const PageItem: FC<PageItemProps> = ({
         >
           {description}
         </p>
-      </Box>
+      </div>
       <span
         className={css({
           color: color.orange,
@@ -76,9 +75,9 @@ export const PageItem: FC<PageItemProps> = ({
       >
         {price}
       </span>
-      <Box mb={2}>
+      <div className={css({ marginBottom: space[2] })}>
         <Button size="medium">Lorem ipsum</Button>
-      </Box>
+      </div>
       {fulfillment && (
         <span
           className={css({

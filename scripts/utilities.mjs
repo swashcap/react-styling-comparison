@@ -22,7 +22,9 @@ export const loop = (render, prefix) => {
   }
 
   console.log(
-    `[${prefix}] renderToString, loop x10000: ${performance.now() - start} ms`
+    `[${prefix}] renderToString, loop x10000: ${
+      1e7 / (performance.now() - start)
+    } ops/sec`
   );
 };
 
@@ -43,7 +45,7 @@ export const stream = async (render, prefix) => {
 
   console.log(
     `[${prefix}] renderToNodeStream, 10 parallel x1000: ${
-      performance.now() - start
+      1e7 / (performance.now() - start)
     } ms`
   );
 };

@@ -127,8 +127,7 @@
   line-height: $line-height-solid;
 }
 
-.contentHeaderSearchForm {
-  display: flex;
+.contentHeaderSearchFormWrapper {
   width: 100%;
 
   @media #{$breakpoint-medium} {
@@ -137,6 +136,10 @@
   @media #{$breakpoint-large} {
     width: 33.33%;
   }
+}
+
+.contentHeaderSearchForm {
+  display: flex;
 }
 
 .contentHeaderSearchFormInput,

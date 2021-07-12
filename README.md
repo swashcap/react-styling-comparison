@@ -2,7 +2,7 @@
 
 _An experiment testing React + styling methods' impact on bundle size._
 
-## Solutions explored
+## Considered options
 
 * [CSS Modules](https://github.com/css-modules/css-modules)
 * [Inline Styles](https://reactjs.org/docs/dom-elements.html#style)
@@ -12,6 +12,14 @@ _An experiment testing React + styling methods' impact on bundle size._
 
 ## Findings
 
+* A styling technique's pros and cons aren't immediately obvious without considering and measuring all aspects of an app--from UX (best estimate via Lighthouse) to SSR performance. Bundle size isn't always an accurate predictor of TTI, for example.
+* Splitting styles up per page--recommended by [Top 10 performance pitfalls - HTTP 203](https://youtu.be/Lh9q3h2khlc)--is essential. Tachyons, which achieves performance by caching everything, falls short of other solutions on that all-important first page load.
+* CSS-in-JS solutions aren't optimized for React SSR compared to more traditional methods.
+* A library's size itself isn't the best indicator of performance of an app build with said library. Sometimes actual use of a library results in less app code per feature.
+* This exercise was only possible by writing Tachyons first--constraining styles to what was available in Tachyons. Working the other way around would have resulted in inconsisten UI between considered options.
+
+## Data
+
 ### Lighthouse
 
 This project contains web applications of the [Page component](#page) that have server-side rendering through a lightweight [fastify](https://www.fastify.io) server and rehydrate the React application on the client. Running these through Lighthouse's Performance tool (Mobile, average of 10 runs) yields the following numbers:
@@ -19,8 +27,9 @@ This project contains web applications of the [Page component](#page) that have 
 |               | Score | First Content Paint | Time to Interactive | Speed Index | Total Blocking Time | Largest Contentful Paint |
 | ------------- | ----: | ------------------: | ------------------: | ----------: | ------------------: | -----------------------: |
 | CSS Modules   |    99 |                1.6s |                2.4s |        1.6s |                97ms |                     1.8s |
+| Emotion       |    97 |                1.9s |                2.6s |        1.9s |               120ms |                     2.3s |
 | Inline Styles |    99 |                1.6s |                2.2s |        1.6s |               128ms |                     1.7s |
-| Styletron     |    99 |                1.5s |                2.6s |        1.5s |               158ms |                     1.7s |
+| Styletron     |    99 |                1.5s |                2.4s |        1.5s |                90ms |                     1.8s |
 | Tachyons      |    96 |                2.0s |                2.9s |        2.1s |               154ms |                     2.3s |
 
 ### Client bundle size
@@ -29,11 +38,11 @@ The [comparison script](./scripts/compare.js) demonstrates:
 
 |               | Button JS | Button CSS | Sidebar JS | Sidebar CSS | Page JS | Page CSS | App (Page + React) |
 | ------------- | --------: | ---------: | ---------: | ----------: | ------: | -------: | -----------------: |
-| CSS Modules   |       320 |        424 |        862 |         683 |    2034 |     1630 |              44624 |
-| Emotion       |      6482 |          0 |       7355 |           0 |    9240 |        0 |              52822 |
-| Inline Styles |       789 |          0 |       1607 |           0 |    3529 |        0 |              46040 |
-| Styletron     |      1363 |          0 |       2371 |           0 |    4487 |        0 |              51954 |
-| Tachyons      |       457 |      15558 |       1122 |       15558 |    2522 |    15558 |              45050 |
+| CSS Modules   |       320 |        424 |        861 |         682 |    2047 |     1631 |              44641 |
+| Emotion       |      6482 |          0 |       7355 |           0 |    9269 |        0 |              53781 |
+| Inline Styles |       789 |          0 |       1607 |           0 |    3675 |        0 |              46180 |
+| Styletron     |      1363 |          0 |       2162 |           0 |    4289 |        0 |              51725 |
+| Tachyons      |       457 |      15558 |       1122 |       15558 |    2530 |    15558 |              45057 |
 
 ### Server-side rendering
 
@@ -48,10 +57,11 @@ $ for f in scripts/stream/*.mjs; do NODE_ENV=production node "$f" 2>/dev/null; s
 
 |               | renderToString  | renderToNodeStream |
 | ------------- | --------------: | -----------------: |
-| CSS Modules   | 1164.18 ops/sec |     980.81 ops/sec |
-| Inline Styles |  520.95 ops/sec |     447.41 ops/sec |
-| Styletron     |  221.83 ops/sec |     216.29 ops/sec |
-| Tachyons      | 1074.00 ops/sec |     840.24 ops/sec |
+| CSS Modules   | 1093.28 ops/sec |     848.76 ops/sec |
+| Emotion       |  204.07 ops/sec |      86.87 ops/sec |
+| Inline Styles |  507.81 ops/sec |     385.94 ops/sec |
+| Styletron     |  255.00 ops/sec |     224.97 ops/sec |
+| Tachyons      | 1000.80 ops/sec |     746.11 ops/sec |
 
 ## Example components
 

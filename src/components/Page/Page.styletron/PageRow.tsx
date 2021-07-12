@@ -1,16 +1,18 @@
-import type { FC } from "react";
+import type { FC, HTMLAttributes } from "react";
 import { useStyletron } from "styletron-react";
 
-import { Box, BoxProps } from "../../utilities/Box";
 import { clsx } from "../../utilities/clsx";
 import { useTheme } from "../../utilities/theme";
 
-export const PageRow: FC<BoxProps> = ({ className, ...rest }) => {
+export const PageRow: FC<HTMLAttributes<HTMLDivElement>> = ({
+  className,
+  ...rest
+}) => {
   const [css] = useStyletron();
   const { space } = useTheme();
 
   return (
-    <Box
+    <div
       className={clsx(
         css({
           display: "flex",
@@ -25,6 +27,23 @@ export const PageRow: FC<BoxProps> = ({ className, ...rest }) => {
   );
 };
 
-export const PageRowItem: FC<BoxProps> = (props) => (
-  <Box pl={2} pr={2} {...props} />
-);
+export const PageRowItem: FC<HTMLAttributes<HTMLDivElement>> = ({
+  className,
+  ...rest
+}) => {
+  const [css] = useStyletron();
+  const { space } = useTheme();
+
+  return (
+    <div
+      className={clsx(
+        css({
+          paddingLeft: space[2],
+          paddingRight: space[2],
+        }),
+        className
+      )}
+      {...rest}
+    />
+  );
+};

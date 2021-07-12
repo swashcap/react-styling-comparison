@@ -2,16 +2,12 @@ import type { FC, HTMLAttributes } from "react";
 import { useStyletron } from "styletron-react";
 
 import type { PageProps } from "../PageTypes";
-import { Box, BoxProps } from "../../utilities/Box";
 import { Button } from "../../Button/Button.styletron";
 import { useTheme } from "../../utilities/theme";
 import { clsx } from "../../utilities/clsx";
 
 export const PageLead: FC<
-  HTMLAttributes<HTMLElement> & { lead: PageProps["lead"] } & Omit<
-      BoxProps,
-      "title"
-    >
+  HTMLAttributes<HTMLElement> & { lead: PageProps["lead"] }
 > = ({
   className,
   lead: { actionOnClick, actionText, description, title },
@@ -21,20 +17,17 @@ export const PageLead: FC<
   const theme = useTheme();
 
   return (
-    <Box
+    <div
       className={clsx(
         css({
           background: theme.color.lightestBlue,
           borderRadius: theme.borderRadius[2],
           color: theme.color.darkGray,
+          marginBottom: theme.space[4],
+          padding: theme.space[4],
         }),
         className
       )}
-      mb={4}
-      pb={4}
-      pl={4}
-      pr={4}
-      pt={4}
       {...rest}
     >
       <h1
@@ -61,6 +54,6 @@ export const PageLead: FC<
       <Button onClick={actionOnClick} size="large" variant="primary">
         {actionText}
       </Button>
-    </Box>
+    </div>
   );
 };

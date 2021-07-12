@@ -1,8 +1,9 @@
 import type { FC } from "react";
 
 import type { PageAdvertisementProps } from "../PageTypes";
+import type { Theme } from "../../utilities/theme";
 import { Button } from "../../Button/Button.emotion";
-import { Theme } from "../../utilities/theme";
+import { PageRow, PageRowItem } from "./PageRow.emotion";
 
 export const PageAdvertisement: FC<PageAdvertisementProps> = ({
   actionText,
@@ -20,19 +21,9 @@ export const PageAdvertisement: FC<PageAdvertisementProps> = ({
     })}
     {...rest}
   >
-    <div
-      css={(theme: Theme) => ({
-        display: "flex",
-        flexWrap: "wrap",
-        marginLeft: `calc(-1 * ${theme.space[2]})`,
-        marginRight: `calc(-1 * ${theme.space[2]})`,
-      })}
-    >
-      <div
+    <PageRow>
+      <PageRowItem
         css={(theme: Theme) => ({
-          paddingLeft: theme.space[2],
-          paddingRight: theme.space[2],
-
           [theme.breakpoint.md]: {
             width: "66.66%",
           },
@@ -49,12 +40,9 @@ export const PageAdvertisement: FC<PageAdvertisementProps> = ({
           }}
           src={imageSrc}
         />
-      </div>
-      <div
+      </PageRowItem>
+      <PageRowItem
         css={(theme: Theme) => ({
-          paddingLeft: theme.space[2],
-          paddingRight: theme.space[2],
-
           [theme.breakpoint.md]: {
             width: "33.33%",
           },
@@ -84,7 +72,7 @@ export const PageAdvertisement: FC<PageAdvertisementProps> = ({
         <Button size="medium" variant="primary">
           {actionText}
         </Button>
-      </div>
-    </div>
+      </PageRowItem>
+    </PageRow>
   </aside>
 );

@@ -1,29 +1,25 @@
-import type { FC } from "react";
+import type { FC, HTMLAttributes } from "react";
 
 import type { PageItemProps } from "../PageTypes";
+import type { Theme } from "../../utilities/theme";
 import { PageItem } from "./PageItem.emotion";
-import { Theme } from "../../utilities/theme";
+import { PageRow, PageRowItem } from "./PageRow.emotion";
 
-export interface PageItemGridProps {
+export interface PageItemGridProps extends HTMLAttributes<HTMLElement> {
   items: PageItemProps[];
 }
 
-export const PageItemGrid: FC<PageItemGridProps> = ({ items }) => (
-  <div
+export const PageItemGrid: FC<PageItemGridProps> = ({ items, ...rest }) => (
+  <PageRow
     css={(theme: Theme) => ({
-      display: "flex",
-      flexWrap: "wrap",
       marginBottom: theme.space[3],
-      marginLeft: `calc(-1 * ${theme.space[2]})`,
-      marginRight: `calc(-1 * ${theme.space[2]})`,
     })}
+    {...rest}
   >
     {items.map((item, index) => (
-      <div
+      <PageRowItem
         css={(theme: Theme) => ({
           marginBottom: theme.space[3],
-          paddingLeft: theme.space[2],
-          paddingRight: theme.space[2],
           width: "100%",
 
           [theme.breakpoint.md]: {
@@ -38,7 +34,7 @@ export const PageItemGrid: FC<PageItemGridProps> = ({ items }) => (
         key={index}
       >
         <PageItem {...item} />
-      </div>
+      </PageRowItem>
     ))}
-  </div>
+  </PageRow>
 );

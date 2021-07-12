@@ -7,6 +7,7 @@ export const advertisementTitle: string;
 export const contentHeaderSearchForm: string;
 export const contentHeaderSearchFormButton: string;
 export const contentHeaderSearchFormInput: string;
+export const contentHeaderSearchFormWrapper: string;
 export const contentHeaderStats: string;
 export const contentHeaderStatsBadge: string;
 export const contentHeaderStatsItem: string;

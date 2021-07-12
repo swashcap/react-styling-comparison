@@ -1,15 +1,14 @@
-import type { FC } from "react";
+import type { FC, HTMLAttributes } from "react";
 import { useStyletron } from "styletron-react";
 
 import type { PageAdvertisementProps } from "../PageTypes";
-import { Box, BoxProps } from "../../utilities/Box";
 import { Button } from "../../Button/Button.styletron";
 import { PageRow, PageRowItem } from "./PageRow";
 import { useTheme } from "../../utilities/theme";
 import { clsx } from "../../utilities/clsx";
 
 export const PageAdvertisement: FC<
-  PageAdvertisementProps & Omit<BoxProps, "title">
+  PageAdvertisementProps & Omit<HTMLAttributes<HTMLElement>, "title">
 > = ({
   actionText,
   className,
@@ -24,19 +23,15 @@ export const PageAdvertisement: FC<
   const { breakpoint } = theme;
 
   return (
-    <Box
-      as="aside"
+    <aside
       className={clsx(
         css({
           background: theme.color.nearWhite,
           borderRadius: theme.borderRadius[2],
+          padding: theme.space[3],
         }),
         className
       )}
-      pb={3}
-      pl={3}
-      pr={3}
-      pt={3}
       {...rest}
     >
       <PageRow>
@@ -79,14 +74,19 @@ export const PageAdvertisement: FC<
           >
             {title}
           </h1>
-          <Box as="p" mb={3} mt={2}>
+          <p
+            className={css({
+              marginBottom: theme.space[3],
+              marginTop: theme.space[2],
+            })}
+          >
             {description}
-          </Box>
+          </p>
           <Button size="medium" variant="primary">
             {actionText}
           </Button>
         </PageRowItem>
       </PageRow>
-    </Box>
+    </aside>
   );
 };

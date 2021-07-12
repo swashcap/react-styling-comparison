@@ -2,14 +2,15 @@ import type { FC, HTMLAttributes } from "react";
 import { useStyletron } from "styletron-react";
 
 import type { PageProps } from "../PageTypes";
-import { Box } from "../../utilities/Box";
 import { Button } from "../../Button/Button.styletron";
 import { PageRow, PageRowItem } from "./PageRow";
+import { clsx } from "../../utilities/clsx";
 import { useTheme } from "../../utilities/theme";
 
 export const PageFooter: FC<
   HTMLAttributes<HTMLElement> & { footer: PageProps["footer"] }
 > = ({
+  className,
   footer: { actionOnClick, actionText, finePrint1, finePrint2, menus },
   ...rest
 }) => {
@@ -18,17 +19,24 @@ export const PageFooter: FC<
   const { color, space } = theme;
 
   return (
-    <Box
-      className={css({
-        borderTop: `1px solid ${color.silver}`,
-        color: color.midGray,
-      })}
-      mt={4}
-      pb={4}
-      pt={3}
+    <div
+      className={clsx(
+        css({
+          borderTop: `1px solid ${color.silver}`,
+          color: color.midGray,
+          marginTop: space[4],
+          paddingBottom: space[4],
+          paddingTop: space[3],
+        }),
+        className
+      )}
       {...rest}
     >
-      <PageRow mb={4}>
+      <PageRow
+        className={css({
+          marginBottom: space[4],
+        })}
+      >
         {menus.map(({ title, links }, index) => (
           <PageRowItem
             className={css({
@@ -115,6 +123,6 @@ export const PageFooter: FC<
           {finePrint2}
         </small>
       </aside>
-    </Box>
+    </div>
   );
 };
