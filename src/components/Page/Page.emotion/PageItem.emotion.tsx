@@ -3,6 +3,7 @@ import type { FC } from "react";
 import type { PageItemProps } from "../PageTypes";
 import { Button } from "../../Button/Button.emotion";
 import { Theme } from "../../utilities/theme";
+import { Box } from "../../Box/Box.emotion";
 
 export const PageItem: FC<PageItemProps> = ({
   description,
@@ -36,54 +37,58 @@ export const PageItem: FC<PageItemProps> = ({
         src={imageSrc}
       />
     </a>
-    <div css={(theme: Theme) => ({ marginBottom: theme.space[1] })}>
-      <h2
+    <Box mb={1}>
+      <Box
+        as="h2"
         css={(theme: Theme) => ({
           display: "inline",
           fontSize: theme.fontSize[5],
           lineHeight: theme.lineHeight.copy,
-          margin: 0,
-          paddingRight: theme.space[1],
         })}
+        ma={0}
+        pr={1}
       >
         {title}
-      </h2>
-      <p
+      </Box>
+      <Box
+        as="p"
         css={(theme: Theme) => ({
-          color: theme.color.midGray,
           display: "inline",
           fontSize: theme.fontSize[6],
-          margin: 0,
         })}
+        ma={0}
+        textColor="midGray"
       >
         {description}
-      </p>
-    </div>
-    <span
+      </Box>
+    </Box>
+    <Box
+      as="span"
       css={(theme: Theme) => ({
-        color: theme.color.orange,
         display: "block",
         fontSize: theme.fontSize[4],
-        marginBottom: theme.space[2],
       })}
+      mb={2}
+      textColor="orange"
     >
       {price}
-    </span>
-    <div css={(theme) => ({ marginBottom: theme.space[2] })}>
+    </Box>
+    <Box mb={2}>
       <Button size="medium">Lorem ipsum</Button>
-    </div>
+    </Box>
     {fulfillment && (
-      <span
+      <Box
+        as="span"
         css={(theme: Theme) => ({
-          color: theme.color.midGray,
           fontSize: theme.fontSize[6],
         })}
+        textColor="midGray"
       >
         Get it by{" "}
-        <span css={(theme: Theme) => ({ color: theme.color.green })}>
+        <Box as="span" textColor="green">
           {fulfillment}
-        </span>
-      </span>
+        </Box>
+      </Box>
     )}
   </article>
 );

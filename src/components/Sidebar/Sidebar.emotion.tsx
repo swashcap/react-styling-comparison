@@ -2,6 +2,7 @@ import type { FC, HTMLAttributes } from "react";
 import { useState } from "react";
 
 import type { SidebarProps } from "./SidebarTypes";
+import { Box } from "../Box/Box.emotion";
 import { Theme } from "../utilities/theme";
 
 const SidebarIcon: FC<HTMLAttributes<HTMLElement> & { name: string }> = ({
@@ -23,42 +24,40 @@ export const Sidebar: FC<SidebarProps> = ({
   const [activeSubNavIndex, setActiveSubNavIndex] = useState(0);
 
   return (
-    <div
+    <Box
+      bg="nearWhite"
       css={(theme: Theme) => ({
-        background: theme.color.nearWhite,
-        color: theme.color.darkGray,
         display: "flex",
         flexDirection: "column",
         fontFamily: theme.fontFamily.sansSerif,
         justifyContent: "space-between",
         lineHeight: theme.lineHeight.copy,
       })}
+      textColor="darkGray"
       {...rest}
     >
       <div>
         <nav>
-          <ul
-            css={(theme: Theme) => ({
+          <Box
+            as="ul"
+            css={{
               listStyle: "none",
-              margin: 0,
-              padding: theme.space[2],
-            })}
+            }}
+            ma={0}
+            pa={2}
           >
             {navItems.map((item) => {
               const { active, icon, name, url } = item;
 
               return (
                 <li key={url}>
-                  <a
+                  <Box
+                    as="a"
+                    bg={active ? "lightGray" : undefined}
                     css={(theme: Theme) => ({
-                      background: active ? theme.color.lightGray : undefined,
                       borderRadius: theme.borderRadius[1],
-                      color: active
-                        ? theme.color.darkBlue
-                        : theme.color.darkGray,
                       display: "block",
                       textDecoration: "none",
-                      padding: theme.space[2],
 
                       "&:focus, &:hover": {
                         color: theme.color.blue,
@@ -68,6 +67,8 @@ export const Sidebar: FC<SidebarProps> = ({
                     onClick={(event) => {
                       onNavItemClick(event, item);
                     }}
+                    pa={2}
+                    textColor={active ? "darkBlue" : "darkGray"}
                   >
                     <SidebarIcon
                       css={(theme: Theme) => ({
@@ -76,31 +77,34 @@ export const Sidebar: FC<SidebarProps> = ({
                       name={icon}
                     />
                     {name}
-                  </a>
+                  </Box>
                 </li>
               );
             })}
-          </ul>
+          </Box>
         </nav>
         {subNavMenuKeys.length > 0 && (
-          <nav
+          <Box
+            as="nav"
             css={(theme) => ({
               borderTop: `1px solid ${theme.color.moonGray}`,
-              paddingBottom: theme.space[3],
-              paddingTop: theme.space[3],
             })}
+            pv={3}
           >
-            <h3
+            <Box
+              as="h3"
               css={(theme: Theme) => ({
-                color: theme.color.gray,
                 fontSize: theme.fontSize[7],
                 fontWeight: theme.fontWeight[500],
-                margin: `0 ${theme.space[3]} ${theme.space[1]}`,
                 textTransform: "uppercase",
               })}
+              mb={1}
+              mh={3}
+              mt={0}
+              textColor="gray"
             >
               Projects
-            </h3>
+            </Box>
             {subNavMenuKeys.map((key, index) => {
               const buttonId = `sidebar-${index}-button`;
               const controlId = `sidebar-${index}-content`;
@@ -111,20 +115,14 @@ export const Sidebar: FC<SidebarProps> = ({
               }
 
               return (
-                <div
-                  css={(theme: Theme) => ({
-                    paddingLeft: theme.space[2],
-                    paddingRight: theme.space[2],
-                  })}
-                  key={key}
-                >
-                  <button
+                <Box ph={2} key={key}>
+                  <Box
+                    as="button"
                     aria-controls={controlId}
                     aria-expanded={isExpanded}
                     css={(theme: Theme) => ({
                       background: "transparent",
                       border: "none",
-                      color: theme.color.darkGray,
                       cursor: "pointer",
                       display: "flex",
                       fontFamily: "inherit",
@@ -132,7 +130,6 @@ export const Sidebar: FC<SidebarProps> = ({
                       justifyContent: "space-between",
                       lineHeight: theme.lineHeight.copy,
                       margin: 0,
-                      padding: theme.space[2],
                       width: "100%",
 
                       "&:focus, &:hover": {
@@ -144,12 +141,14 @@ export const Sidebar: FC<SidebarProps> = ({
                       setActiveSubNavIndex(isExpanded ? -1 : index);
                     }}
                     type="button"
+                    textColor="darkGray"
+                    pa={2}
                   >
                     <span>{key}</span>
                     <SidebarIcon
                       name={`caret-square-${isExpanded ? "down" : "up"}`}
                     />
-                  </button>
+                  </Box>
                   <div
                     aria-labelledby={buttonId}
                     css={{
@@ -157,21 +156,21 @@ export const Sidebar: FC<SidebarProps> = ({
                     }}
                     id={controlId}
                   >
-                    <ul
+                    <Box
+                      as="ul"
                       css={{
                         listStyle: "none",
-                        margin: 0,
-                        padding: 0,
                       }}
+                      ma={0}
+                      pa={0}
                     >
                       {subNavMenu[key].map(({ name, url }) => (
                         <li key={url}>
-                          <a
+                          <Box
+                            as="a"
                             css={(theme: Theme) => ({
                               borderRadius: theme.borderRadius[1],
-                              color: theme.color.darkGray,
                               display: "block",
-                              padding: `${theme.space[1]} ${theme.space[2]} ${theme.space[1]} ${theme.space[3]}`,
                               textDecoration: "none",
 
                               "&:focus, &:hover": {
@@ -179,63 +178,68 @@ export const Sidebar: FC<SidebarProps> = ({
                               },
                             })}
                             href={url}
+                            pl={3}
+                            pr={2}
+                            pv={1}
+                            textColor="darkGray"
                           >
                             {name}
-                          </a>
+                          </Box>
                         </li>
                       ))}
-                    </ul>
+                    </Box>
                   </div>
-                </div>
+                </Box>
               );
             })}
-          </nav>
+          </Box>
         )}
       </div>
-      <div
+      <Box
         css={(theme: Theme) => ({
           alignItems: "center",
           borderTop: `1px solid ${theme.color.moonGray}`,
           display: "flex",
           justifyContent: "space-between",
-          padding: theme.space[3],
         })}
+        pa={3}
       >
         <div css={{ alignItems: "center", display: "flex" }}>
-          <div
+          <Box
             aria-hidden
+            bg="darkGreen"
             css={(theme: Theme) => ({
-              background: theme.color.darkGreen,
               borderRadius: "100%",
-              color: theme.color.white,
               flex: "none",
               fontSize: theme.fontSize[6],
               fontWeight: theme.fontWeight[600],
               height: "2rem",
               lineHeight: "2rem",
               marginLeft: `calc(-1 * ${theme.space[1]})`,
-              marginRight: theme.space[2],
               textAlign: "center",
               width: "2rem",
             })}
+            mr={2}
+            textColor="white"
           >
             {account.name
               .replace(/(\B\w)/g, "")
               .replace(" ", "")
               .toUpperCase()}
-          </div>
+          </Box>
           <div>
-            <h3
+            <Box
+              as="h3"
               css={(theme: Theme) => ({
-                color: theme.color.darkGray,
                 fontSize: theme.fontSize[5],
                 fontWeight: theme.fontWeight[500],
                 lineHeight: theme.lineHeight.solid,
-                margin: 0,
               })}
+              ma={0}
+              textColor="darkGray"
             >
               {account.name}
-            </h3>
+            </Box>
             <a
               css={(theme: Theme) => ({
                 color: theme.color.midGray,
@@ -273,7 +277,7 @@ export const Sidebar: FC<SidebarProps> = ({
         >
           <SidebarIcon name="sun" />
         </button>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };

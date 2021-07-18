@@ -2,6 +2,7 @@ import type { FC, HTMLAttributes } from "react";
 import { useStyletron } from "styletron-react";
 
 import type { PageProps } from "../PageTypes";
+import { Box } from "../../Box/Box.styletron";
 import { Button } from "../../Button/Button.styletron";
 import { useTheme } from "../../utilities/theme";
 import { clsx } from "../../utilities/clsx";
@@ -17,17 +18,17 @@ export const PageLead: FC<
   const theme = useTheme();
 
   return (
-    <div
+    <Box
       className={clsx(
         css({
           background: theme.color.lightestBlue,
           borderRadius: theme.borderRadius[2],
           color: theme.color.darkGray,
-          marginBottom: theme.space[4],
-          padding: theme.space[4],
         }),
         className
       )}
+      mb={4}
+      pa={4}
       {...rest}
     >
       <h1
@@ -54,6 +55,6 @@ export const PageLead: FC<
       <Button onClick={actionOnClick} size="large" variant="primary">
         {actionText}
       </Button>
-    </div>
+    </Box>
   );
 };

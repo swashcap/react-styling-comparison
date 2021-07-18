@@ -1,9 +1,9 @@
-import type { FC, HTMLAttributes } from "react";
-
+import { Box } from "../../Box/Box.emotion";
+import { BoxProps } from "../../Box/BoxTypes";
 import { Theme } from "../../utilities/theme";
 
-export const PageRow: FC<HTMLAttributes<HTMLDivElement>> = (props) => (
-  <div
+export const PageRow = (props: Omit<BoxProps<"div">, "as">) => (
+  <Box
     css={(theme: Theme) => ({
       display: "flex",
       flexWrap: "wrap",
@@ -14,12 +14,6 @@ export const PageRow: FC<HTMLAttributes<HTMLDivElement>> = (props) => (
   />
 );
 
-export const PageRowItem: FC<HTMLAttributes<HTMLDivElement>> = (props) => (
-  <div
-    css={(theme: Theme) => ({
-      paddingLeft: theme.space[2],
-      paddingRight: theme.space[2],
-    })}
-    {...props}
-  />
+export const PageRowItem = (props: Omit<BoxProps<"div">, "as">) => (
+  <Box ph={2} {...props} />
 );

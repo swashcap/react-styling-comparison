@@ -2,6 +2,7 @@ import type { FC, HTMLAttributes } from "react";
 
 import type { PageProps } from "../PageTypes";
 import type { Theme } from "../../utilities/theme";
+import { Box } from "../../Box/Box.emotion";
 import { Button } from "../../Button/Button.emotion";
 import { PageRow, PageRowItem } from "./PageRow.emotion";
 
@@ -11,21 +12,17 @@ export const PageFooter: FC<
   footer: { actionOnClick, actionText, finePrint1, finePrint2, menus },
   ...rest
 }) => (
-  <div
+  <Box
     css={(theme: Theme) => ({
       borderTop: `1px solid ${theme.color.silver}`,
-      color: theme.color.midGray,
-      marginTop: theme.space[4],
-      paddingBottom: theme.space[4],
-      paddingTop: theme.space[3],
     })}
+    mt={4}
+    pb={4}
+    pt={3}
+    textColor="midGray"
     {...rest}
   >
-    <PageRow
-      css={(theme: Theme) => ({
-        marginBottom: theme.space[4],
-      })}
-    >
+    <PageRow mb={4}>
       {menus.map(({ title, links }, index) => (
         <PageRowItem
           css={(theme: Theme) => ({
@@ -40,25 +37,27 @@ export const PageFooter: FC<
           })}
           key={index}
         >
-          <h3
+          <Box
+            as="h3"
             css={(theme: Theme) => ({
               fontSize: theme.fontSize[5],
               fontWeight: theme.fontWeight[700],
               lineHeight: theme.lineHeight.copy,
-              marginBottom: theme.space[1],
-              marginTop: 0,
             })}
+            mb={1}
+            mt={0}
           >
             {title}
-          </h3>
-          <ul
+          </Box>
+          <Box
+            as="ul"
             css={(theme: Theme) => ({
               fontSize: theme.fontSize[6],
               lineHeight: theme.lineHeight.copy,
               listStyle: "none",
-              margin: 0,
-              padding: 0,
             })}
+            ma={0}
+            pa={0}
           >
             {links.map(({ name, url }) => (
               <li key={url}>
@@ -77,37 +76,39 @@ export const PageFooter: FC<
                 </a>
               </li>
             ))}
-          </ul>
+          </Box>
         </PageRowItem>
       ))}
     </PageRow>
     <aside>
-      <p
+      <Box
+        as="p"
         css={(theme: Theme) => ({
           fontSize: theme.fontSize[6],
           lineHeight: theme.lineHeight.copy,
-          marginBottom: theme.space[2],
-          marginTop: 0,
         })}
+        mt={0}
+        mb={2}
       >
         {finePrint1}
-      </p>
+      </Box>
       <Button onClick={actionOnClick} size="small" variant="tertiary">
         {actionText}
       </Button>
-      <small
+      <Box
+        as="small"
         css={(theme: Theme) => ({
           borderTop: `1px solid ${theme.color.moonGray}`,
-          color: theme.color.gray,
           display: "block",
           fontSize: theme.fontSize[7],
           lineHeight: theme.lineHeight.copy,
-          marginTop: theme.space[3],
-          paddingTop: theme.space[2],
         })}
+        mt={3}
+        pt={2}
+        textColor="gray"
       >
         {finePrint2}
-      </small>
+      </Box>
     </aside>
-  </div>
+  </Box>
 );

@@ -2,17 +2,13 @@ import type { FC, HTMLAttributes } from "react";
 
 import type { PageProps } from "../PageTypes";
 import type { Theme } from "../../utilities/theme";
+import { Box } from "../../Box/Box.emotion";
 import { PageRow, PageRowItem } from "./PageRow.emotion";
 
 export const PageHeader: FC<
   HTMLAttributes<HTMLElement> & { header: PageProps["header"] }
 > = ({ header, ...rest }) => (
-  <PageRow
-    css={(theme: Theme) => ({
-      marginBottom: theme.space[4],
-    })}
-    {...rest}
-  >
+  <PageRow mb={4} {...rest}>
     <PageRowItem
       css={(theme: Theme) => ({
         width: "100%",
@@ -25,21 +21,15 @@ export const PageHeader: FC<
         },
       })}
     >
-      <div
+      <Box
         css={(theme: Theme) => ({
           borderBottom: `1px solid ${theme.color.silver}`,
           display: "flex",
-          paddingBottom: theme.space[1],
         })}
+        pb={1}
       >
         {header.map(({ count, label, status, value }, index) => (
-          <div
-            css={(theme: Theme) => ({
-              paddingRight:
-                index < header.length - 1 ? theme.space[4] : undefined,
-            })}
-            key={index}
-          >
+          <Box pr={index < header.length - 1 ? 4 : undefined} key={index}>
             <div
               css={{
                 display: "inline-block",
@@ -60,36 +50,38 @@ export const PageHeader: FC<
                 {value}
               </span>
               {typeof count !== "undefined" && (
-                <span
+                <Box
+                  as="span"
+                  bg="yellow"
                   css={(theme: Theme) => ({
-                    background: theme.color.yellow,
                     borderRadius: "100%",
                     display: "inline-block",
                     fontSize: theme.fontSize[7],
                     lineHeight: theme.lineHeight.solid,
-                    padding: theme.space[1],
                     position: "absolute",
                     right: "-1rem",
                     top: "-1rem",
                   })}
+                  pa={1}
                 >
                   {count}
-                </span>
+                </Box>
               )}
             </div>
-            <span
+            <Box
+              as="span"
               css={(theme: Theme) => ({
-                color: theme.color.gray,
                 display: "block",
                 fontSize: theme.fontSize[7],
                 lineHeight: theme.lineHeight.solid,
               })}
+              textColor="gray"
             >
               {label}
-            </span>
-          </div>
+            </Box>
+          </Box>
         ))}
-      </div>
+      </Box>
     </PageRowItem>
     <PageRowItem
       css={(theme: Theme) => ({
@@ -110,41 +102,43 @@ export const PageHeader: FC<
         }}
         role="search"
       >
-        <input
+        <Box
+          as="input"
+          bg="nearWhite"
           aria-label="Search"
           css={(theme: Theme) => ({
             appearance: "none",
-            background: theme.color.nearWhite,
             border: `1px solid ${theme.color.silver}`,
             borderRadius: `${theme.borderRadius[2]} 0 0 ${theme.borderRadius[2]}`,
-            color: theme.color.black,
             flex: "1 1 auto",
             fontFamily: theme.fontFamily.sansSerif,
             fontSize: theme.fontSize[5],
             lineHeight: theme.lineHeight.solid,
             minWidth: 0,
-            padding: theme.space[2],
           })}
           name="q"
+          pa={2}
           placeholder="Lorem ipsum…"
+          textColor="black"
         />
-        <button
+        <Box
+          as="button"
+          bg="gray"
           css={(theme: Theme) => ({
-            background: theme.color.gray,
             border: "1px solid transparent",
             borderRadius: `0 ${theme.borderRadius[2]} ${theme.borderRadius[2]} 0`,
-            color: theme.color.white,
             cursor: "pointer",
             flex: "none",
             fontFamily: theme.fontFamily.sansSerif,
             fontSize: theme.fontSize[5],
             lineHeight: theme.lineHeight.solid,
-            padding: theme.space[2],
           })}
+          pa={2}
           type="submit"
+          textColor="white"
         >
           Search
-        </button>
+        </Box>
       </form>
     </PageRowItem>
   </PageRow>

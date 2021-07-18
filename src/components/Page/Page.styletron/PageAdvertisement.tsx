@@ -1,39 +1,22 @@
-import type { FC, HTMLAttributes } from "react";
+import type { FC } from "react";
 import { useStyletron } from "styletron-react";
 
+import type { BoxProps } from "../../Box/BoxTypes";
 import type { PageAdvertisementProps } from "../PageTypes";
+import { Box } from "../../Box/Box.styletron";
 import { Button } from "../../Button/Button.styletron";
 import { PageRow, PageRowItem } from "./PageRow";
 import { useTheme } from "../../utilities/theme";
-import { clsx } from "../../utilities/clsx";
 
 export const PageAdvertisement: FC<
-  PageAdvertisementProps & Omit<HTMLAttributes<HTMLElement>, "title">
-> = ({
-  actionText,
-  className,
-  description,
-  imageAlt,
-  imageSrc,
-  title,
-  ...rest
-}) => {
+  PageAdvertisementProps & Omit<BoxProps<"aside">, "title">
+> = ({ actionText, description, imageAlt, imageSrc, title, ...rest }) => {
   const [css] = useStyletron();
   const theme = useTheme();
   const { breakpoint } = theme;
 
   return (
-    <aside
-      className={clsx(
-        css({
-          background: theme.color.nearWhite,
-          borderRadius: theme.borderRadius[2],
-          padding: theme.space[3],
-        }),
-        className
-      )}
-      {...rest}
-    >
+    <Box as="aside" bg="nearWhite" br={2} pa={3} {...rest}>
       <PageRow>
         <PageRowItem
           className={css({
@@ -74,19 +57,14 @@ export const PageAdvertisement: FC<
           >
             {title}
           </h1>
-          <p
-            className={css({
-              marginBottom: theme.space[3],
-              marginTop: theme.space[2],
-            })}
-          >
+          <Box as="p" mb={3} mt={2}>
             {description}
-          </p>
+          </Box>
           <Button size="medium" variant="primary">
             {actionText}
           </Button>
         </PageRowItem>
       </PageRow>
-    </aside>
+    </Box>
   );
 };

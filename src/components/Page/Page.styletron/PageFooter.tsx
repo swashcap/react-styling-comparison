@@ -6,6 +6,7 @@ import { Button } from "../../Button/Button.styletron";
 import { PageRow, PageRowItem } from "./PageRow";
 import { clsx } from "../../utilities/clsx";
 import { useTheme } from "../../utilities/theme";
+import { Box } from "../../Box/Box.styletron";
 
 export const PageFooter: FC<
   HTMLAttributes<HTMLElement> & { footer: PageProps["footer"] }
@@ -19,24 +20,20 @@ export const PageFooter: FC<
   const { color, space } = theme;
 
   return (
-    <div
+    <Box
       className={clsx(
         css({
           borderTop: `1px solid ${color.silver}`,
           color: color.midGray,
-          marginTop: space[4],
-          paddingBottom: space[4],
-          paddingTop: space[3],
         }),
         className
       )}
+      mt={4}
+      pb={4}
+      pt={2}
       {...rest}
     >
-      <PageRow
-        className={css({
-          marginBottom: space[4],
-        })}
-      >
+      <PageRow mb={4}>
         {menus.map(({ title, links }, index) => (
           <PageRowItem
             className={css({
@@ -123,6 +120,6 @@ export const PageFooter: FC<
           {finePrint2}
         </small>
       </aside>
-    </div>
+    </Box>
   );
 };

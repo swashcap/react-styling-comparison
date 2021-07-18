@@ -2,26 +2,18 @@ import type { FC, HTMLAttributes } from "react";
 import { useStyletron } from "styletron-react";
 
 import type { PageProps } from "../PageTypes";
+import { Box } from "../../Box/Box.styletron";
 import { PageRow, PageRowItem } from "./PageRow";
-import { clsx } from "../../utilities/clsx";
 import { useTheme } from "../../utilities/theme";
 
 export const PageHeader: FC<
   HTMLAttributes<HTMLElement> & { header: PageProps["header"] }
-> = ({ className, header, ...rest }) => {
+> = ({ header, ...rest }) => {
   const [css] = useStyletron();
   const theme = useTheme();
 
   return (
-    <PageRow
-      className={clsx(
-        css({
-          marginBottom: theme.space[4],
-        }),
-        className
-      )}
-      {...rest}
-    >
+    <PageRow mb={4} {...rest}>
       <PageRowItem
         className={css({
           width: "100%",
@@ -34,21 +26,15 @@ export const PageHeader: FC<
           },
         })}
       >
-        <div
+        <Box
           className={css({
             borderBottom: `1px solid ${theme.color.silver}`,
             display: "flex",
-            paddingBottom: theme.space[1],
           })}
+          pb={1}
         >
           {header.map(({ count, label, status, value }, index) => (
-            <div
-              className={css({
-                paddingRight:
-                  index < header.length - 1 ? theme.space[4] : undefined,
-              })}
-              key={index}
-            >
+            <Box pr={index < header.length - 1 ? 4 : undefined} key={index}>
               <div
                 className={css({
                   display: "inline-block",
@@ -96,9 +82,9 @@ export const PageHeader: FC<
               >
                 {label}
               </span>
-            </div>
+            </Box>
           ))}
-        </div>
+        </Box>
       </PageRowItem>
       <PageRowItem
         className={css({

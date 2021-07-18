@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import type { FC, HTMLAttributes } from "react";
 
 import { Button } from "../Button/Button.tachyons";
 import type {
@@ -9,7 +9,9 @@ import type {
 import { Sidebar } from "../Sidebar/Sidebar.tachyons";
 import { clsx } from "../utilities/clsx";
 
-const PageAdvertisement: FC<PageAdvertisementProps> = ({
+const PageAdvertisement: FC<
+  PageAdvertisementProps & Omit<HTMLAttributes<HTMLElement>, "title">
+> = ({
   actionText,
   className,
   description,
