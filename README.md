@@ -44,6 +44,8 @@ The [comparison script](./scripts/compare.js) demonstrates:
 | Styletron     |      1363 |          0 |       2162 |           0 |    4289 |        0 |              51725 |
 | Tachyons      |       457 |      15558 |       1122 |       15558 |    2530 |    15558 |              45057 |
 
+(All sizes gzipped.)
+
 ### Server-side rendering
 
 Using [React's server-side rendering](https://reactjs.org/docs/react-dom-server.html) reveals differences aren't limited to client bundle sizes:
@@ -55,13 +57,13 @@ $ for f in scripts/stream/*.mjs; do NODE_ENV=production node "$f" 2>/dev/null; s
 # ...
 ```
 
-|               | renderToString  | renderToNodeStream |
-| ------------- | --------------: | -----------------: |
-| CSS Modules   | 1093.28 ops/sec |     848.76 ops/sec |
-| Emotion       |  204.07 ops/sec |      86.87 ops/sec |
-| Inline Styles |  507.81 ops/sec |     385.94 ops/sec |
-| Styletron     |  255.00 ops/sec |     224.97 ops/sec |
-| Tachyons      | 1000.80 ops/sec |     746.11 ops/sec |
+|               | `renderToString` | `renderToNodeStream` | HTML bytes (gzip) |
+| ------------- | ---------------: | -------------------: | ----------------: |
+| CSS Modules   |  1093.28 ops/sec |       848.76 ops/sec |              5190 |
+| Emotion       |   204.07 ops/sec |        86.87 ops/sec |              8055 |
+| Inline Styles |   507.81 ops/sec |       385.94 ops/sec |              7280 |
+| Styletron     |   255.00 ops/sec |       224.97 ops/sec |              6967 |
+| Tachyons      |  1000.80 ops/sec |       746.11 ops/sec |              6166 |
 
 ## Example components
 
