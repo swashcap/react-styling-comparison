@@ -2,6 +2,7 @@ import type { FC } from "react";
 import { useStyletron } from "styletron-react";
 
 import type { PageProps } from "./PageTypes";
+import { Box } from "../Box/Box.styletron";
 import { PageAdvertisement } from "./Page.styletron/PageAdvertisement";
 import { PageFooter } from "./Page.styletron/PageFooter";
 import { PageHeader } from "./Page.styletron/PageHeader";
@@ -56,10 +57,10 @@ export const Page: FC<PageProps> = ({
 
       <PageSidebar sidebarProps={sidebarProps} />
 
-      <main
+      <Box
+        as="main"
         className={css({
           fontFamily: theme.fontFamily.sansSerif,
-          padding: theme.space[4],
 
           [theme.breakpoint.lg]: {
             height: "100vh",
@@ -68,6 +69,7 @@ export const Page: FC<PageProps> = ({
           },
         })}
         id="main"
+        pa={4}
       >
         <PageHeader header={header} />
 
@@ -76,25 +78,19 @@ export const Page: FC<PageProps> = ({
         <PageItemGrid items={itemsStart} />
 
         {advertisements[0] && (
-          <PageAdvertisement
-            className={css({ marginBottom: theme.space[4] })}
-            {...advertisements[0]}
-          />
+          <PageAdvertisement mb={4} {...advertisements[0]} />
         )}
 
         <PageItemGrid items={itemsMiddle} />
 
         {advertisements[1] && (
-          <PageAdvertisement
-            className={css({ marginBottom: theme.space[4] })}
-            {...advertisements[1]}
-          />
+          <PageAdvertisement mb={4} {...advertisements[1]} />
         )}
 
         <PageItemGrid items={itemsEnd} />
 
         <PageFooter footer={footer} />
-      </main>
+      </Box>
     </div>
   );
 };

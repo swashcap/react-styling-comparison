@@ -12,7 +12,7 @@ export interface PageItemGridProps extends HTMLAttributes<HTMLElement> {
 
 export const PageItemGrid: FC<PageItemGridProps> = ({ items, ...rest }) => {
   const [css] = useStyletron();
-  const { breakpoint, space } = useTheme();
+  const { breakpoint } = useTheme();
 
   return (
     <PageRow mb={3} {...rest}>

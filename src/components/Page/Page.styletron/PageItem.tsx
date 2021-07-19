@@ -21,10 +21,10 @@ export const PageItem: FC<PageItemProps> = ({
 
   return (
     <article {...rest}>
-      <a
+      <Box
+        as="a"
         className={css({
           display: "block",
-          marginBottom: space[2],
           transition: "opacity .15s ease-in",
 
           ":focus": {
@@ -35,6 +35,7 @@ export const PageItem: FC<PageItemProps> = ({
           },
         })}
         href="#"
+        mb={2}
       >
         <img
           alt={imageAlt}
@@ -42,55 +43,59 @@ export const PageItem: FC<PageItemProps> = ({
           loading="lazy"
           src={imageSrc}
         />
-      </a>
+      </Box>
       <Box mb={1}>
-        <h2
+        <Box
+          as="h2"
           className={css({
             display: "inline",
             fontSize: fontSize[5],
             lineHeight: theme.lineHeight.copy,
-            margin: 0,
-            paddingRight: space[1],
           })}
+          ma={0}
+          pr={1}
         >
           {title}
-        </h2>
-        <p
+        </Box>
+        <Box
+          as="p"
           className={css({
-            color: color.midGray,
             display: "inline",
             fontSize: fontSize[6],
-            margin: 0,
           })}
+          ma={0}
+          textColor="midGray"
         >
           {description}
-        </p>
+        </Box>
       </Box>
-      <span
+      <Box
+        as="span"
         className={css({
-          color: color.orange,
           display: "block",
           fontSize: fontSize[4],
-          marginBottom: space[2],
         })}
+        mb={2}
+        textColor="orange"
       >
         {price}
-      </span>
+      </Box>
       <Box mb={2}>
         <Button size="medium">Lorem ipsum</Button>
       </Box>
       {fulfillment && (
-        <span
+        <Box
+          as="span"
           className={css({
-            color: color.midGray,
             fontSize: fontSize[6],
           })}
+          textColor="midGray"
         >
           Get it by{" "}
-          <span className={css({ color: theme.color.green })}>
+          <Box as="span" textColor="green">
             {fulfillment}
-          </span>
-        </span>
+          </Box>
+        </Box>
       )}
     </article>
   );

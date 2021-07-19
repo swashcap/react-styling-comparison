@@ -24,13 +24,13 @@ export const PageFooter: FC<
       className={clsx(
         css({
           borderTop: `1px solid ${color.silver}`,
-          color: color.midGray,
         }),
         className
       )}
       mt={4}
       pb={4}
       pt={2}
+      textColor="midGray"
       {...rest}
     >
       <PageRow mb={4}>
@@ -48,25 +48,27 @@ export const PageFooter: FC<
             })}
             key={index}
           >
-            <h3
+            <Box
+              as="h3"
               className={css({
                 fontSize: theme.fontSize[5],
                 fontWeight: theme.fontWeight[700],
                 lineHeight: theme.lineHeight.copy,
-                marginBottom: space[1],
-                marginTop: 0,
               })}
+              mb={1}
+              mt={0}
             >
               {title}
-            </h3>
-            <ul
+            </Box>
+            <Box
+              as="ul"
               className={css({
                 fontSize: theme.fontSize[6],
                 lineHeight: theme.lineHeight.copy,
                 listStyle: "none",
-                margin: 0,
-                padding: 0,
               })}
+              ma={0}
+              pa={0}
             >
               {links.map(({ name, url }) => (
                 <li key={url}>
@@ -88,37 +90,40 @@ export const PageFooter: FC<
                   </a>
                 </li>
               ))}
-            </ul>
+            </Box>
           </PageRowItem>
         ))}
       </PageRow>
       <aside>
-        <p
+        <Box
+          as="p"
           className={css({
             fontSize: theme.fontSize[6],
             lineHeight: theme.lineHeight.copy,
-            marginBottom: space[2],
-            marginTop: 0,
           })}
+          mb={2}
+          mt={0}
         >
           {finePrint1}
-        </p>
+        </Box>
         <Button onClick={actionOnClick} size="small" variant="tertiary">
           {actionText}
         </Button>
-        <small
+        <Box
+          as="small"
           className={css({
             borderTop: `1px solid ${color.moonGray}`,
             color: color.gray,
             display: "block",
             fontSize: theme.fontSize[7],
             lineHeight: theme.lineHeight.copy,
-            marginTop: space[3],
-            paddingTop: space[2],
           })}
+          mt={3}
+          pt={2}
+          textColor="gray"
         >
           {finePrint2}
-        </small>
+        </Box>
       </aside>
     </Box>
   );

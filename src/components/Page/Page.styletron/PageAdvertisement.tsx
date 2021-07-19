@@ -47,16 +47,17 @@ export const PageAdvertisement: FC<
             },
           })}
         >
-          <h1
+          <Box
+            as="h1"
             className={css({
               fontSize: theme.fontSize[4],
               lineHeight: theme.lineHeight.title,
-              marginBottom: theme.space[2],
-              marginTop: 0,
             })}
+            mb={2}
+            mt={0}
           >
             {title}
-          </h1>
+          </Box>
           <Box as="p" mb={3} mt={2}>
             {description}
           </Box>

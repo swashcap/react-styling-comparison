@@ -3,25 +3,71 @@ import { useStyletron } from "styletron-react";
 
 import type { BoxProps } from "./BoxTypes";
 import { clsx } from "../utilities/clsx";
-import { useFilteredPropsAndStyle } from "./Box.service";
+import { useTheme } from "../utilities/theme";
+import { getMarginPaddingStyles } from "./Box.service";
 
 export const Box = <T extends keyof JSX.IntrinsicElements = "div">({
   as,
+  bg,
+  br,
+  lg,
+  ma,
+  mb,
+  md,
+  mh,
+  ml,
+  mr,
+  mt,
+  mv,
+  pa,
+  pb,
+  ph,
+  pl,
+  pr,
+  pt,
+  pv,
+  textColor,
   className,
   ...rest
 }: BoxProps<T>): ReactElement<T> => {
-  const Component = as || "div";
-  const { props, styles } = useFilteredPropsAndStyle(rest);
+  const Component = (as || "div") as T;
   const [css] = useStyletron();
+  const { borderRadius, breakpoint, color, space } = useTheme();
 
-  /* eslint-disable @typescript-eslint/ban-ts-comment */
   return (
+    /* eslint-disable @typescript-eslint/ban-ts-comment */
     // @ts-ignore
     <Component
-      // @ts-ignore
-      className={clsx(css(styles), className)}
-      // @ts-ignore
-      {...props}
+      className={clsx(
+        css({
+          background: color[bg],
+          borderRadius: borderRadius[br],
+          color: color[textColor],
+          ...getMarginPaddingStyles(
+            {
+              ma,
+              mb,
+              mh,
+              ml,
+              mr,
+              mt,
+              mv,
+              pa,
+              pb,
+              ph,
+              pl,
+              pr,
+              pt,
+              pv,
+            },
+            space
+          ),
+          [breakpoint.md]: md && getMarginPaddingStyles(md, space),
+          [breakpoint.lg]: lg && getMarginPaddingStyles(lg, space),
+        }),
+        className
+      )}
+      {...rest}
     />
   );
 };
