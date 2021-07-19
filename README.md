@@ -39,9 +39,9 @@ The [comparison script](./scripts/compare.js) demonstrates:
 |               | Button JS | Button CSS | Sidebar JS | Sidebar CSS | Page JS | Page CSS | App (Page + React) |
 | ------------- | --------: | ---------: | ---------: | ----------: | ------: | -------: | -----------------: |
 | CSS Modules   |       320 |        424 |        861 |         682 |    2047 |     1631 |              44641 |
-| Emotion       |      6482 |          0 |       7355 |           0 |    9269 |        0 |              53781 |
+| Emotion       |      6482 |          0 |       7758 |           0 |    9680 |        0 |              54180 |
 | Inline Styles |       789 |          0 |       1607 |           0 |    3675 |        0 |              46180 |
-| Styletron     |      1363 |          0 |       2162 |           0 |    4289 |        0 |              51725 |
+| Styletron     |      1363 |          0 |       2585 |           0 |    4636 |        0 |              52130 |
 | Tachyons      |       457 |      15558 |       1122 |       15558 |    2530 |    15558 |              45057 |
 
 (All sizes gzipped.)

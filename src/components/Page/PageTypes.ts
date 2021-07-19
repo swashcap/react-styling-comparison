@@ -1,8 +1,7 @@
 import type { HTMLAttributes, MouseEventHandler, ReactNode } from "react";
 import { SidebarProps } from "../Sidebar/SidebarTypes";
 
-export interface PageAdvertisementProps
-  extends Omit<HTMLAttributes<HTMLElement>, "title"> {
+export interface PageAdvertisementProps {
   actionOnClick?: MouseEventHandler<HTMLButtonElement>;
   actionText: string;
   description: ReactNode;

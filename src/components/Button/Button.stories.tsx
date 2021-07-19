@@ -1,5 +1,5 @@
 import type { HTMLAttributes, FC } from "react";
-import { Story } from "@storybook/react";
+import type { Story } from "@storybook/react";
 
 import { Button as ButtonCSSModules } from "./Button.cssmodules";
 import { Button as ButtonEmotion } from "./Button.emotion";

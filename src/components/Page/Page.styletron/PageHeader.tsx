@@ -2,26 +2,18 @@ import type { FC, HTMLAttributes } from "react";
 import { useStyletron } from "styletron-react";
 
 import type { PageProps } from "../PageTypes";
+import { Box } from "../../Box/Box.styletron";
 import { PageRow, PageRowItem } from "./PageRow";
-import { clsx } from "../../utilities/clsx";
 import { useTheme } from "../../utilities/theme";
 
 export const PageHeader: FC<
   HTMLAttributes<HTMLElement> & { header: PageProps["header"] }
-> = ({ className, header, ...rest }) => {
+> = ({ header, ...rest }) => {
   const [css] = useStyletron();
   const theme = useTheme();
 
   return (
-    <PageRow
-      className={clsx(
-        css({
-          marginBottom: theme.space[4],
-        }),
-        className
-      )}
-      {...rest}
-    >
+    <PageRow mb={4} {...rest}>
       <PageRowItem
         className={css({
           width: "100%",
@@ -34,71 +26,69 @@ export const PageHeader: FC<
           },
         })}
       >
-        <div
+        <Box
           className={css({
             borderBottom: `1px solid ${theme.color.silver}`,
             display: "flex",
-            paddingBottom: theme.space[1],
           })}
+          pb={1}
         >
           {header.map(({ count, label, status, value }, index) => (
-            <div
-              className={css({
-                paddingRight:
-                  index < header.length - 1 ? theme.space[4] : undefined,
-              })}
-              key={index}
-            >
+            <Box pr={index < header.length - 1 ? 4 : undefined} key={index}>
               <div
                 className={css({
                   display: "inline-block",
                   position: "relative",
                 })}
               >
-                <span
+                <Box
+                  as="span"
                   className={css({
-                    color:
-                      (status === "success" && theme.color.green) ||
-                      (status === "info" && theme.color.blue) ||
-                      undefined,
                     fontSize: theme.fontSize[5],
                     fontWeight: theme.fontWeight[700],
                     lineHeight: theme.lineHeight.title,
                   })}
+                  textColor={
+                    (status === "success" && "green") ||
+                    (status === "info" && "blue") ||
+                    undefined
+                  }
                 >
                   {value}
-                </span>
+                </Box>
                 {typeof count !== "undefined" && (
-                  <span
+                  <Box
+                    as="span"
+                    bg="yellow"
                     className={css({
-                      background: theme.color.yellow,
                       borderRadius: "100%",
                       display: "inline-block",
                       fontSize: theme.fontSize[7],
                       lineHeight: theme.lineHeight.solid,
-                      padding: theme.space[1],
                       position: "absolute",
                       right: "-1rem",
                       top: "-1rem",
                     })}
+                    pa={1}
                   >
                     {count}
-                  </span>
+                  </Box>
                 )}
               </div>
-              <span
+              <Box
+                as="span"
                 className={css({
-                  color: theme.color.gray,
                   display: "block",
                   fontSize: theme.fontSize[7],
                   lineHeight: theme.lineHeight.solid,
                 })}
+                textColor="gray"
               >
                 {label}
-              </span>
-            </div>
+              </Box>
+            </Box>
           ))}
-        </div>
+        </Box>
       </PageRowItem>
       <PageRowItem
         className={css({
@@ -117,10 +107,11 @@ export const PageHeader: FC<
           className={css({ display: "flex" })}
           role="search"
         >
-          <input
+          <Box
             aria-label="Search"
+            as="input"
+            bg="nearWhite"
             className={css({
-              background: theme.color.nearWhite,
               border: `1px solid ${theme.color.silver}`,
               borderRadius: `${theme.borderRadius[2]} 0 0 ${theme.borderRadius[2]}`,
               color: theme.color.black,
@@ -128,28 +119,29 @@ export const PageHeader: FC<
               fontFamily: theme.fontFamily.sansSerif,
               fontSize: theme.fontSize[5],
               lineHeight: theme.lineHeight.solid,
-              padding: theme.space[2],
             })}
             name="q"
+            pa={2}
             placeholder="Lorem ipsum…"
           />
-          <button
+          <Box
+            as="button"
+            bg="gray"
             className={css({
-              background: theme.color.gray,
               border: "1px solid transparent",
               borderRadius: `0 ${theme.borderRadius[2]} ${theme.borderRadius[2]} 0`,
-              color: theme.color.white,
               cursor: "pointer",
               flex: "none",
               fontFamily: theme.fontFamily.sansSerif,
               fontSize: theme.fontSize[5],
               lineHeight: theme.lineHeight.solid,
-              padding: theme.space[2],
             })}
+            pa={2}
+            textColor="white"
             type="submit"
           >
             Search
-          </button>
+          </Box>
         </form>
       </PageRowItem>
     </PageRow>

@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import type { FC, HTMLAttributes } from "react";
 
 import type { PageAdvertisementProps } from "../PageTypes";
 import { Button } from "../../Button/Button.inline";
@@ -12,7 +12,9 @@ import {
   spaceSmall,
 } from "../../utilities/constants";
 
-export const PageAdvertisement: FC<PageAdvertisementProps> = ({
+export const PageAdvertisement: FC<
+  PageAdvertisementProps & Omit<HTMLAttributes<HTMLElement>, "title">
+> = ({
   actionText,
   description,
   imageAlt,

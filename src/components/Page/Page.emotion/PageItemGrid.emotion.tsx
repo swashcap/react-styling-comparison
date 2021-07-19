@@ -10,28 +10,23 @@ export interface PageItemGridProps extends HTMLAttributes<HTMLElement> {
 }
 
 export const PageItemGrid: FC<PageItemGridProps> = ({ items, ...rest }) => (
-  <PageRow
-    css={(theme: Theme) => ({
-      marginBottom: theme.space[3],
-    })}
-    {...rest}
-  >
+  <PageRow mb={3} {...rest}>
     {items.map((item, index) => (
       <PageRowItem
         css={(theme: Theme) => ({
-          marginBottom: theme.space[3],
           width: "100%",
 
           [theme.breakpoint.md]: {
-            marginBottom: theme.space[4],
             width: "33.33%",
           },
           [theme.breakpoint.lg]: {
-            marginBottom: theme.space[4],
             width: "25%",
           },
         })}
         key={index}
+        lg={{ mb: 4 }}
+        mb={3}
+        md={{ mb: 4 }}
       >
         <PageItem {...item} />
       </PageRowItem>

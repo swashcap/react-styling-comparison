@@ -1,26 +1,19 @@
-import type { FC } from "react";
-
 import type { PageAdvertisementProps } from "../PageTypes";
 import type { Theme } from "../../utilities/theme";
+import { Box } from "../../Box/Box.emotion";
+import { BoxProps } from "../../Box/BoxTypes";
 import { Button } from "../../Button/Button.emotion";
 import { PageRow, PageRowItem } from "./PageRow.emotion";
 
-export const PageAdvertisement: FC<PageAdvertisementProps> = ({
+export const PageAdvertisement = ({
   actionText,
   description,
   imageAlt,
   imageSrc,
   title,
   ...rest
-}) => (
-  <aside
-    css={(theme: Theme) => ({
-      background: theme.color.nearWhite,
-      borderRadius: theme.borderRadius[2],
-      padding: theme.space[3],
-    })}
-    {...rest}
-  >
+}: PageAdvertisementProps & Omit<BoxProps<"aside">, "title">) => (
+  <Box as="aside" bg="nearWhite" br={2} pa={3} {...rest}>
     <PageRow>
       <PageRowItem
         css={(theme: Theme) => ({
@@ -51,28 +44,24 @@ export const PageAdvertisement: FC<PageAdvertisementProps> = ({
           },
         })}
       >
-        <h1
+        <Box
+          as="h1"
           css={(theme: Theme) => ({
             fontSize: theme.fontSize[4],
             lineHeight: theme.lineHeight.title,
-            marginBottom: theme.space[2],
-            marginTop: 0,
           })}
+          mb={2}
+          mt={0}
         >
           {title}
-        </h1>
-        <p
-          css={(theme: Theme) => ({
-            marginBottom: theme.space[3],
-            marginTop: theme.space[2],
-          })}
-        >
+        </Box>
+        <Box as="p" mb={3} mt={2}>
           {description}
-        </p>
+        </Box>
         <Button size="medium" variant="primary">
           {actionText}
         </Button>
       </PageRowItem>
     </PageRow>
-  </aside>
+  </Box>
 );
